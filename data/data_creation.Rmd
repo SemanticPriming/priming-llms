@@ -1,0 +1,62 @@
+---
+title: "Data Creation"
+author: "Erin M. Buchanan"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Libraries
+
+```{r}
+library(semanticprimeR)
+library(dplyr)
+library(rio)
+```
+
+## Data
+
+Questions: 
+
+1) Do we want to use the original (more strict) scoring for accuracy for inclusion or the revised (less strict) scoring? 
+  - original accuracy: correct / trials seen
+  - revised: correct / trials answered --> more data
+  
+  
+Note: after running this, I turned the chunk off so it's not running over and over. 
+
+```{r eval = F}
+# a list of datasets
+data(primeData)
+primeData.filter <- primeData %>% 
+  filter(grepl("prime_summary.csv", filename)) %>% 
+  filter(!grepl("answered", filename))
+
+data.files <- lapply(primeData.filter$location, import)
+lang.length <- lapply(data.files, nrow)
+
+full.data <- bind_rows(data.files) %>% 
+  mutate(language = rep(primeData.filter$language, times = lang.length))
+
+matching.data <- lapply(primeData %>% 
+                          filter(type == "matched_stimuli") %>% 
+                          pull(location), import)
+matching.data.trials <- matching.data[lapply(matching.data, ncol) == 2]
+matching.data.trials <- bind_rows(matching.data.trials)
+
+matching.data.stim <- matching.data[lapply(matching.data, ncol) != 2]
+matching.data.stim <- lapply(matching.data.stim, function(df) {
+  
+  
+  
+  return(df)
+})
+matching.data.stim <- bind_rows(matching.data.stim)
+```
+
+```{r eval = F}
+
+```
