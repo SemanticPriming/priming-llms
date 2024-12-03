@@ -15,6 +15,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(semanticprimeR)
 library(dplyr)
 library(rio)
+library(tidyr)
 ```
 
 ## Data
@@ -41,22 +42,55 @@ lang.length <- lapply(data.files, nrow)
 full.data <- bind_rows(data.files) %>% 
   mutate(language = rep(primeData.filter$language, times = lang.length))
 
-matching.data <- lapply(primeData %>% 
-                          filter(type == "matched_stimuli") %>% 
-                          pull(location), import)
-matching.data.trials <- matching.data[lapply(matching.data, ncol) == 2]
-matching.data.trials <- bind_rows(matching.data.trials)
-
-matching.data.stim <- matching.data[lapply(matching.data, ncol) != 2]
-matching.data.stim <- lapply(matching.data.stim, function(df) {
-  
-  
-  
-  return(df)
-})
-matching.data.stim <- bind_rows(matching.data.stim)
+matching.data <- import(primeData %>% 
+                          filter(language == "all") %>% 
+                          pull(location))
 ```
 
 ```{r eval = F}
+# merge and write by language
+languages <- unique(full.data$language)
 
+for (lang in languages){
+  
+  if (lang == "en") {
+    columns <- c("en_cue", "en_target", 
+                paste0(lang, "_target_word_unique"),
+                paste0(lang, "_word_combo")
+    )
+    lang2 <- "en"
+  } else if (lang == "br_pt") {
+    columns <- c("en_cue", "en_target", 
+              paste0("pt_br", "_cue"),
+              paste0("pt_br", "_target"),
+              paste0("pt_br", "_target_word_unique"),
+              paste0("pt_br", "_word_combo")
+              )
+    lang2 <- "pt_br"
+  } else {
+    columns <- c("en_cue", "en_target", 
+            paste0(lang, "_cue"),
+            paste0(lang, "_target"),
+            paste0(lang, "_target_word_unique"),
+            paste0(lang, "_word_combo")
+            )
+    lang2 <- lang
+  }
+
+  
+  temp <- full.data %>% 
+    filter(language == lang) %>% 
+    left_join(
+      matching.data[ , columns],
+      by = c("target_word_unique" = paste0(lang2, "_target_word_unique"))
+    )
+  
+  cat(lang, " ", nrow(temp), " \n")
+  
+  export(temp, paste0("data/", lang, "_priming.csv"))
+}
 ```
+
+Notes:
+- Korean has too many rows due to an error in matching. You can exclude the NA values in the priming columns. 
+- Not all languages have enough data to calculate good priming scores - we used target answered = 50 but we may consider figuring out a different criteria for this project. 
