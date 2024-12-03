@@ -45,6 +45,22 @@ full.data <- bind_rows(data.files) %>%
 matching.data <- import(primeData %>% 
                           filter(language == "all") %>% 
                           pull(location))
+
+matching.stimuli <- lapply(primeData %>% 
+                             filter(grepl("words.csv", filename)) %>% 
+                             pull(location), import)
+
+for (i in 1:length(matching.stimuli)) {
+  matching.stimuli[[i]] <- matching.stimuli[[i]] %>% 
+    filter(type == "unrelated") %>% 
+    select(ends_with("cue"), ends_with("target"))
+  
+  colnames(matching.stimuli[[i]])[1] <- paste0("unrelated_", colnames(matching.stimuli[[i]])[1])
+}
+
+names(matching.stimuli) <- primeData %>% 
+  filter(grepl("words.csv", filename)) %>% 
+  pull(language)
 ```
 
 ```{r eval = F}
@@ -77,14 +93,27 @@ for (lang in languages){
     lang2 <- lang
   }
 
-  
   temp <- full.data %>% 
     filter(language == lang) %>% 
     left_join(
       matching.data[ , columns],
       by = c("target_word_unique" = paste0(lang2, "_target_word_unique"))
-    )
+    ) 
   
+  if (lang == "br_pt") {
+    temp <- temp %>% 
+    left_join(
+      matching.stimuli[[lang]], 
+      by = c("pt_br_target" = "pt_target")
+    )
+  } else {
+    temp <- temp %>% 
+    left_join(
+      matching.stimuli[[lang]], 
+      by = paste0(lang, "_target")
+    )
+  }
+
   cat(lang, " ", nrow(temp), " \n")
   
   export(temp, paste0("data/", lang, "_priming.csv"))
@@ -94,3 +123,4 @@ for (lang in languages){
 Notes:
 - Korean has too many rows due to an error in matching. You can exclude the NA values in the priming columns. 
 - Not all languages have enough data to calculate good priming scores - we used target answered = 50 but we may consider figuring out a different criteria for this project. 
+- The targets did repeat, so we randomly picked which pair to compare them to - I think we could compare both here or just randomly pick one of the matches - I can probably export the exact related-unrelated matches, but it didn't really matter which combination you subtracted, so it might be best to include all combinations/or randomly select from the duplicates. The data includes all possible combinations but we only analyzed 1000 pairs because we didn't calculate all possible combinations just randomly paired them together. 
