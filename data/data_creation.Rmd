@@ -26,7 +26,6 @@ Questions:
   - original accuracy: correct / trials seen
   - revised: correct / trials answered --> more data
   
-  
 Note: after running this, I turned the chunk off so it's not running over and over. 
 
 ```{r eval = F}
@@ -45,22 +44,6 @@ full.data <- bind_rows(data.files) %>%
 matching.data <- import(primeData %>% 
                           filter(language == "all") %>% 
                           pull(location))
-
-matching.stimuli <- lapply(primeData %>% 
-                             filter(grepl("words.csv", filename)) %>% 
-                             pull(location), import)
-
-for (i in 1:length(matching.stimuli)) {
-  matching.stimuli[[i]] <- matching.stimuli[[i]] %>% 
-    filter(type == "unrelated") %>% 
-    select(ends_with("cue"), ends_with("target"))
-  
-  colnames(matching.stimuli[[i]])[1] <- paste0("unrelated_", colnames(matching.stimuli[[i]])[1])
-}
-
-names(matching.stimuli) <- primeData %>% 
-  filter(grepl("words.csv", filename)) %>% 
-  pull(language)
 ```
 
 ```{r eval = F}
@@ -72,55 +55,43 @@ for (lang in languages){
   if (lang == "en") {
     columns <- c("en_cue", "en_target", 
                 paste0(lang, "_target_word_unique"),
-                paste0(lang, "_word_combo")
+                paste0(lang, "_word_combo_related"), 
+                paste0(lang, "_word_combo_unrelated"),
+                paste0(lang, "_cue_word_related"),
+                paste0(lang, "_cue_word_unrelated")
     )
-    lang2 <- "en"
-  } else if (lang == "br_pt") {
-    columns <- c("en_cue", "en_target", 
-              paste0("pt_br", "_cue"),
-              paste0("pt_br", "_target"),
-              paste0("pt_br", "_target_word_unique"),
-              paste0("pt_br", "_word_combo")
-              )
-    lang2 <- "pt_br"
   } else {
     columns <- c("en_cue", "en_target", 
             paste0(lang, "_cue"),
             paste0(lang, "_target"),
             paste0(lang, "_target_word_unique"),
-            paste0(lang, "_word_combo")
+            paste0(lang, "_word_combo_related"), 
+            paste0(lang, "_word_combo_unrelated"),
+            paste0(lang, "_cue_word_related"),
+            paste0(lang, "_cue_word_unrelated")
             )
-    lang2 <- lang
   }
 
   temp <- full.data %>% 
     filter(language == lang) %>% 
+    mutate(target_word_unique = tolower(target_word_unique)) %>% 
     left_join(
       matching.data[ , columns],
-      by = c("target_word_unique" = paste0(lang2, "_target_word_unique"))
+      by = c("target_word_unique" = paste0(lang, "_target_word_unique"))
     ) 
-  
-  if (lang == "br_pt") {
-    temp <- temp %>% 
-    left_join(
-      matching.stimuli[[lang]], 
-      by = c("pt_br_target" = "pt_target")
-    )
-  } else {
-    temp <- temp %>% 
-    left_join(
-      matching.stimuli[[lang]], 
-      by = paste0(lang, "_target")
-    )
-  }
 
-  cat(lang, " ", nrow(temp), " \n")
+  cat(lang, " ", nrow(temp), " ", sum(is.na(temp$en_cue)), " \n")
   
-  export(temp, paste0("data/", lang, "_priming.csv"))
+  export(temp, paste0("priming_data/", lang, "_priming.csv"))
 }
+
+# fix extras in korean
+ko_fix <- import("priming_data/ko_priming.csv") %>% 
+  filter(!is.na(avgRT_related))
+nrow(ko_fix)
+export(ko_fix,"priming_data/ko_priming.csv", row.names = F)
 ```
 
 Notes:
-- Korean has too many rows due to an error in matching. You can exclude the NA values in the priming columns. 
+- Korean has too many rows due to an error in matching. I excluded the extra ones. 
 - Not all languages have enough data to calculate good priming scores - we used target answered = 50 but we may consider figuring out a different criteria for this project. 
-- The targets did repeat, so we randomly picked which pair to compare them to - I think we could compare both here or just randomly pick one of the matches - I can probably export the exact related-unrelated matches, but it didn't really matter which combination you subtracted, so it might be best to include all combinations/or randomly select from the duplicates. The data includes all possible combinations but we only analyzed 1000 pairs because we didn't calculate all possible combinations just randomly paired them together. 
