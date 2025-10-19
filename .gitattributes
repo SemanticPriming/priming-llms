@@ -1,3 +1,6 @@
+*.rds filter=lfs diff=lfs merge=lfs -text
+*.csv filter=lfs diff=lfs merge=lfs -text
+*.png filter=lfs diff=lfs merge=lfs -text
 *.csv !text !filter !merge !diff
 *.png !text !filter !merge !diff
 *.rds !text !filter !merge !diff
