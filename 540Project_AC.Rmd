@@ -1,0 +1,641 @@
+---
+title: "540 Project"
+author: "Addie Clark"
+date: "2025-10-16"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(dplyr)
+library(semanticprimeR)
+library(reticulate)
+library(rio)
+library(tidyr)
+library(purrr)
+library(progressr)
+source("functions.R")
+```
+
+## Item Data
+
+```{r}
+data("primeData")
+# filter to just english
+primeData <- primeData %>% 
+  filter(language == "en") %>% 
+  filter(type == "item_data")
+
+# only need this line if you don't have the dataset yet 
+#import_prime("en_item_data.csv")
+DF <- rio::import("item_data/en/en_item_data.csv") %>% 
+  filter(class == "word") %>% 
+  select(word)
+```
+
+## Lexical Data
+
+```{r}
+# length
+DF$length <- nchar(DF$word)
+
+# frequency processed with phonemes
+subs_DF <- rio::import("subs_count/en/subs_DF_phono.csv") %>% 
+  unique()
+
+DF <- DF %>% 
+  left_join(subs_DF, by = c("word" = "unigram"))
+
+# orthographic neighborhood
+DF <- calc_neighbors(DF, subs_DF)
+
+# bigram frequency
+DF <- add_bigram_frequency(DF, subs_DF, weight = "unigram_freq")
+
+# orthographic Levenshtein
+DF <- add_orthographic_levenshtein(DF, subs_DF, k = 20, max_len_diff = 3)
+
+# phonographic Levenshtein
+DF <- add_phonographic_levenshtein(DF, k = 20, max_len_diff = 3)
+
+# semantic diversity
+DF <- DF %>% 
+  left_join(
+    rio::import("semdiv_data/en/en_semantic_diversity.csv") %>% 
+      select(-V1),
+    by = c("word" = "term")
+  )
+
+# check out the NAs
+```
+
+## Subjective Data
+
+```{r}
+data("labData")
+labData <- labData %>% 
+  filter(language == "English" | language == "British English" | language == "Multiple") %>% 
+  filter(type1 == "Words" | type1 == "Word Pairs")
+```
+
+
+### Human Prime
+
+```{r}
+data("primeData")
+# filter to just english
+primeData <- primeData %>% 
+  filter(language == "en") 
+
+#en_prime <- import_prime("en_prime_summary.csv")
+
+# use this to match to the values that you find in en_matched
+en_prime <- import("priming_data/en/en_prime_summary.csv")
+
+# use this to get the surprisal values
+en_matched <- import_prime("en_trial_unique.csv")
+```
+
+### LLM Priming
+
+```{r}
+# cue needs to come first, target always last 
+llm_prime <- en_matched %>% 
+  select(target_word_unique, cue_word_related, cue_word_unrelated) %>% 
+  mutate(
+    pair_id = row_number(),
+    
+    # Original simple context
+    sentence_related1   = paste0("Given the word ", cue_word_related, ", the next word is ", target_word_unique),
+    sentence_unrelated1 = paste0("Given the word ", cue_word_unrelated, ", the next word is ", target_word_unique),
+    
+    # Context 2: "After the word..."
+    sentence_related2   = paste0("After the word ", cue_word_related, ", comes the word ", target_word_unique),
+    sentence_unrelated2 = paste0("After the word ", cue_word_unrelated, ", comes the word ", target_word_unique),
+    
+    # Context 3: "The pair begins with..."
+    sentence_related3   = paste0("The pair begins with ", cue_word_related, ", and continues with ", target_word_unique),
+    sentence_unrelated3 = paste0("The pair begins with ", cue_word_unrelated, ", and continues with ", target_word_unique),
+    
+    # Context 4: "If the first word is..."
+    sentence_related4   = paste0("If the first word is ", cue_word_related, ", the next word you’ll see is ", target_word_unique),
+    sentence_unrelated4 = paste0("If the first word is ", cue_word_unrelated, ", the next word you’ll see is ", target_word_unique)
+  )
+
+contexts <- list(
+  context1 = list(A = llm_prime$sentence_related1, B = llm_prime$sentence_unrelated1),
+  context2 = list(A = llm_prime$sentence_related2, B = llm_prime$sentence_unrelated2),
+  context3 = list(A = llm_prime$sentence_related3, B = llm_prime$sentence_unrelated3),
+  context4 = list(A = llm_prime$sentence_related4, B = llm_prime$sentence_unrelated4)
+)
+
+reticulate::py_install(
+  packages = c("transformers", "torch"),
+  pip = TRUE
+)
+
+transformers <- reticulate::import("transformers")
+# 1) Compute last-word surprisal for each sentence and the priming delta (B − A)
+res_gpt2_list <- imap(contexts, function(sentences, label) {
+  priming_delta(
+    sentence_A = sentences$A,
+    sentence_B = sentences$B,
+    log.p = 0.5,
+    model = "openai-community/gpt2"
+  ) %>%
+    mutate(model = "gpt2", pair_id = llm_prime$pair_id, context = label)
+})
+
+res_gpt2 <- bind_rows(res_gpt2_list)
+
+# 1) Compute last-word surprisal for each sentence and the priming delta (B − A)
+res_bloom_list <- imap(contexts, function(sentences, label) {
+  priming_delta(
+    sentence_A = sentences$A,
+    sentence_B = sentences$B,
+    log.p = 0.5,
+    model = "bigscience/bloom-560m"
+  ) %>%
+    mutate(model = "bloom-560m", pair_id = llm_prime$pair_id, context = label)
+})
+
+res_bloom <- bind_rows(res_bloom_list)
+
+# 1) Compute last-word surprisal for each sentence and the priming delta (B − A)
+res_roberta_list <- imap(contexts, function(sentences, label) {
+  priming_delta(
+    sentence_A = sentences$A,
+    sentence_B = sentences$B,
+    log.p = 0.5,
+    model = "FacebookAI/roberta-base"
+  ) %>%
+    mutate(model = "roberta-base", pair_id = llm_prime$pair_id, context = label)
+})
+
+res_roberta <- bind_rows(res_roberta_list)
+
+#Combine them together
+res_all <- bind_rows(res_gpt2, res_bloom, res_roberta) %>%
+  mutate(context = factor(context, 
+                          levels = c("context1", "context2", "context3", "context4")))
+
+# 2) Attach the results back to your data
+res_all <- res_all %>%
+  left_join(
+    llm_prime %>%
+      select(pair_id, target_word_unique, cue_word_related, cue_word_unrelated),
+    by = "pair_id"
+  ) %>%
+  select(
+    pair_id,
+    #sentence_A,
+    #sentence_B,
+    context,
+    target_word_unique,
+    cue_word_related,
+    cue_word_unrelated,
+    last_word_A,
+    last_word_B,
+    model,
+    surprisal_A,
+    surprisal_B,
+    priming_delta,
+  )
+
+# check to make sure everything looks okay
+res_all %>%
+  select(pair_id, model, cue_word_related, target_word_unique, priming_delta) %>%
+  head()
+
+res_all %>% count(model, context)
+
+write.csv(res_all, file = "res_all.csv", row.names = F)
+```
+
+
+```{r}
+options(scipen = 999)
+library(ggplot2)
+
+res_all %>%
+  group_by(model, context) %>%
+  summarise(mean_delta = mean(priming_delta, na.rm = TRUE))
+
+ggplot(res_all, aes(x = context, y = priming_delta, fill = model)) +
+  geom_boxplot(outlier.alpha = 0.2, width = 0.7) +
+  theme_minimal(base_size = 13) +
+  labs(
+    title = "Priming Δ (B − A) Across Contexts and Models",
+    x = "Sentence Context Type",
+    y = "Priming Delta"
+  ) +
+  theme(
+    legend.position = "top",
+    axis.text.x = element_text(angle = 20, hjust = 1)
+  )
+
+res_all %>%
+  group_by(model) %>%
+  summarise(mean_delta = mean(priming_delta, na.rm = TRUE),
+            sd_delta = sd(priming_delta, na.rm = TRUE)) %>%
+  ggplot(aes(x = model, y = mean_delta, fill = model)) +
+  geom_col(width = 0.6) +
+  geom_errorbar(aes(ymin = mean_delta - sd_delta,
+                    ymax = mean_delta + sd_delta), width = 0.2) +
+  theme_minimal(base_size = 13) +
+  labs(
+    title = "Average Priming Effect by Model",
+    x = NULL,
+    y = "Mean Priming Δ (± SD)"
+  )
+
+res_all %>%
+  filter(target_word_unique %in% c("mayonnaise", "limousine", "grandmother")) %>%
+  mutate(
+    target_word_unique = factor(
+      target_word_unique,
+      levels = c("mayonnaise", "limousine", "grandmother")  # 
+    )
+  ) %>%
+  ggplot(aes(x = context, y = priming_delta, fill = model)) +
+  geom_col(position = position_dodge(width = 0.7), width = 0.6) +
+  facet_wrap(~ target_word_unique, nrow = 1) +
+  theme_minimal(base_size = 13) +
+  labs(
+    title = "Priming Δ (B − A) Across Contexts and Models",
+    subtitle = "Selected targets: highest surprisal A, B, and Δ",
+    x = "Sentence Context Type",
+    y = "Priming Delta (bits)"
+  ) +
+  theme(
+    legend.position = "top",
+    panel.grid.minor = element_blank(),
+    axis.text.x = element_text(angle = 20, hjust = 1)
+  )
+
+ggplot(res_all, aes(priming_delta)) + 
+  geom_density() + 
+  geom_vline(xintercept = 0) +
+  theme_classic()
+
+ggplot(res_all, aes(x = priming_delta, fill = model)) + 
+  geom_density(alpha = 0.4) + 
+  geom_vline(xintercept = 0, linetype = "dashed") +
+  facet_wrap(~ context, nrow = 2) +
+  theme_classic(base_size = 13) +
+  labs(
+    title = "Distribution of Priming Δ Across Models and Contexts",
+    x = "Priming Δ (B − A)",
+    y = "Density",
+    fill = "Model"
+  )
+
+ggplot(en_prime, aes(avgZ_prime)) + 
+  geom_density() + 
+  geom_vline(xintercept = 0) +
+  theme_classic()
+
+ggplot(en_prime, aes(x = avgZ_prime)) + 
+  geom_density(fill = "grey70", alpha = 0.6) +
+  geom_vline(xintercept = 0, linetype = "dashed") +
+  theme_classic(base_size = 13) +
+  labs(
+    title = "Distribution of Human Priming (Z-Transformed)",
+    x = "Human Avg Z-Prime",
+    y = "Density"
+  )
+
+together <- en_prime %>%
+  select(target_word_unique, avgZ_prime) %>%
+  left_join(
+    res_all %>%
+      select(target_word_unique, model, context, priming_delta),
+    by = "target_word_unique"
+  )
+
+ggplot(together, aes(x = avgZ_prime, y = priming_delta, color = context)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = FALSE, color = "black", linetype = "dashed") +
+  facet_wrap(~ model, nrow = 1) +
+  theme_classic(base_size = 13) +
+  labs(
+    title = "Relationship Between Human and Model Priming",
+    x = "Human Avg Z-Prime",
+    y = "Model Priming Δ",
+    color = "Context"
+  )
+
+#filled to context instead of model 
+ggplot(together, aes(x = avgZ_prime, y = priming_delta, color = context)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = FALSE, color = "black", linetype = "dashed") +
+  facet_wrap(~ context, nrow = 1) +
+  theme_classic(base_size = 13) +
+  labs(
+    title = "Relationship Between Human and Model Priming",
+    x = "Human Avg Z-Prime",
+    y = "Model Priming Δ",
+    color = "Context"
+  )
+
+together %>%
+  group_by(model, context) %>%
+  summarise(
+    r = cor(avgZ_prime, priming_delta, use = "complete.obs"),
+    p = if (sum(complete.cases(avgZ_prime, priming_delta)) > 2)
+          cor.test(avgZ_prime, priming_delta)$p.value
+        else NA_real_
+  ) %>%
+  mutate(
+    sig_label = case_when(
+      p < 0.001 ~ "***",
+      p < 0.01 ~ "**",
+      p < 0.05 ~ "*",
+      TRUE ~ ""
+    )
+  ) %>%
+  arrange(desc(r))
+
+together %>%
+  group_by(model) %>%
+  summarise(
+    overall_r = cor(avgZ_prime, priming_delta, use = "complete.obs"),
+    overall_p = cor.test(avgZ_prime, priming_delta)$p.value
+  )
+
+together %>%
+  group_by(context) %>%
+  summarise(
+    overall_r = cor(avgZ_prime, priming_delta, use = "complete.obs"),
+    overall_p = cor.test(avgZ_prime, priming_delta)$p.value
+  )
+
+cor(together$avgZ_prime, together$priming_delta)
+```
+
+## Embeddings
+
+```{r}
+transformers <- reticulate::import("transformers")
+torch <- reticulate::import("torch")
+
+#define models
+model_names <- c(
+  "openai-community/gpt2",
+  "bigscience/bloom-560m",
+  "FacebookAI/roberta-base"
+)
+
+#define 4 contexts (pairs of related/unrelated sentence columns)
+context_pairs <- tibble(
+  context_label = paste0("context", 1:4),
+  rel_col = paste0("sentence_related", 1:4),
+  unrel_col = paste0("sentence_unrelated", 1:4)
+)
+
+#function with model-specific loaders
+embed_model_contexts <- function(model_name) {
+  if (grepl("bloom", tolower(model_name))) {
+    model <- transformers$BloomForCausalLM$from_pretrained(model_name)
+    # make semanticprimeR happy
+    model$transformer$wte <- model$transformer$word_embeddings
+  } else if (grepl("roberta", tolower(model_name))) {
+    model <- transformers$RobertaForMaskedLM$from_pretrained(model_name)
+    # alias roberta encoder and embeddings under expected names
+    model$transformer <- model$roberta
+    model$transformer$wte <- model$roberta$embeddings$word_embeddings
+  } else {
+    model <- transformers$AutoModelForCausalLM$from_pretrained(model_name)
+  }
+
+  tokzr <- transformers$AutoTokenizer$from_pretrained(model_name)
+  model$eval()
+
+  purrr::pmap_dfr(
+    context_pairs,
+    function(context_label, rel_col, unrel_col) {
+      batched <- embed_dataframe(
+        llm_prime,
+        tokzr = tokzr,
+        model = model,
+        layer = NULL,    #or specify a layer (e.g., 12 for GPT-2 small)
+        occurrence = "last",
+        word_col = "target_word_unique",
+        sent_rel_col = rel_col,
+        sent_unrel_col = unrel_col,
+        quiet = TRUE
+      )
+      tibble(
+        model = model_name,
+        context = context_label,
+        static_mat = list(batched$static),
+        context_related = list(batched$context_related),
+        context_unrelated = list(batched$context_unrelated)
+      )
+    }
+  )
+}
+
+safe_embed_model_contexts <- function(model_name) {
+  tryCatch(
+    embed_model_contexts(model_name),
+    error = function(e) {
+      message("\n Failed for model: ", model_name)
+      print(e)
+      NULL
+    }
+  )
+}
+
+library(progress)
+
+# ensure outputs folder exists
+dir.create("outputs", showWarnings = FALSE)
+
+start_time <- Sys.time()
+
+# outer progress bar — tracks models
+pb_models <- progress_bar$new(
+  format = "Running model :current/:total [:bar] :percent  ETA: :eta",
+  total = length(model_names),
+  clear = FALSE,
+  width = 70
+)
+
+#full run version (no skip)
+#all_embeds_list <- list()
+
+#for (i in seq_along(model_names)) {
+#  model_name <- model_names[i]
+#  pb_models$tick(tokens = list(current = i, total = length(model_names)))
+#  message("\n▶ Starting model: ", model_name)
+
+  # --- inner progress bar (contexts) ---
+#  pb_contexts <- progress_bar$new(
+#    format = paste0("  [", model_name, "] Context :current/:total [:bar] :percent  ETA: :eta"),
+#    total = nrow(context_pairs),
+#    clear = FALSE,
+#    width = 60
+#  )
+
+  # pre-allocate results list
+#  model_results <- list()
+
+#  for (j in seq_len(nrow(context_pairs))) {
+#    context_label <- context_pairs$context_label[j]
+#    rel_col <- context_pairs$rel_col[j]
+#    unrel_col <- context_pairs$unrel_col[j]
+
+#    pb_contexts$tick(tokens = list(current = j, total = nrow(context_pairs)))
+#    message("   → Running ", context_label)
+
+    # try to run and catch any errors
+#    result <- tryCatch({
+#      embed_model_contexts(model_name) %>%
+#        dplyr::filter(context == context_label)
+#    }, error = function(e) {
+#      message("Failed context: ", context_label, " for ", model_name)
+#      print(e)
+#      NULL
+#    })
+
+#    model_results[[context_label]] <- result
+#  }
+
+  # bind all contexts for the model
+#  model_embeds <- dplyr::bind_rows(model_results)
+
+  # store in full list
+#  all_embeds_list[[model_name]] <- model_embeds
+
+  # save after each model finishes
+#  saveRDS(model_embeds, file = paste0("outputs/embed_", gsub("/", "_", model_name), ".rds"))
+
+#  message("Finished model: ", model_name, "\n")
+#}
+
+
+#full run version (WITH skip)
+# will hold all results
+all_embeds_list <- list()
+
+for (i in seq_along(model_names)) {
+  model_name <- model_names[i]
+  pb_models$tick(tokens = list(current = i, total = length(model_names)))
+
+  # define file name for this model
+  model_file <- paste0("outputs/embed_", gsub("/", "_", model_name), ".rds")
+
+  #check if model already exists (skip if yes)
+  if (file.exists(model_file)) {
+    message("\n Skipping already completed model: ", model_name)
+    
+    # optional: read it back in if you want to include in final merge
+    existing <- readRDS(model_file)
+    all_embeds_list[[model_name]] <- existing
+    
+    next  # skip to next model
+  }
+
+  message("\n▶ Starting model: ", model_name)
+
+  # --- inner progress bar (for the 4 contexts) ---
+  pb_contexts <- progress_bar$new(
+    format = paste0("  [", model_name, "] Context :current/:total [:bar] :percent  ETA: :eta"),
+    total = nrow(context_pairs),
+    clear = FALSE,
+    width = 60
+  )
+
+  # hold results for each context
+  model_results <- list()
+
+  for (j in seq_len(nrow(context_pairs))) {
+    context_label <- context_pairs$context_label[j]
+    rel_col <- context_pairs$rel_col[j]
+    unrel_col <- context_pairs$unrel_col[j]
+
+    pb_contexts$tick(tokens = list(current = j, total = nrow(context_pairs)))
+    message("   → Running ", context_label)
+
+    # ⚙️ compute embeddings for this model + context
+    result <- tryCatch({
+      embed_model_contexts(model_name) %>%
+        dplyr::filter(context == context_label)
+    }, error = function(e) {
+      message(" Failed context: ", context_label, " for ", model_name)
+      print(e)
+      NULL
+    })
+
+    model_results[[context_label]] <- result
+  }
+
+  # combine the contexts
+  model_embeds <- dplyr::bind_rows(model_results)
+
+  # save this model’s results
+  saveRDS(model_embeds, file = model_file)
+
+  # store in main list
+  all_embeds_list[[model_name]] <- model_embeds
+
+  message("Finished model: ", model_name, "\n")
+
+  # optional pause if GPU memory gets stressed
+  # Sys.sleep(5)
+}
+
+
+# combine across models
+all_embeds <- dplyr::bind_rows(all_embeds_list)
+
+end_time <- Sys.time()
+elapsed <- difftime(end_time, start_time, units = "mins")
+
+cat("\n All models and contexts complete in",
+    round(as.numeric(elapsed), 2), "minutes (≈",
+    round(as.numeric(elapsed)/60, 2), "hours)\n")
+
+# save final combined dataset
+saveRDS(all_embeds, "outputs/all_model_context_embeddings.rds")
+
+# quick summary
+all_embeds %>% count(model, context)
+```
+
+
+```{r summary}
+all_embeds %>%
+  mutate(
+    static_dim = map_int(static_mat, ~ncol(.x)),
+    static_n   = map_int(static_mat, ~nrow(.x))
+  ) %>%
+  select(model, context, static_n, static_dim)
+
+library(lsa)
+#average pairwise cosine similarity per context
+summary_cosine <- all_embeds %>%
+  mutate(
+    mean_cos_rel = map_dbl(context_related, ~mean(cosine(t(.x))[upper.tri(cosine(t(.x)))])),
+    mean_cos_unrel = map_dbl(context_unrelated, ~mean(cosine(t(.x))[upper.tri(cosine(t(.x)))])),
+    delta_cos = mean_cos_rel - mean_cos_unrel
+  ) %>%
+  select(model, context, mean_cos_rel, mean_cos_unrel, delta_cos)
+
+summary_cosine
+
+#summarize matrix norms (i.e., the embedding magnitudes)
+all_embeds %>%
+  mutate(
+    norm_static = map_dbl(static_mat, ~mean(sqrt(rowSums(.x^2)))),
+    norm_rel    = map_dbl(context_related, ~mean(sqrt(rowSums(.x^2)))),
+    norm_unrel  = map_dbl(context_unrelated, ~mean(sqrt(rowSums(.x^2))))
+  ) %>%
+  summarise(across(starts_with("norm_"), mean))
+```
+

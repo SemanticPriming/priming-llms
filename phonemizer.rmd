@@ -1,0 +1,94 @@
+---
+title: "Phonemizer"
+author: "Erin M. Buchanan"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+## Libraries
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(reticulate)
+# py_install("phonemizer", pip = T)
+# brew install espeak-ng
+
+library(rio)
+library(dplyr)
+```
+
+```{python}
+import os, math
+import pandas as pd
+from phonemizer import phonemize
+from phonemizer.separator import Separator
+
+# you must set these to be able to get this package to work
+os.environ["PHONEMIZER_ESPEAK_LIBRARY"] = "/opt/homebrew/opt/espeak-ng/lib/libespeak-ng.dylib"
+os.environ["PHONEMIZER_ESPEAK_PATH"] = "/opt/homebrew/bin/espeak-ng"
+os.environ["ESPEAK_PATH"] = "/opt/homebrew/bin/espeak-ng"
+```
+
+## English
+
+```{r en-data-work}
+# import_subs("en", "subs_count")
+subs_DF <- rio::import("subs_count/en/dedup.en.words.unigrams.txt")
+subs_DF <- subs_DF %>% 
+  # lower case
+  # trim white space
+  mutate(unigram = trimws(tolower(unigram))) %>% 
+  # get rid of empty cells
+  filter(nchar(unigram) > 0) %>% 
+  group_by(unigram) %>% 
+  # sum duplicates
+  mutate(unigram_freq = sum(unigram_freq)) %>% 
+  ungroup()
+
+# find cutoff frequency at position 100,000
+cutoff <- subs_DF %>% 
+  arrange(desc(unigram_freq)) %>% 
+  slice_head(n = 100000) %>% 
+  pull(unigram_freq) %>% 
+  min()
+
+# filter all words at or above that cutoff
+subs_DF_final <- subs_DF %>% 
+  filter(unigram_freq >= cutoff)
+```
+
+```{python en-phonemes}
+# --------- settings ---------
+OUT_CSV = "subs_count/en/subs_DF_phono.csv"
+LANG    = "en-us"           # change per language (e.g., 'fr', 'de', 'es')
+KEEP_STRESS = False         # usually False for distance metrics
+CHUNK_SIZE = 20000          # tweak for very large lexicons
+# ----------------------------
+
+# 1) Load (space/tab delimited, no header)
+subs = r.subs_DF_final
+
+# 2) Phonemize (space-separated phones for token-level edit distance)
+sep = Separator(phone=" ", syllable="", word="")  # ← phone tokens separated by spaces
+
+phon_all = []
+for i in range(0, len(subs), CHUNK_SIZE):
+    chunk = subs.iloc[i : i + CHUNK_SIZE]
+    ph = phonemize(
+        chunk["unigram"].tolist(),
+        language=LANG,
+        backend="espeak",
+        strip=True,
+        with_stress=KEEP_STRESS,
+        separator=sep,
+    )
+    phon_all.extend(ph)
+
+subs["phon"] = phon_all
+
+# 3) Save
+subs.to_csv(OUT_CSV, index=False)
+print(f"Wrote {len(subs)} rows to {OUT_CSV}")
+subs.head()
+```
+
