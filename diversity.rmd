@@ -1,0 +1,371 @@
+---
+title: "Semantic Diversity Preprocessor"
+author: "Erin M. Buchanan"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Libraries and Functions
+
+```{r}
+library(readr)
+library(stringi)
+library(quanteda)
+library(Matrix)
+library(data.table)
+library(stopwords)
+library(dplyr)
+library(irlba)
+library(rio)
+
+# --------- helper: robust chunker (quanteda version-safe) ---------
+chunk_tokens <- function(toks, size = 1000) {
+  if (is.function(quanteda::tokens_chunk)) {
+    # newer quanteda signatures use size= or nchunks=
+    quanteda::tokens_chunk(toks, size = size)
+  } else {
+    # fallback: manual split into ~size-word chunks per doc
+    split_one <- function(tok) {
+      v <- as.character(tok[[1]])
+      if (!length(v)) return(list(character(0)))
+      n <- length(v); idx <- ceiling(seq_len(n) / size)
+      lapply(split(v, idx), quanteda::as.tokens)
+    }
+    lst <- unlist(lapply(toks, split_one), recursive = FALSE)
+    toks_ch <- quanteda::as.tokens(lst)
+    # rebuild context IDs docid_ctxXXXXX
+    base_ids <- rep(
+      quanteda::docnames(toks),
+      lengths(lapply(toks, function(z) {
+        n <- quanteda::ntoken(z); ceiling(n / size)
+      }))
+    )
+    quanteda::docnames(toks_ch) <- sprintf(
+      "%s_ctx%05d", base_ids,
+      ave(seq_along(base_ids), base_ids, FUN = seq_along)
+    )
+    toks_ch
+  }
+}
+
+# --------- 1) Build CONTEXT space + SVD (Hoffman pipeline) ---------
+build_context_space <- function(
+  file_list,
+  batch_size      = 200,
+  context_tokens  = 1000,          # Hoffman used ~1000
+  min_docfreq     = 5,
+  min_termfreq    = 10,
+  top_n           = 100000,
+  keep_always     = character(0),  # whitelist that survives stopwords/top-N
+  exclude_lines   = c("wikitext", "text x wiki"),
+  svd_k           = 300,           # dimensionality for LSA
+  save_matrix_rds = NULL,          # optional: save contexts x terms matrix
+  save_ctx_ids    = NULL           # optional: save context IDs
+) {
+  .lang_from_path <- function(path) {
+    parts <- strsplit(path, "/|\\\\")[[1]]
+    hit <- which(parts == "open_subs")
+    if (length(hit) && length(parts) >= hit + 1) parts[hit + 1] else NA_character_
+  }
+  .read_clean <- function(p) {
+    ln <- tryCatch(readr::read_lines(p), error = function(e) character(0))
+    if (!length(ln)) return("")
+    keep <- !tolower(trimws(ln)) %in% tolower(exclude_lines)
+    ln <- ln[keep]
+    stringi::stri_trans_nfc(tolower(paste(ln, collapse = " ")))
+  }
+
+  .dfm_for_batch_contexts <- function(paths, batch_index) {
+    texts <- vapply(paths, .read_clean, FUN.VALUE = character(1))
+    langs <- vapply(paths, .lang_from_path, character(1))
+
+    # union stopwords-iso across langs, minus whitelist
+    langs_unique <- unique(na.omit(langs))
+    sw_union <- character(0)
+    for (L in langs_unique) {
+      swL <- tryCatch(stopwords::stopwords(L, source = "stopwords-iso"),
+                      error = function(e) character(0))
+      if (length(swL)) sw_union <- unique(c(sw_union, swL))
+    }
+    keep_norm <- unique(stringi::stri_trans_nfc(tolower(keep_always)))
+    if (length(sw_union)) sw_union <- setdiff(sw_union, keep_norm)
+
+    # tokenize
+    doc_ids <- sprintf("b%05d_file%05d", batch_index, seq_along(texts))
+    corp <- quanteda::corpus(
+      data.frame(doc_id = doc_ids, text = texts, stringsAsFactors = FALSE),
+      text_field = "text"
+    )
+    toks <- quanteda::tokens(
+      corp,
+      what           = "word",
+      remove_punct   = TRUE,
+      remove_symbols = TRUE,
+      remove_numbers = TRUE
+    )
+    if (length(sw_union)) toks <- quanteda::tokens_remove(toks, sw_union)
+
+    # contexts of ~context_tokens
+    toks_ch <- chunk_tokens(toks, size = context_tokens)
+
+    # contexts x terms dfm
+    d_ctx <- quanteda::dfm(toks_ch, verbose = FALSE)
+
+    # force to dfm if anything odd slipped in
+    if (!inherits(d_ctx, "dfm")) d_ctx <- quanteda::as.dfm(d_ctx)
+    
+    # also guard against a zero-row object
+    if (quanteda::ndoc(d_ctx) == 0) {
+      d_ctx <- quanteda::dfm(quanteda::tokens(character(0)))
+    }
+
+    d_ctx
+  }
+
+  .combine_two <- function(a, b) {
+    if (is.null(a)) {
+      if (!inherits(b, "dfm")) b <- quanteda::as.dfm(b)
+      return(b)
+    }
+    if (!inherits(a, "dfm")) a <- quanteda::as.dfm(a)
+    if (!inherits(b, "dfm")) b <- quanteda::as.dfm(b)
+  
+    # align to the UNION of features so the column sets match
+    all_feats <- union(quanteda::featnames(a), quanteda::featnames(b))
+    a2 <- quanteda::dfm_match(a, features = all_feats)  # adds zero cols as needed
+    b2 <- quanteda::dfm_match(b, features = all_feats)
+  
+    # now simple rbind works (same columns)
+    base::rbind(a2, b2)
+  }
+
+  # batching
+  batches <- split(seq_along(file_list), ceiling(seq_along(file_list) / batch_size))
+  C <- NULL
+  for (i in seq_along(batches)) {
+    d_i <- .dfm_for_batch_contexts(file_list[batches[[i]]], i)
+    C <- .combine_two(C, d_i)
+    if (i %% 5 == 0) C <- quanteda::dfm_compress(C, margin = "features")
+    message(sprintf("Batch %d/%d → contexts=%d, vocab=%d",
+                    i, length(batches), quanteda::ndoc(C), quanteda::nfeat(C)))
+  }
+  if (is.null(C) || quanteda::ndoc(C) == 0) stop("No contexts produced.")
+
+  # trim + top-N + whitelist
+  C <- quanteda::dfm_trim(C, min_docfreq = min_docfreq, min_termfreq = min_termfreq)
+  freq <- Matrix::colSums(C)
+  top_pick <- names(sort(freq, decreasing = TRUE))[seq_len(min(top_n, length(freq)))]
+  keep_norm <- unique(stringi::stri_trans_nfc(tolower(keep_always)))
+  final_feats <- union(top_pick, keep_norm)
+  C <- quanteda::dfm_match(C, features = final_feats)   # add zero cols for missing whitelist
+  # C is your contexts x terms dfm after dfm_trim + dfm_match
+  feat    <- quanteda::featnames(C)      # terms
+  ctx_ids <- quanteda::docnames(C)       # context ids
+
+  if (!is.null(save_ctx_ids)) {
+    data.table::fwrite(
+      data.table::data.table(context_id = quanteda::docnames(C)),
+      save_ctx_ids
+    )
+  }
+  if (!is.null(save_matrix_rds)) saveRDS(C, save_matrix_rds)
+
+  # ---- weighting (log1p tf + per-term entropy norm) ----
+  X <- methods::as(C, "dgCMatrix")  # contexts x terms
+  dimnames(X) <- list(ctx_ids, feat)     # <-- ensure row/col names survive
+  X@x <- log1p(X@x)
+
+  col_sums <- Matrix::colSums(X)
+  nonzero <- which(col_sums > 0)
+  H <- numeric(ncol(X))
+  if (length(nonzero)) {
+    for (j in nonzero) {
+      v <- X[, j]; s <- sum(v)
+      if (s > 0) {
+        p <- as.numeric(v) / s
+        p <- p[p > 0]
+        H[j] <- -sum(p * log(p))
+      }
+    }
+  }
+  w <- ifelse(H > 0, 1/H, 1)  # divide by entropy; if H==0 keep as-is
+  X <- X %*% Matrix::Diagonal(x = w)
+
+  # ---- truncated SVD (contexts embedding) ----
+  k <- max(2L, min(svd_k, min(dim(X)) - 1L))
+  sv <- irlba::irlba(X, nv = k, nu = k)
+  context_vectors <- sv$u %*% diag(sv$d)   # contexts x k
+  rownames(context_vectors) <- rownames(X)
+
+  list(
+    X            = X,
+    context_vectors = context_vectors,
+    vocab        = feat,                 # <-- use feat captured above
+    context_ids  = ctx_ids               # <-- use ctx_ids captured above
+  )
+}
+
+# --------- 2) Fast mean pairwise cosine (block-wise) ---------
+.fast_mean_pairwise_cosine <- function(A, block_rows = 1500) {
+  m <- nrow(A)
+  if (m <= 1) return(NA_real_)
+  rn <- sqrt(rowSums(A * A)); A <- A / rn
+
+  if (m <= block_rows) {
+    G <- tcrossprod(A)
+    return(mean(G[upper.tri(G)], na.rm = TRUE))
+  }
+
+  idx <- split(seq_len(m), ceiling(seq_len(m) / block_rows))
+  total_sum <- 0; total_pairs <- 0
+  for (bi in seq_along(idx)) {
+    Ai <- A[idx[[bi]], , drop = FALSE]
+    Gi <- tcrossprod(Ai)
+    if (nrow(Gi) > 1) {
+      ut <- Gi[upper.tri(Gi)]
+      total_sum <- total_sum + sum(ut, na.rm = TRUE)
+      total_pairs <- total_pairs + length(ut)
+    }
+    if (bi < length(idx)) {
+      for (bj in (bi + 1L):length(idx)) {
+        Aj <- A[idx[[bj]], , drop = FALSE]
+        Gij <- Ai %*% t(Aj)
+        total_sum <- total_sum + sum(Gij, na.rm = TRUE)
+        total_pairs <- total_pairs + length(Gij)
+      }
+    }
+  }
+  if (total_pairs == 0) return(NA_real_)
+  total_sum / total_pairs
+}
+
+# --------- 3) Parallel Hoffman SemD (+ prop across contexts) ---------
+compute_semd_hoffman_parallel <- function(
+  space, terms = NULL, max_contexts = 2000, n_workers = max(1L, parallel::detectCores(logical = TRUE) - 1)
+) {
+  X     <- space$X                 # dgCMatrix (contexts x terms)
+  Cvec  <- space$context_vectors   # matrix (contexts x k)
+  vocab <- space$vocab
+  nctx  <- nrow(X)
+
+  if (is.null(terms)) terms <- vocab
+  map <- match(tolower(terms), tolower(vocab), nomatch = 0L)
+  jobs <- which(map > 0L)
+
+  # if nothing matched, return all NAs immediately
+  if (length(jobs) == 0) {
+    return(data.table::data.table(
+      term = terms,
+      semd = NA_real_,
+      prop = NA_real_
+    ))
+  }
+
+  # progress bar
+  pb <- utils::txtProgressBar(min = 0, max = length(jobs), style = 3)
+  i <- 0L; tick <- function() { i <<- i + 1L; utils::setTxtProgressBar(pb, i) }
+
+  worker <- function(j) {
+    col_j <- map[j]
+    idx <- which(X[, col_j] != 0)
+    prop <- length(idx) / nctx
+    if (length(idx) == 0) return(list(term = terms[j], semd = NA_real_, prop = prop))
+    if (length(idx) > max_contexts) {
+      set.seed(1009 + j)
+      idx <- sample(idx, max_contexts)
+    }
+    A <- Cvec[idx, , drop = FALSE]
+    mean_cos <- .fast_mean_pairwise_cosine(A, block_rows = 1500)
+    semd <- if (is.na(mean_cos) || mean_cos <= 0) NA_real_ else -log(mean_cos)
+    list(term = terms[j], semd = semd, prop = prop)
+  }
+
+  results <- vector("list", length(terms))
+  for (j in setdiff(seq_along(terms), jobs)) {
+    results[[j]] <- list(term = terms[j], semd = NA_real_, prop = NA_real_)
+  }
+
+  os_is_windows <- tolower(Sys.info()[["sysname"]]) == "windows"
+  if (!os_is_windows && n_workers > 1) {
+    out <- parallel::mclapply(jobs, worker, mc.cores = n_workers, mc.preschedule = TRUE)
+    for (k in seq_along(jobs)) { results[[jobs[k]]] <- out[[k]]; tick() }
+  } else if (n_workers > 1 && os_is_windows) {
+    cl <- parallel::makeCluster(n_workers); on.exit(parallel::stopCluster(cl), add = TRUE)
+    parallel::clusterExport(cl, varlist = c("worker", "map", "X", "Cvec", "nctx",
+                                            "terms", ".fast_mean_pairwise_cosine"),
+                            envir = environment())
+    out <- parallel::parLapply(cl, jobs, worker)
+    for (k in seq_along(jobs)) { results[[jobs[k]]] <- out[[k]]; tick() }
+  } else {
+    for (j in jobs) { results[[j]] <- worker(j); tick() }
+  }
+  close(pb)
+
+  # --- bind results robustly ---
+  # fill any NULL slots (failed job or missing term) with NA rows
+  null_idx <- which(vapply(results, is.null, logical(1)))
+  if (length(null_idx)) {
+    for (j in null_idx) results[[j]] <- list(term = terms[j], semd = NA_real_, prop = NA_real_)
+  }
+  
+  # bind with fill=TRUE to handle any shape mismatches
+  DT <- data.table::rbindlist(
+    lapply(results, function(x) as.data.frame(x, stringsAsFactors = FALSE)),
+    fill = TRUE
+  )
+  
+  # guarantee expected columns exist
+  for (nm in c("term","semd","prop")) if (!nm %in% names(DT)) DT[, (nm) := NA_real_]
+  
+  # keep only the expected columns, in order
+  DT <- DT[, .(term, semd, prop)]
+  DT
+}
+```
+
+## Data
+
+```{r}
+# change this variable
+language <- "en"
+
+# download the 2018 subtitles monolingual files 
+# put it in a folder called open_subs
+# within the open_subs folder, have the folder be the language label
+path <- paste0("open_subs/", language)
+22127-
+file_list <- list.files(path = path,
+                        pattern = ".txt",
+                        full.names = TRUE,
+                        recursive = TRUE)
+
+my_keep <- import(paste0("item_data/", language, "/", language, "_item_data.csv")) %>% 
+  filter(class == "word") %>% 
+  pull(word)
+
+# 1) Build the context space (LSA)
+ctx_space <- build_context_space(
+  file_list,
+  batch_size     = 200,
+  context_tokens = 1000,
+  min_docfreq    = 5,
+  min_termfreq   = 10,
+  top_n          = 100000,
+  keep_always    = my_keep,
+  exclude_lines  = c("wikitext","text x wiki"),
+  svd_k          = 300
+)
+
+sem_hoff <- compute_semd_hoffman_parallel(
+  ctx_space,
+  terms      = my_keep,           # or a character vector of terms
+  max_contexts = 2000,         # Hoffman cap
+  n_workers   = 8              # tune for your machine
+)
+
+write.csv(sem_hoff, paste0("semdiv_data/", language, "/", language, "_semantic_diversity.csv"))
+```
