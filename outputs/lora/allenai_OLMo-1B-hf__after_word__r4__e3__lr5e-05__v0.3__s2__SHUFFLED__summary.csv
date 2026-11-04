@@ -1,0 +1,8 @@
+set,outcome,n,r_untrained,r_lora,gain,model,format,rank,epochs,lr,val_frac,seed,shuffled,best_epoch
+train,human,350,0.3046694025490587,0.2602411914732832,-0.04442821107577555,allenai/OLMo-1B-hf,after_word,4,3,5e-05,0.3,2,True,1
+val,human,150,0.45473487710564914,0.4482528112360549,-0.006482065869594211,allenai/OLMo-1B-hf,after_word,4,3,5e-05,0.3,2,True,1
+confirmation,human,500,0.2387784911139644,0.23611140844563377,-0.002667082668330628,allenai/OLMo-1B-hf,after_word,4,3,5e-05,0.3,2,True,1
+spp_first,short_SOA,1661,0.1436578054219106,0.12422765435188089,-0.019430151070029697,allenai/OLMo-1B-hf,after_word,4,3,5e-05,0.3,2,True,1
+spp_first,long_SOA,1661,0.1624922151696089,0.1512477109659249,-0.011244504203684003,allenai/OLMo-1B-hf,after_word,4,3,5e-05,0.3,2,True,1
+spp_other,short_SOA,1661,0.14022193748510495,0.11354901563318849,-0.026672921851916456,allenai/OLMo-1B-hf,after_word,4,3,5e-05,0.3,2,True,1
+spp_other,long_SOA,1661,0.15254070965810745,0.1529683538968773,0.00042764423876984203,allenai/OLMo-1B-hf,after_word,4,3,5e-05,0.3,2,True,1

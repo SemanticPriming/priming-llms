@@ -1,0 +1,8 @@
+set,outcome,n,r_untrained,r_lora,gain,model,format,rank,epochs,lr,val_frac,seed,shuffled,best_epoch
+train,human,350,0.36487840717067077,0.9014648516081182,0.5365864444374474,allenai/OLMo-1B-hf,after_word,4,3,5e-05,0.3,5,False,3
+val,human,150,0.31782212542779686,0.38778079025734474,0.06995866482954788,allenai/OLMo-1B-hf,after_word,4,3,5e-05,0.3,5,False,3
+confirmation,human,500,0.2387784911139644,0.3000492001968008,0.06127070908283641,allenai/OLMo-1B-hf,after_word,4,3,5e-05,0.3,5,False,3
+spp_first,short_SOA,1661,0.1436578054219106,0.13942606549886505,-0.004231739923045541,allenai/OLMo-1B-hf,after_word,4,3,5e-05,0.3,5,False,3
+spp_first,long_SOA,1661,0.1624922151696089,0.17793134821151255,0.015439133041903641,allenai/OLMo-1B-hf,after_word,4,3,5e-05,0.3,5,False,3
+spp_other,short_SOA,1661,0.14022193748510495,0.12908124594331957,-0.011140691541785375,allenai/OLMo-1B-hf,after_word,4,3,5e-05,0.3,5,False,3
+spp_other,long_SOA,1661,0.15254070965810745,0.11817915643179798,-0.034361553226309474,allenai/OLMo-1B-hf,after_word,4,3,5e-05,0.3,5,False,3

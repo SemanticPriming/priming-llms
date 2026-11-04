@@ -102,6 +102,34 @@ We split the English item set into a discovery half and a confirmation half prio
 
 We model item-level human priming (`avgZ_prime`) as a function of the model-derived surprisal difference $\Delta S$, with prime-target cosine similarity and the lexical covariates listed above entered as additional fixed effects, fitted separately for each model and prompt-format configuration. Each configuration yields one observation per target, so target is not entered as a random effect (a mixed-effects model with target as a random effect would only be appropriate if configurations were stacked into one dataset, which we do not do). We summarize the association with the Spearman correlation between $\Delta S$ and `avgZ_prime`, and with the increase in explained variance when $\Delta S$ is added to the covariates. Prime-target similarity is computed at every model layer, and the layer used as the covariate is chosen on the discovery half only. As an upper bound, we also fit a cross-validated ridge regression on the discovery half and score it on the confirmation half; because it is fit to the human data, we report it separately and do not treat it as the model's own priming. All models and code are maintained in this repository alongside the data files already present in `data/item_data`, `data/priming_data`, and `data/matched_stimuli`, consistent with an open and reproducible analysis pipeline.
 
+## Supervised Analyses and Data Use
+
+We also asked how much alignment can be gained when a model is allowed to see human priming data. We fine-tuned a small low-rank adapter (LoRA; rank 4) on a model's priming contrast so that it predicts `avgZ_prime`, training for three epochs at a learning rate of 5e-5. Training used a random 70% of the discovery half, the remaining 30% of the discovery half was used to choose the best epoch, and the confirmation half was never used for training or for epoch selection. As a control, we repeated each run with the human priming scores randomly reassigned across the training items (shuffled labels), so that gains from fitting alone could be separated from gains due to the real item-level relationship. Each variant was run with five seeds with real labels and at least three seeds with shuffled labels, and we report the change in Spearman correlation relative to the untrained model on identical items. Like the ridge regression described above, these models are fit to human data, so we treat them as supervised ceilings and not as the model's own priming. Table 1 summarizes how each part of the data is used in the zero-shot and LoRA analyses.
+
+```{r data-use-table, results = "asis"}
+data_use <- data.frame(
+  Step = c("Sees human priming data?",
+           "Discovery half (500 items)",
+           "Confirmation half (500 items)",
+           "Original SPP"),
+  `Zero-shot analyses` = c("No",
+                           "Choose the best configuration",
+                           "One test of the chosen configuration",
+                           "One test of the chosen configurations"),
+  `LoRA analyses` = c("Yes, training items only",
+                      "Train the adapter (70%) and choose the best epoch (30%)",
+                      "One test of the trained adapter, on the same items",
+                      "One test of the trained adapter"),
+  check.names = FALSE
+)
+apa_table(
+  data_use,
+  caption = "How Each Part of the Data Is Used in the Zero-Shot and LoRA Analyses",
+  note = "The untrained score on the confirmation half is the same in both analyses, so LoRA gains are measured on identical items.",
+  escape = TRUE
+)
+```
+
 \newpage
 
 # References

@@ -153,3 +153,152 @@ saved EleutherAI_pythia-410m__bare__r4__e3__lr5e-05__v0.3__s5
 model=allenai/OLMo-1B-hf format=after_word (base discovery r=None) shuffle=False -> allenai_OLMo-1B-hf__after_word__r4__e3__lr5e-05__v0.3__s1
 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
 Loading weights:   0%|          | 0/113 [00:00<?, ?it/s]Loading weights: 100%|██████████| 113/113 [00:00<00:00, 18356.17it/s]
+baseline Spearman  val=0.326  confirmation=0.239
+trainable params: 3,014,656 || all params: 1,179,779,072 || trainable%: 0.2555
+epoch 1: train loss 0.887  val Spearman 0.349
+epoch 2: train loss 0.737  val Spearman 0.380
+epoch 3: train loss 0.505  val Spearman 0.377
+best epoch 2 (val Spearman 0.380)
+
+         set   outcome    n  r_untrained  r_lora   gain
+       train     human  350        0.358   0.667  0.309
+         val     human  150        0.326   0.380  0.054
+confirmation     human  500        0.239   0.275  0.036
+   spp_first short_SOA 1661        0.144   0.142 -0.002
+   spp_first  long_SOA 1661        0.162   0.171  0.009
+   spp_other short_SOA 1661        0.140   0.148  0.008
+   spp_other  long_SOA 1661        0.153   0.143 -0.009
+saved allenai_OLMo-1B-hf__after_word__r4__e3__lr5e-05__v0.3__s1
+model=allenai/OLMo-1B-hf format=after_word (base discovery r=None) shuffle=True -> allenai_OLMo-1B-hf__after_word__r4__e3__lr5e-05__v0.3__s1__SHUFFLED
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/113 [00:00<?, ?it/s]Loading weights: 100%|██████████| 113/113 [00:00<00:00, 16698.60it/s]
+baseline Spearman  val=0.326  confirmation=0.239
+trainable params: 3,014,656 || all params: 1,179,779,072 || trainable%: 0.2555
+epoch 1: train loss 1.013  val Spearman 0.266
+epoch 2: train loss 0.956  val Spearman 0.115
+epoch 3: train loss 0.800  val Spearman 0.123
+best epoch 1 (val Spearman 0.266)
+
+         set   outcome    n  r_untrained  r_lora   gain
+       train     human  350        0.358   0.283 -0.075
+         val     human  150        0.326   0.266 -0.060
+confirmation     human  500        0.239   0.211 -0.028
+   spp_first short_SOA 1661        0.144   0.151  0.007
+   spp_first  long_SOA 1661        0.162   0.157 -0.006
+   spp_other short_SOA 1661        0.140   0.144  0.004
+   spp_other  long_SOA 1661        0.153   0.148 -0.005
+saved allenai_OLMo-1B-hf__after_word__r4__e3__lr5e-05__v0.3__s1__SHUFFLED
+model=allenai/OLMo-1B-hf format=after_word (base discovery r=None) shuffle=False -> allenai_OLMo-1B-hf__after_word__r4__e3__lr5e-05__v0.3__s2
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/113 [00:00<?, ?it/s]Loading weights: 100%|██████████| 113/113 [00:00<00:00, 16177.64it/s]
+baseline Spearman  val=0.455  confirmation=0.239
+trainable params: 3,014,656 || all params: 1,179,779,072 || trainable%: 0.2555
+epoch 1: train loss 0.879  val Spearman 0.449
+epoch 2: train loss 0.682  val Spearman 0.438
+epoch 3: train loss 0.443  val Spearman 0.486
+best epoch 3 (val Spearman 0.486)
+
+         set   outcome    n  r_untrained  r_lora   gain
+       train     human  350        0.305   0.891  0.586
+         val     human  150        0.455   0.486  0.031
+confirmation     human  500        0.239   0.279  0.040
+   spp_first short_SOA 1661        0.144   0.127 -0.017
+   spp_first  long_SOA 1661        0.162   0.159 -0.003
+   spp_other short_SOA 1661        0.140   0.107 -0.033
+   spp_other  long_SOA 1661        0.153   0.105 -0.047
+saved allenai_OLMo-1B-hf__after_word__r4__e3__lr5e-05__v0.3__s2
+model=allenai/OLMo-1B-hf format=after_word (base discovery r=None) shuffle=True -> allenai_OLMo-1B-hf__after_word__r4__e3__lr5e-05__v0.3__s2__SHUFFLED
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/113 [00:00<?, ?it/s]Loading weights: 100%|██████████| 113/113 [00:00<00:00, 17026.13it/s]
+baseline Spearman  val=0.455  confirmation=0.239
+trainable params: 3,014,656 || all params: 1,179,779,072 || trainable%: 0.2555
+epoch 1: train loss 1.021  val Spearman 0.448
+epoch 2: train loss 0.979  val Spearman 0.387
+epoch 3: train loss 0.872  val Spearman 0.331
+best epoch 1 (val Spearman 0.448)
+
+         set   outcome    n  r_untrained  r_lora   gain
+       train     human  350        0.305   0.260 -0.044
+         val     human  150        0.455   0.448 -0.006
+confirmation     human  500        0.239   0.236 -0.003
+   spp_first short_SOA 1661        0.144   0.124 -0.019
+   spp_first  long_SOA 1661        0.162   0.151 -0.011
+   spp_other short_SOA 1661        0.140   0.114 -0.027
+   spp_other  long_SOA 1661        0.153   0.153  0.000
+saved allenai_OLMo-1B-hf__after_word__r4__e3__lr5e-05__v0.3__s2__SHUFFLED
+model=allenai/OLMo-1B-hf format=after_word (base discovery r=None) shuffle=False -> allenai_OLMo-1B-hf__after_word__r4__e3__lr5e-05__v0.3__s3
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/113 [00:00<?, ?it/s]Loading weights: 100%|██████████| 113/113 [00:00<00:00, 17561.09it/s]
+baseline Spearman  val=0.352  confirmation=0.239
+trainable params: 3,014,656 || all params: 1,179,779,072 || trainable%: 0.2555
+epoch 1: train loss 0.858  val Spearman 0.350
+epoch 2: train loss 0.668  val Spearman 0.340
+epoch 3: train loss 0.392  val Spearman 0.410
+best epoch 3 (val Spearman 0.410)
+
+         set   outcome    n  r_untrained  r_lora   gain
+       train     human  350        0.344   0.882  0.538
+         val     human  150        0.352   0.410  0.058
+confirmation     human  500        0.239   0.317  0.078
+   spp_first short_SOA 1661        0.144   0.121 -0.023
+   spp_first  long_SOA 1661        0.162   0.176  0.014
+   spp_other short_SOA 1661        0.140   0.106 -0.035
+   spp_other  long_SOA 1661        0.153   0.114 -0.039
+saved allenai_OLMo-1B-hf__after_word__r4__e3__lr5e-05__v0.3__s3
+model=allenai/OLMo-1B-hf format=after_word (base discovery r=None) shuffle=True -> allenai_OLMo-1B-hf__after_word__r4__e3__lr5e-05__v0.3__s3__SHUFFLED
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/113 [00:00<?, ?it/s]Loading weights: 100%|██████████| 113/113 [00:00<00:00, 17241.05it/s]
+baseline Spearman  val=0.352  confirmation=0.239
+trainable params: 3,014,656 || all params: 1,179,779,072 || trainable%: 0.2555
+epoch 1: train loss 1.010  val Spearman 0.360
+epoch 2: train loss 1.007  val Spearman 0.275
+epoch 3: train loss 0.965  val Spearman 0.219
+best epoch 1 (val Spearman 0.360)
+
+         set   outcome    n  r_untrained  r_lora   gain
+       train     human  350        0.344   0.343 -0.001
+         val     human  150        0.352   0.360  0.008
+confirmation     human  500        0.239   0.245  0.006
+   spp_first short_SOA 1661        0.144   0.139 -0.004
+   spp_first  long_SOA 1661        0.162   0.161 -0.002
+   spp_other short_SOA 1661        0.140   0.131 -0.009
+   spp_other  long_SOA 1661        0.153   0.161  0.009
+saved allenai_OLMo-1B-hf__after_word__r4__e3__lr5e-05__v0.3__s3__SHUFFLED
+model=allenai/OLMo-1B-hf format=after_word (base discovery r=None) shuffle=False -> allenai_OLMo-1B-hf__after_word__r4__e3__lr5e-05__v0.3__s4
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/113 [00:00<?, ?it/s]Loading weights: 100%|██████████| 113/113 [00:00<00:00, 15451.91it/s]
+baseline Spearman  val=0.291  confirmation=0.239
+trainable params: 3,014,656 || all params: 1,179,779,072 || trainable%: 0.2555
+epoch 1: train loss 0.836  val Spearman 0.293
+epoch 2: train loss 0.630  val Spearman 0.294
+epoch 3: train loss 0.375  val Spearman 0.277
+best epoch 2 (val Spearman 0.294)
+
+         set   outcome    n  r_untrained  r_lora   gain
+       train     human  350        0.368   0.737  0.369
+         val     human  150        0.291   0.294  0.003
+confirmation     human  500        0.239   0.292  0.054
+   spp_first short_SOA 1661        0.144   0.139 -0.004
+   spp_first  long_SOA 1661        0.162   0.181  0.019
+   spp_other short_SOA 1661        0.140   0.138 -0.002
+   spp_other  long_SOA 1661        0.153   0.126 -0.027
+saved allenai_OLMo-1B-hf__after_word__r4__e3__lr5e-05__v0.3__s4
+model=allenai/OLMo-1B-hf format=after_word (base discovery r=None) shuffle=False -> allenai_OLMo-1B-hf__after_word__r4__e3__lr5e-05__v0.3__s5
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/113 [00:00<?, ?it/s]Loading weights: 100%|██████████| 113/113 [00:00<00:00, 18848.93it/s]
+baseline Spearman  val=0.318  confirmation=0.239
+trainable params: 3,014,656 || all params: 1,179,779,072 || trainable%: 0.2555
+epoch 1: train loss 0.850  val Spearman 0.335
+epoch 2: train loss 0.657  val Spearman 0.371
+epoch 3: train loss 0.412  val Spearman 0.388
+best epoch 3 (val Spearman 0.388)
+
+         set   outcome    n  r_untrained  r_lora   gain
+       train     human  350        0.365   0.901  0.537
+         val     human  150        0.318   0.388  0.070
+confirmation     human  500        0.239   0.300  0.061
+   spp_first short_SOA 1661        0.144   0.139 -0.004
+   spp_first  long_SOA 1661        0.162   0.178  0.015
+   spp_other short_SOA 1661        0.140   0.129 -0.011
+   spp_other  long_SOA 1661        0.153   0.118 -0.034
+saved allenai_OLMo-1B-hf__after_word__r4__e3__lr5e-05__v0.3__s5
