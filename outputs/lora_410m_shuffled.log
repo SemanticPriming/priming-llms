@@ -1,0 +1,3 @@
+model=EleutherAI/pythia-410m format=first_word (base discovery r=0.2880528002112008) shuffle=True -> EleutherAI_pythia-410m__first_word__r8__s42__SHUFFLED
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 16972.99it/s]

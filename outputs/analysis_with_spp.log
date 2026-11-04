@@ -1,0 +1,105 @@
+=== A. Layer profile (Spearman r with human priming; layer chosen on discovery) ===
+EleutherAI/pythia-1.4b: best layer (discovery) = 9 of 24; confirmation r at best = 0.107; at last layer = 0.115
+EleutherAI/pythia-160m: best layer (discovery) = 5 of 12; confirmation r at best = 0.044; at last layer = 0.062
+EleutherAI/pythia-1b: best layer (discovery) = 16 of 16; confirmation r at best = 0.131; at last layer = 0.131
+EleutherAI/pythia-410m: best layer (discovery) = 9 of 24; confirmation r at best = 0.131; at last layer = 0.122
+EleutherAI/pythia-70m: best layer (discovery) = 1 of 6; confirmation r at best = 0.045; at last layer = 0.078
+HuggingFaceTB/SmolLM2-360M: best layer (discovery) = 15 of 32; confirmation r at best = 0.118; at last layer = 0.200
+Qwen/Qwen2.5-0.5B: best layer (discovery) = 2 of 24; confirmation r at best = 0.139; at last layer = 0.150
+Qwen/Qwen2.5-0.5B-Instruct: best layer (discovery) = 4 of 24; confirmation r at best = 0.182; at last layer = 0.093
+allenai/OLMo-1B-hf: best layer (discovery) = 5 of 16; confirmation r at best = 0.119; at last layer = 0.064
+bert-base-uncased: best layer (discovery) = 7 of 12; confirmation r at best = 0.107; at last layer = 0.067
+gpt2: best layer (discovery) = 0 of 12; confirmation r at best = 0.076; at last layer = 0.196
+roberta-base: best layer (discovery) = 0 of 12; confirmation r at best = 0.084; at last layer = 0.114
+roberta-large: best layer (discovery) = 1 of 24; confirmation r at best = 0.100; at last layer = 0.112
+saved outputs/layer_profile.png
+
+=== B. Discovery grid (182 configs; rule: max discovery Spearman r(dS, avgZ_prime)) — top 12 ===
+                                  config                      model      format   n  r_dS  ci_lo  ci_hi
+         allenai/OLMo-1B-hf | after_word         allenai/OLMo-1B-hf  after_word 500 0.351  0.268  0.432
+                allenai/OLMo-1B-hf | and         allenai/OLMo-1B-hf         and 500 0.344  0.257  0.426
+                 Qwen/Qwen2.5-0.5B | ldt          Qwen/Qwen2.5-0.5B         ldt 500 0.343  0.267  0.404
+        HuggingFaceTB/SmolLM2-360M | ldt HuggingFaceTB/SmolLM2-360M         ldt 500 0.336  0.256  0.407
+         Qwen/Qwen2.5-0.5B | pair_begins          Qwen/Qwen2.5-0.5B pair_begins 500 0.329  0.240  0.405
+    HuggingFaceTB/SmolLM2-360M | newline HuggingFaceTB/SmolLM2-360M     newline 500 0.328  0.252  0.408
+ Qwen/Qwen2.5-0.5B-Instruct | after_word Qwen/Qwen2.5-0.5B-Instruct  after_word 500 0.327  0.251  0.404
+              EleutherAI/pythia-1b | ldt       EleutherAI/pythia-1b         ldt 500 0.325  0.250  0.398
+        Qwen/Qwen2.5-0.5B-Instruct | ldt Qwen/Qwen2.5-0.5B-Instruct         ldt 500 0.323  0.249  0.400
+Qwen/Qwen2.5-0.5B-Instruct | pair_begins Qwen/Qwen2.5-0.5B-Instruct pair_begins 500 0.321  0.235  0.402
+       HuggingFaceTB/SmolLM2-360M | list HuggingFaceTB/SmolLM2-360M        list 500 0.320  0.233  0.399
+                Qwen/Qwen2.5-0.5B | list          Qwen/Qwen2.5-0.5B        list 500 0.319  0.224  0.396
+
+Winner on discovery: allenai/OLMo-1B-hf | after_word
+
+=== C. Winner: discovery vs confirmation ===
+        half   n  spearman  ci_lo  ci_hi  R2_covariates  R2_with_dS    dR2  beta_dS   p_dS
+   discovery 500    0.3512 0.2714 0.4315         0.1327      0.1910 0.0583   0.2741 0.0000
+confirmation 500    0.2388 0.1478 0.3261         0.0391      0.0653 0.0261   0.1782 0.0002
+covariates: dSim, log_freq, length, semd (dSim = layer 5 of the winning model)
+
+=== D. Confirmation r by model x format (descriptive; winner already fixed) ===
+model        EleutherAI/pythia-1.4b  EleutherAI/pythia-160m  EleutherAI/pythia-1b  EleutherAI/pythia-410m  EleutherAI/pythia-70m  HuggingFaceTB/SmolLM2-360M  Qwen/Qwen2.5-0.5B  Qwen/Qwen2.5-0.5B-Instruct  allenai/OLMo-1B-hf  bert-base-uncased   gpt2  roberta-base  roberta-large
+format                                                                                                                                                                                                                                                                                
+after_word                    0.223                   0.158                 0.223                   0.215                  0.134                       0.251              0.237                       0.249               0.239              0.169  0.155         0.218          0.266
+and                           0.171                   0.117                 0.198                   0.182                  0.094                       0.213              0.207                       0.161               0.211              0.177  0.128         0.188          0.216
+assoc                         0.139                   0.071                 0.096                   0.151                  0.047                       0.111              0.132                       0.086               0.095              0.092  0.092         0.027          0.083
+bare                          0.056                   0.025                 0.072                   0.084                 -0.004                       0.060              0.071                       0.091               0.061              0.102  0.052         0.062          0.127
+bare+k10                      0.107                   0.039                 0.055                   0.068                  0.005                       0.124              0.130                       0.107               0.106              0.116  0.040         0.056          0.064
+bare+k2                       0.043                   0.033                 0.099                   0.037                  0.023                       0.091              0.073                       0.003               0.089              0.098  0.009         0.014          0.056
+bare+k5                       0.090                  -0.005                 0.061                   0.081                  0.016                       0.107              0.128                       0.094               0.046              0.063  0.003         0.046          0.059
+comma                         0.166                   0.082                 0.188                   0.166                  0.030                       0.134              0.189                       0.117               0.201              0.102  0.125         0.113          0.164
+first_word                    0.229                   0.115                 0.226                   0.180                  0.144                       0.229              0.196                       0.174               0.214              0.147  0.153         0.138          0.220
+given_word                    0.214                   0.143                 0.251                   0.243                  0.145                       0.271              0.228                       0.214               0.206              0.180  0.176         0.209          0.243
+ldt                           0.246                   0.172                 0.274                   0.215                  0.131                       0.240              0.217                       0.187               0.238              0.095  0.198         0.207          0.214
+list                          0.229                   0.157                 0.260                   0.205                  0.105                       0.235              0.230                       0.210               0.195              0.113  0.185         0.203          0.208
+newline                       0.170                   0.040                 0.130                   0.109                  0.005                       0.163              0.131                       0.076               0.111              0.102  0.046         0.064          0.136
+pair_begins                   0.254                   0.154                 0.236                   0.192                  0.136                       0.216              0.243                       0.214               0.188              0.183  0.200         0.208          0.223
+
+=== F. Do the priming distributions match? (winner config, all 1,000 items) ===
+Human item-level reliability (from SEs) = 0.72; max attainable r ~ 0.85
+         measure  mean    sd     d  skew  ex_kurtosis  pct_positive
+human avgZ_prime 0.091 0.115 0.795 0.357        2.633          81.5
+ model dS (nats) 6.653 2.430 2.738 0.162        0.371          99.6
+Shape after z-scoring: KS D = 0.047 (p = 0.219); item-level Spearman r = 0.295; sign agreement = 81.3%
+saved outputs/distributions.png
+
+=== G. External validation on original SPP (configs fixed from ML discovery; no re-selection) ===
+soa                                                                   long  short
+config                                  prime subset                             
+EleutherAI/pythia-1b | ldt              first all targets            0.175  0.132
+                                              targets not in ML set  0.186  0.127
+                                        other all targets            0.155  0.135
+                                              targets not in ML set  0.175  0.149
+HuggingFaceTB/SmolLM2-360M | ldt        first all targets            0.166  0.134
+                                              targets not in ML set  0.172  0.123
+                                        other all targets            0.171  0.141
+                                              targets not in ML set  0.177  0.151
+HuggingFaceTB/SmolLM2-360M | newline    first all targets            0.111  0.087
+                                              targets not in ML set  0.139  0.092
+                                        other all targets            0.109  0.090
+                                              targets not in ML set  0.108  0.105
+Qwen/Qwen2.5-0.5B | ldt                 first all targets            0.177  0.136
+                                              targets not in ML set  0.185  0.125
+                                        other all targets            0.155  0.148
+                                              targets not in ML set  0.169  0.165
+Qwen/Qwen2.5-0.5B | pair_begins         first all targets            0.186  0.127
+                                              targets not in ML set  0.204  0.128
+                                        other all targets            0.152  0.150
+                                              targets not in ML set  0.165  0.174
+Qwen/Qwen2.5-0.5B-Instruct | after_word first all targets            0.181  0.118
+                                              targets not in ML set  0.182  0.106
+                                        other all targets            0.171  0.135
+                                              targets not in ML set  0.184  0.158
+allenai/OLMo-1B-hf | after_word         first all targets            0.162  0.144
+                                              targets not in ML set  0.182  0.129
+                                        other all targets            0.153  0.140
+                                              targets not in ML set  0.174  0.164
+allenai/OLMo-1B-hf | and                first all targets            0.186  0.157
+                                              targets not in ML set  0.193  0.161
+                                        other all targets            0.162  0.165
+                                              targets not in ML set  0.173  0.190
+
+=== E. Supervised readout (ceiling; fit on discovery, scored on confirmation) ===
+features: 198 (all dS configs + per-model similarity + covariates); ridge alpha = 562
+confirmation r, covariates + similarity only : 0.245
+confirmation r, + all dS configs             : 0.279

@@ -1,0 +1,30 @@
+SPP validation configs (top 8 on ManyLanguages discovery):
+                                 config  r_dS
+        allenai/OLMo-1B-hf | after_word 0.351
+               allenai/OLMo-1B-hf | and 0.344
+                Qwen/Qwen2.5-0.5B | ldt 0.343
+       HuggingFaceTB/SmolLM2-360M | ldt 0.336
+        Qwen/Qwen2.5-0.5B | pair_begins 0.329
+   HuggingFaceTB/SmolLM2-360M | newline 0.328
+Qwen/Qwen2.5-0.5B-Instruct | after_word 0.327
+             EleutherAI/pythia-1b | ldt 0.325
+device: mps | items: 1661 | few-shot pool: 500
+skip (all exist): EleutherAI/pythia-1b
+device: mps | items: 1661 | few-shot pool: 500
+skip (all exist): HuggingFaceTB/SmolLM2-360M
+device: mps | items: 1661 | few-shot pool: 500
+skip (all exist): Qwen/Qwen2.5-0.5B
+device: mps | items: 1661 | few-shot pool: 500
+skip (all exist): Qwen/Qwen2.5-0.5B-Instruct
+device: mps | items: 1661 | few-shot pool: 500
+skip (all exist): allenai/OLMo-1B-hf
+device: mps | items: 1661 | few-shot pool: 500
+skip (all exist): EleutherAI/pythia-1b
+device: mps | items: 1661 | few-shot pool: 500
+skip (all exist): HuggingFaceTB/SmolLM2-360M
+device: mps | items: 1661 | few-shot pool: 500
+skip (all exist): Qwen/Qwen2.5-0.5B
+device: mps | items: 1661 | few-shot pool: 500
+skip (all exist): Qwen/Qwen2.5-0.5B-Instruct
+device: mps | items: 1661 | few-shot pool: 500
+skip (all exist): allenai/OLMo-1B-hf

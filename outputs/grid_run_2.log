@@ -1,0 +1,293 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+device: mps | items: 1000 | few-shot pool: 500
+Loading weights:   0%|          | 0/196 [00:00<?, ?it/s]Loading weights: 100%|██████████| 196/196 [00:00<00:00, 21233.14it/s]
+Loading weights:   0%|          | 0/195 [00:00<?, ?it/s]Loading weights: 100%|██████████| 195/195 [00:00<00:00, 15866.86it/s]
+[transformers] [1mGPTNeoXModel LOAD REPORT[0m from: EleutherAI/pythia-1b
+Key              | Status     |  | 
+-----------------+------------+--+-
+embed_out.weight | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+running EleutherAI/pythia-1b bare
+  wrote EleutherAI_pythia-1b__bare.csv
+running EleutherAI/pythia-1b comma
+  wrote EleutherAI_pythia-1b__comma.csv
+running EleutherAI/pythia-1b newline
+  wrote EleutherAI_pythia-1b__newline.csv
+running EleutherAI/pythia-1b list
+  wrote EleutherAI_pythia-1b__list.csv
+running EleutherAI/pythia-1b ldt
+  wrote EleutherAI_pythia-1b__ldt.csv
+running EleutherAI/pythia-1b and
+  wrote EleutherAI_pythia-1b__and.csv
+running EleutherAI/pythia-1b assoc
+  wrote EleutherAI_pythia-1b__assoc.csv
+running EleutherAI/pythia-1b given_word
+  wrote EleutherAI_pythia-1b__given_word.csv
+running EleutherAI/pythia-1b after_word
+  wrote EleutherAI_pythia-1b__after_word.csv
+running EleutherAI/pythia-1b pair_begins
+  wrote EleutherAI_pythia-1b__pair_begins.csv
+running EleutherAI/pythia-1b first_word
+  wrote EleutherAI_pythia-1b__first_word.csv
+running EleutherAI/pythia-1b bare+k2
+  wrote EleutherAI_pythia-1b__bare+k2.csv
+running EleutherAI/pythia-1b bare+k5
+  wrote EleutherAI_pythia-1b__bare+k5.csv
+running EleutherAI/pythia-1b bare+k10
+  wrote EleutherAI_pythia-1b__bare+k10.csv
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 25967.07it/s]
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights: 100%|██████████| 291/291 [00:00<00:00, 22136.14it/s]
+[transformers] [1mGPTNeoXModel LOAD REPORT[0m from: EleutherAI/pythia-1.4b
+Key              | Status     |  | 
+-----------------+------------+--+-
+embed_out.weight | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+running EleutherAI/pythia-1.4b bare
+  wrote EleutherAI_pythia-1.4b__bare.csv
+running EleutherAI/pythia-1.4b comma
+  wrote EleutherAI_pythia-1.4b__comma.csv
+running EleutherAI/pythia-1.4b newline
+  wrote EleutherAI_pythia-1.4b__newline.csv
+running EleutherAI/pythia-1.4b list
+  wrote EleutherAI_pythia-1.4b__list.csv
+running EleutherAI/pythia-1.4b ldt
+  wrote EleutherAI_pythia-1.4b__ldt.csv
+running EleutherAI/pythia-1.4b and
+  wrote EleutherAI_pythia-1.4b__and.csv
+running EleutherAI/pythia-1.4b assoc
+  wrote EleutherAI_pythia-1.4b__assoc.csv
+running EleutherAI/pythia-1.4b given_word
+  wrote EleutherAI_pythia-1.4b__given_word.csv
+running EleutherAI/pythia-1.4b after_word
+  wrote EleutherAI_pythia-1.4b__after_word.csv
+running EleutherAI/pythia-1.4b pair_begins
+  wrote EleutherAI_pythia-1.4b__pair_begins.csv
+running EleutherAI/pythia-1.4b first_word
+  wrote EleutherAI_pythia-1.4b__first_word.csv
+running EleutherAI/pythia-1.4b bare+k2
+  wrote EleutherAI_pythia-1.4b__bare+k2.csv
+running EleutherAI/pythia-1.4b bare+k5
+  wrote EleutherAI_pythia-1.4b__bare+k5.csv
+running EleutherAI/pythia-1.4b bare+k10
+  wrote EleutherAI_pythia-1.4b__bare+k10.csv
+Loading weights:   0%|          | 0/113 [00:00<?, ?it/s]Loading weights: 100%|██████████| 113/113 [00:00<00:00, 17000.48it/s]
+Loading weights:   0%|          | 0/113 [00:00<?, ?it/s]Loading weights: 100%|██████████| 113/113 [00:00<00:00, 23014.29it/s]
+running allenai/OLMo-1B-hf bare
+  wrote allenai_OLMo-1B-hf__bare.csv
+running allenai/OLMo-1B-hf comma
+  wrote allenai_OLMo-1B-hf__comma.csv
+running allenai/OLMo-1B-hf newline
+  wrote allenai_OLMo-1B-hf__newline.csv
+running allenai/OLMo-1B-hf list
+  wrote allenai_OLMo-1B-hf__list.csv
+running allenai/OLMo-1B-hf ldt
+  wrote allenai_OLMo-1B-hf__ldt.csv
+running allenai/OLMo-1B-hf and
+  wrote allenai_OLMo-1B-hf__and.csv
+running allenai/OLMo-1B-hf assoc
+  wrote allenai_OLMo-1B-hf__assoc.csv
+running allenai/OLMo-1B-hf given_word
+  wrote allenai_OLMo-1B-hf__given_word.csv
+running allenai/OLMo-1B-hf after_word
+  wrote allenai_OLMo-1B-hf__after_word.csv
+running allenai/OLMo-1B-hf pair_begins
+  wrote allenai_OLMo-1B-hf__pair_begins.csv
+running allenai/OLMo-1B-hf first_word
+  wrote allenai_OLMo-1B-hf__first_word.csv
+running allenai/OLMo-1B-hf bare+k2
+  wrote allenai_OLMo-1B-hf__bare+k2.csv
+running allenai/OLMo-1B-hf bare+k5
+  wrote allenai_OLMo-1B-hf__bare+k5.csv
+running allenai/OLMo-1B-hf bare+k10
+  wrote allenai_OLMo-1B-hf__bare+k10.csv
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 24816.34it/s]
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 15802.89it/s]
+running Qwen/Qwen2.5-0.5B bare
+  wrote Qwen_Qwen2.5-0.5B__bare.csv
+running Qwen/Qwen2.5-0.5B comma
+  wrote Qwen_Qwen2.5-0.5B__comma.csv
+running Qwen/Qwen2.5-0.5B newline
+  wrote Qwen_Qwen2.5-0.5B__newline.csv
+running Qwen/Qwen2.5-0.5B list
+  wrote Qwen_Qwen2.5-0.5B__list.csv
+running Qwen/Qwen2.5-0.5B ldt
+  wrote Qwen_Qwen2.5-0.5B__ldt.csv
+running Qwen/Qwen2.5-0.5B and
+  wrote Qwen_Qwen2.5-0.5B__and.csv
+running Qwen/Qwen2.5-0.5B assoc
+  wrote Qwen_Qwen2.5-0.5B__assoc.csv
+running Qwen/Qwen2.5-0.5B given_word
+  wrote Qwen_Qwen2.5-0.5B__given_word.csv
+running Qwen/Qwen2.5-0.5B after_word
+  wrote Qwen_Qwen2.5-0.5B__after_word.csv
+running Qwen/Qwen2.5-0.5B pair_begins
+  wrote Qwen_Qwen2.5-0.5B__pair_begins.csv
+running Qwen/Qwen2.5-0.5B first_word
+  wrote Qwen_Qwen2.5-0.5B__first_word.csv
+running Qwen/Qwen2.5-0.5B bare+k2
+  wrote Qwen_Qwen2.5-0.5B__bare+k2.csv
+running Qwen/Qwen2.5-0.5B bare+k5
+  wrote Qwen_Qwen2.5-0.5B__bare+k5.csv
+running Qwen/Qwen2.5-0.5B bare+k10
+  wrote Qwen_Qwen2.5-0.5B__bare+k10.csv
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 6173.13it/s]
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 15416.52it/s]
+running Qwen/Qwen2.5-0.5B-Instruct bare
+  wrote Qwen_Qwen2.5-0.5B-Instruct__bare.csv
+running Qwen/Qwen2.5-0.5B-Instruct comma
+  wrote Qwen_Qwen2.5-0.5B-Instruct__comma.csv
+running Qwen/Qwen2.5-0.5B-Instruct newline
+  wrote Qwen_Qwen2.5-0.5B-Instruct__newline.csv
+running Qwen/Qwen2.5-0.5B-Instruct list
+  wrote Qwen_Qwen2.5-0.5B-Instruct__list.csv
+running Qwen/Qwen2.5-0.5B-Instruct ldt
+  wrote Qwen_Qwen2.5-0.5B-Instruct__ldt.csv
+running Qwen/Qwen2.5-0.5B-Instruct and
+  wrote Qwen_Qwen2.5-0.5B-Instruct__and.csv
+running Qwen/Qwen2.5-0.5B-Instruct assoc
+  wrote Qwen_Qwen2.5-0.5B-Instruct__assoc.csv
+running Qwen/Qwen2.5-0.5B-Instruct given_word
+  wrote Qwen_Qwen2.5-0.5B-Instruct__given_word.csv
+running Qwen/Qwen2.5-0.5B-Instruct after_word
+  wrote Qwen_Qwen2.5-0.5B-Instruct__after_word.csv
+running Qwen/Qwen2.5-0.5B-Instruct pair_begins
+  wrote Qwen_Qwen2.5-0.5B-Instruct__pair_begins.csv
+running Qwen/Qwen2.5-0.5B-Instruct first_word
+  wrote Qwen_Qwen2.5-0.5B-Instruct__first_word.csv
+running Qwen/Qwen2.5-0.5B-Instruct bare+k2
+  wrote Qwen_Qwen2.5-0.5B-Instruct__bare+k2.csv
+running Qwen/Qwen2.5-0.5B-Instruct bare+k5
+  wrote Qwen_Qwen2.5-0.5B-Instruct__bare+k5.csv
+running Qwen/Qwen2.5-0.5B-Instruct bare+k10
+  wrote Qwen_Qwen2.5-0.5B-Instruct__bare+k10.csv
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 23025.12it/s]
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 21084.94it/s]
+running HuggingFaceTB/SmolLM2-360M bare
+  wrote HuggingFaceTB_SmolLM2-360M__bare.csv
+running HuggingFaceTB/SmolLM2-360M comma
+  wrote HuggingFaceTB_SmolLM2-360M__comma.csv
+running HuggingFaceTB/SmolLM2-360M newline
+  wrote HuggingFaceTB_SmolLM2-360M__newline.csv
+running HuggingFaceTB/SmolLM2-360M list
+  wrote HuggingFaceTB_SmolLM2-360M__list.csv
+running HuggingFaceTB/SmolLM2-360M ldt
+  wrote HuggingFaceTB_SmolLM2-360M__ldt.csv
+running HuggingFaceTB/SmolLM2-360M and
+  wrote HuggingFaceTB_SmolLM2-360M__and.csv
+running HuggingFaceTB/SmolLM2-360M assoc
+  wrote HuggingFaceTB_SmolLM2-360M__assoc.csv
+running HuggingFaceTB/SmolLM2-360M given_word
+  wrote HuggingFaceTB_SmolLM2-360M__given_word.csv
+running HuggingFaceTB/SmolLM2-360M after_word
+  wrote HuggingFaceTB_SmolLM2-360M__after_word.csv
+running HuggingFaceTB/SmolLM2-360M pair_begins
+  wrote HuggingFaceTB_SmolLM2-360M__pair_begins.csv
+running HuggingFaceTB/SmolLM2-360M first_word
+  wrote HuggingFaceTB_SmolLM2-360M__first_word.csv
+running HuggingFaceTB/SmolLM2-360M bare+k2
+  wrote HuggingFaceTB_SmolLM2-360M__bare+k2.csv
+running HuggingFaceTB/SmolLM2-360M bare+k5
+  wrote HuggingFaceTB_SmolLM2-360M__bare+k5.csv
+running HuggingFaceTB/SmolLM2-360M bare+k10
+  wrote HuggingFaceTB_SmolLM2-360M__bare+k10.csv
+Loading weights:   0%|          | 0/202 [00:00<?, ?it/s]Loading weights: 100%|██████████| 202/202 [00:00<00:00, 6686.73it/s]
+[transformers] [1mBertForMaskedLM LOAD REPORT[0m from: bert-base-uncased
+Key                         | Status     |  | 
+----------------------------+------------+--+-
+bert.pooler.dense.bias      | UNEXPECTED |  | 
+bert.pooler.dense.weight    | UNEXPECTED |  | 
+cls.seq_relationship.bias   | UNEXPECTED |  | 
+cls.seq_relationship.weight | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 19092.06it/s]
+[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-uncased
+Key                                        | Status     |  | 
+-------------------------------------------+------------+--+-
+cls.seq_relationship.bias                  | UNEXPECTED |  | 
+cls.predictions.bias                       | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
+cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
+cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
+cls.seq_relationship.weight                | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+running bert-base-uncased bare
+  wrote bert-base-uncased__bare.csv
+running bert-base-uncased comma
+  wrote bert-base-uncased__comma.csv
+running bert-base-uncased newline
+  wrote bert-base-uncased__newline.csv
+running bert-base-uncased list
+  wrote bert-base-uncased__list.csv
+running bert-base-uncased ldt
+  wrote bert-base-uncased__ldt.csv
+running bert-base-uncased and
+  wrote bert-base-uncased__and.csv
+running bert-base-uncased assoc
+  wrote bert-base-uncased__assoc.csv
+running bert-base-uncased given_word
+  wrote bert-base-uncased__given_word.csv
+running bert-base-uncased after_word
+  wrote bert-base-uncased__after_word.csv
+running bert-base-uncased pair_begins
+  wrote bert-base-uncased__pair_begins.csv
+running bert-base-uncased first_word
+  wrote bert-base-uncased__first_word.csv
+running bert-base-uncased bare+k2
+  wrote bert-base-uncased__bare+k2.csv
+running bert-base-uncased bare+k5
+  wrote bert-base-uncased__bare+k5.csv
+running bert-base-uncased bare+k10
+  wrote bert-base-uncased__bare+k10.csv
+Loading weights:   0%|          | 0/394 [00:00<?, ?it/s]Loading weights: 100%|██████████| 394/394 [00:00<00:00, 22729.92it/s]
+Loading weights:   0%|          | 0/389 [00:00<?, ?it/s]Loading weights: 100%|██████████| 389/389 [00:00<00:00, 21796.31it/s]
+[transformers] [1mRobertaModel LOAD REPORT[0m from: roberta-large
+Key                       | Status     | 
+--------------------------+------------+-
+lm_head.layer_norm.weight | UNEXPECTED | 
+lm_head.layer_norm.bias   | UNEXPECTED | 
+lm_head.bias              | UNEXPECTED | 
+lm_head.dense.bias        | UNEXPECTED | 
+lm_head.dense.weight      | UNEXPECTED | 
+pooler.dense.weight       | MISSING    | 
+pooler.dense.bias         | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+running roberta-large bare
+  wrote roberta-large__bare.csv
+running roberta-large comma
+  wrote roberta-large__comma.csv
+running roberta-large newline
+  wrote roberta-large__newline.csv
+running roberta-large list
+  wrote roberta-large__list.csv
+running roberta-large ldt
+  wrote roberta-large__ldt.csv
+running roberta-large and
+  wrote roberta-large__and.csv
+running roberta-large assoc
+  wrote roberta-large__assoc.csv
+running roberta-large given_word
+  wrote roberta-large__given_word.csv
+running roberta-large after_word
+  wrote roberta-large__after_word.csv
+running roberta-large pair_begins
+  wrote roberta-large__pair_begins.csv
+running roberta-large first_word
+  wrote roberta-large__first_word.csv
+running roberta-large bare+k2
+  wrote roberta-large__bare+k2.csv
+running roberta-large bare+k5
+  wrote roberta-large__bare+k5.csv
+running roberta-large bare+k10
+  wrote roberta-large__bare+k10.csv

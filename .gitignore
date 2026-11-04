@@ -49,3 +49,6 @@ po/*~
 rsconnect/
 .DS_Store
 540Project_AC_environment.RData
+
+# Local notes (not synced)
+notes/

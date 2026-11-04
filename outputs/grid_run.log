@@ -1,0 +1,187 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+device: mps | items: 1000 | few-shot pool: 500
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 25234.02it/s]
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 18215.77it/s]
+running gpt2 bare
+  wrote gpt2__bare.csv
+running gpt2 comma
+  wrote gpt2__comma.csv
+running gpt2 newline
+  wrote gpt2__newline.csv
+running gpt2 list
+  wrote gpt2__list.csv
+running gpt2 ldt
+  wrote gpt2__ldt.csv
+running gpt2 and
+  wrote gpt2__and.csv
+running gpt2 assoc
+  wrote gpt2__assoc.csv
+running gpt2 given_word
+  wrote gpt2__given_word.csv
+running gpt2 after_word
+  wrote gpt2__after_word.csv
+running gpt2 pair_begins
+  wrote gpt2__pair_begins.csv
+running gpt2 first_word
+  wrote gpt2__first_word.csv
+running gpt2 bare+k2
+  wrote gpt2__bare+k2.csv
+running gpt2 bare+k5
+  wrote gpt2__bare+k5.csv
+running gpt2 bare+k10
+  wrote gpt2__bare+k10.csv
+Loading weights:   0%|          | 0/202 [00:00<?, ?it/s]Loading weights: 100%|██████████| 202/202 [00:00<00:00, 21462.39it/s]
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 16290.65it/s]
+[transformers] [1mRobertaModel LOAD REPORT[0m from: roberta-base
+Key                       | Status     | 
+--------------------------+------------+-
+lm_head.dense.weight      | UNEXPECTED | 
+lm_head.layer_norm.bias   | UNEXPECTED | 
+lm_head.bias              | UNEXPECTED | 
+lm_head.dense.bias        | UNEXPECTED | 
+lm_head.layer_norm.weight | UNEXPECTED | 
+pooler.dense.weight       | MISSING    | 
+pooler.dense.bias         | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+running roberta-base bare
+  wrote roberta-base__bare.csv
+running roberta-base comma
+  wrote roberta-base__comma.csv
+running roberta-base newline
+  wrote roberta-base__newline.csv
+running roberta-base list
+  wrote roberta-base__list.csv
+running roberta-base ldt
+  wrote roberta-base__ldt.csv
+running roberta-base and
+  wrote roberta-base__and.csv
+running roberta-base assoc
+  wrote roberta-base__assoc.csv
+running roberta-base given_word
+  wrote roberta-base__given_word.csv
+running roberta-base after_word
+  wrote roberta-base__after_word.csv
+running roberta-base pair_begins
+  wrote roberta-base__pair_begins.csv
+running roberta-base first_word
+  wrote roberta-base__first_word.csv
+running roberta-base bare+k2
+  wrote roberta-base__bare+k2.csv
+running roberta-base bare+k5
+  wrote roberta-base__bare+k5.csv
+running roberta-base bare+k10
+  wrote roberta-base__bare+k10.csv
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 15506.50it/s]
+Loading weights:   0%|          | 0/75 [00:00<?, ?it/s]Loading weights: 100%|██████████| 75/75 [00:00<00:00, 16153.48it/s]
+[transformers] [1mGPTNeoXModel LOAD REPORT[0m from: EleutherAI/pythia-70m
+Key              | Status     |  | 
+-----------------+------------+--+-
+embed_out.weight | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+running EleutherAI/pythia-70m bare
+  wrote EleutherAI_pythia-70m__bare.csv
+running EleutherAI/pythia-70m comma
+  wrote EleutherAI_pythia-70m__comma.csv
+running EleutherAI/pythia-70m newline
+  wrote EleutherAI_pythia-70m__newline.csv
+running EleutherAI/pythia-70m list
+  wrote EleutherAI_pythia-70m__list.csv
+running EleutherAI/pythia-70m ldt
+  wrote EleutherAI_pythia-70m__ldt.csv
+running EleutherAI/pythia-70m and
+  wrote EleutherAI_pythia-70m__and.csv
+running EleutherAI/pythia-70m assoc
+  wrote EleutherAI_pythia-70m__assoc.csv
+running EleutherAI/pythia-70m given_word
+  wrote EleutherAI_pythia-70m__given_word.csv
+running EleutherAI/pythia-70m after_word
+  wrote EleutherAI_pythia-70m__after_word.csv
+running EleutherAI/pythia-70m pair_begins
+  wrote EleutherAI_pythia-70m__pair_begins.csv
+running EleutherAI/pythia-70m first_word
+  wrote EleutherAI_pythia-70m__first_word.csv
+running EleutherAI/pythia-70m bare+k2
+  wrote EleutherAI_pythia-70m__bare+k2.csv
+running EleutherAI/pythia-70m bare+k5
+  wrote EleutherAI_pythia-70m__bare+k5.csv
+running EleutherAI/pythia-70m bare+k10
+  wrote EleutherAI_pythia-70m__bare+k10.csv
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 20918.52it/s]
+Loading weights:   0%|          | 0/147 [00:00<?, ?it/s]Loading weights: 100%|██████████| 147/147 [00:00<00:00, 15496.20it/s]
+[transformers] [1mGPTNeoXModel LOAD REPORT[0m from: EleutherAI/pythia-160m
+Key              | Status     |  | 
+-----------------+------------+--+-
+embed_out.weight | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+running EleutherAI/pythia-160m bare
+  wrote EleutherAI_pythia-160m__bare.csv
+running EleutherAI/pythia-160m comma
+  wrote EleutherAI_pythia-160m__comma.csv
+running EleutherAI/pythia-160m newline
+  wrote EleutherAI_pythia-160m__newline.csv
+running EleutherAI/pythia-160m list
+  wrote EleutherAI_pythia-160m__list.csv
+running EleutherAI/pythia-160m ldt
+  wrote EleutherAI_pythia-160m__ldt.csv
+running EleutherAI/pythia-160m and
+  wrote EleutherAI_pythia-160m__and.csv
+running EleutherAI/pythia-160m assoc
+  wrote EleutherAI_pythia-160m__assoc.csv
+running EleutherAI/pythia-160m given_word
+  wrote EleutherAI_pythia-160m__given_word.csv
+running EleutherAI/pythia-160m after_word
+  wrote EleutherAI_pythia-160m__after_word.csv
+running EleutherAI/pythia-160m pair_begins
+  wrote EleutherAI_pythia-160m__pair_begins.csv
+running EleutherAI/pythia-160m first_word
+  wrote EleutherAI_pythia-160m__first_word.csv
+running EleutherAI/pythia-160m bare+k2
+  wrote EleutherAI_pythia-160m__bare+k2.csv
+running EleutherAI/pythia-160m bare+k5
+  wrote EleutherAI_pythia-160m__bare+k5.csv
+running EleutherAI/pythia-160m bare+k10
+  wrote EleutherAI_pythia-160m__bare+k10.csv
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 22732.93it/s]
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights: 100%|██████████| 291/291 [00:00<00:00, 19261.48it/s]
+[transformers] [1mGPTNeoXModel LOAD REPORT[0m from: EleutherAI/pythia-410m
+Key              | Status     |  | 
+-----------------+------------+--+-
+embed_out.weight | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+running EleutherAI/pythia-410m bare
+  wrote EleutherAI_pythia-410m__bare.csv
+running EleutherAI/pythia-410m comma
+  wrote EleutherAI_pythia-410m__comma.csv
+running EleutherAI/pythia-410m newline
+  wrote EleutherAI_pythia-410m__newline.csv
+running EleutherAI/pythia-410m list
+  wrote EleutherAI_pythia-410m__list.csv
+running EleutherAI/pythia-410m ldt
+  wrote EleutherAI_pythia-410m__ldt.csv
+running EleutherAI/pythia-410m and
+  wrote EleutherAI_pythia-410m__and.csv
+running EleutherAI/pythia-410m assoc
+  wrote EleutherAI_pythia-410m__assoc.csv
+running EleutherAI/pythia-410m given_word
+  wrote EleutherAI_pythia-410m__given_word.csv
+running EleutherAI/pythia-410m after_word
+  wrote EleutherAI_pythia-410m__after_word.csv
+running EleutherAI/pythia-410m pair_begins
+  wrote EleutherAI_pythia-410m__pair_begins.csv
+running EleutherAI/pythia-410m first_word
+  wrote EleutherAI_pythia-410m__first_word.csv
+running EleutherAI/pythia-410m bare+k2
+  wrote EleutherAI_pythia-410m__bare+k2.csv
+running EleutherAI/pythia-410m bare+k5
+  wrote EleutherAI_pythia-410m__bare+k5.csv
+running EleutherAI/pythia-410m bare+k10
+  wrote EleutherAI_pythia-410m__bare+k10.csv

@@ -1,0 +1,110 @@
+---
+title             : "Toward an Item-Level Measure of Semantic Priming in Open-Source Language Models"
+shorttitle        : "LLM Semantic Priming"
+
+author: 
+  - name          : "Addie Clark"
+    affiliation   : "1"
+    corresponding : no
+  - name          : "Erin M. Buchanan"
+    affiliation   : "1"
+    corresponding : yes
+    address       : "[Complete mailing address]"
+    email         : "ebuchanan@harrisburgu.edu"
+
+affiliation:
+  - id            : "1"
+    institution   : "Harrisburg University of Science and Technology"
+
+authornote: |
+  Add complete departmental affiliations here. Code and data for this project are maintained in the priming-llms repository.
+
+abstract: |
+  [Abstract to be written once the discovery and confirmation analyses described in the Method are complete. It should state the research question, the priming measure used, the discovery/confirmation design, and the headline item-level correlation with human priming from the Semantic Priming Project.]
+  
+keywords          : "semantic priming, language models, surprisal, item-level correlation, psycholinguistics, open science"
+wordcount         : "X"
+
+bibliography      : "r-references.bib"
+
+floatsintext      : no
+linenumbers       : yes
+draft             : yes
+mask              : no
+
+figurelist        : no
+tablelist         : no
+footnotelist      : no
+
+classoption       : "man"
+output            : papaja::apa6_docx
+---
+
+```{r setup, include = FALSE}
+library("papaja")
+library("dplyr")
+r_refs("r-references.bib")
+```
+
+```{r analysis-preferences}
+set.seed(42)
+```
+
+<!-- APA convention treats the paper title as the heading for the introduction, so no "Introduction" header is added here. -->
+
+Semantic priming is the finding that people respond faster and more accurately to a target word when it follows a related prime word than when it follows an unrelated prime word, DOG speeds recognition of CAT more than BUS does, and the effect is typically measured with lexical decision or naming latency [@collins1975spreading]. It is one of the most replicated findings in the study of word recognition, and for decades it has served as a behavioral window onto how meaning is organized and retrieved in memory. Neely [-@neely1977semantic] showed that the effect is not a single mechanism but at least two, an automatic, fast-acting component that appears even at short stimulus onset asynchronies (SOAs) and does not require conscious expectancy, and a slower, strategic component that depends on the proportion of related trials and the time available to generate expectations. This distinction matters for any attempt to reproduce priming outside human participants. A mechanism with access to nothing more than a single feedforward pass over a prime and a target has no obvious way to implement the strategic component, so it is a candidate to capture the automatic component at best.
+
+Large language models trained purely on next-word or masked-word prediction offer a test case for this automatic component. Given a training objective that pushes a model to build representations in which related words make each other more predictable, reading the model's own predictions for a target word after a related versus an unrelated prime gives a direct, item-level analogue of automatic priming, with no additional cognitive architecture assumed. This logic has motivated a small but growing body of work using masked and autoregressive language models as psycholinguistic subjects [@misra2020exploring; @ettinger2020bert; @michaelov2024strong]. Misra, Ettinger, and Rayz [-@misra2020exploring] read target-word probability directly off BERT's masked-language-model head with a prime word as context and found that BERT does show a form of semantic priming, but the effect shrinks and can reverse as the surrounding context becomes more informative, which suggests the effect is sensitive to how much material accompanies the prime rather than being a fixed property of the model. Michaelov et al. [-@michaelov2024strong] showed that surprisal from several transformer language models tracks the N400, an event-related potential long associated with semantic expectancy, across a range of experimental manipulations including priming-like contrasts, and this result supports treating a model's own conditional probability as a meaningful analogue of a human processing-cost measure rather than an arbitrary byproduct of training. A separate and more mechanistic literature asks whether the same models reproduce structural priming, facilitated processing of a sentence structure after exposure to the same structure in a preceding sentence [@jumelet2024structural], a related but distinct phenomenon from the lexical-semantic effect under study here.
+
+Two recurring issues in this line of work shaped the design we used here. The first is a tendency to treat similarity between a model's representations of the prime and the target as though it were the model's priming. Cosine similarity between two word embeddings is a static quantity, it does not require the model to process one word conditioned on having just seen the other, and the human literature has long treated relatedness and priming as dissociable. Hutchison [-@hutchison2003semantic] reviewed a large set of studies comparing association strength to featural or semantic overlap as predictors of human priming and found that association strength carries the effect over and above overlap. Lucas [-@lucas2000semantic], in a meta-analysis of 26 studies, found reliable priming between word pairs with little or no similarity, given the words were associated, with an additional boost when similarity and association were both present. Read together, these findings argue that a model's priming should be measured as a change in the model's own processing of the target, not as a resemblance score between two static representations, however well that score happens to predict human data once it is fed into an explicit process model of memory retrieval [see @meghdadi2026integrating for an example of the latter, discussed further in the Method].
+
+The second issue is the amount of surrounding context typically placed around the prime and target before a model's prediction is scored. Embedding a cue-target pair inside a full carrier sentence gives the model many additional words to condition on, and Misra et al. [-@misra2020exploring] found that added context can reduce a masked model's sensitivity to the prime itself, which suggests a carrier sentence could obscure the cue-target relation it was meant to isolate. Whether this generalizes beyond the model they tested, and whether a bare two-word sequence is better than a light frame that only signals the two words are a pair, is an empirical question. We expected minimal context to work best, and we treat that expectation as a hypothesis to test by comparing prompt formats within the design described below.
+
+We address both issues directly. Priming in the language model is defined as a difference in surprisal, the target word's negative log probability, between the unrelated-prime and related-prime conditions, in the DOG-CAT-BUS example this is the surprisal of CAT after BUS minus the surprisal of CAT after DOG, computed from the model's conditional probability of the target given the cue, with the amount of surrounding context treated as a factor in the design rather than fixed in advance, and scored in a manner appropriate to each model's architecture. Working on the surprisal scale rather than the raw probability scale follows Levy's [-@levy2008expectation] argument that processing cost during comprehension is approximately linear in negative log probability, which gives the resulting difference score the same theoretical status as the log-odds contrasts used to relate human response time to predictability. This definition keeps relatedness, in the form of prime-target similarity, in the analysis as a covariate rather than as a competing measure of priming, which lets us test directly whether the model shows facilitation beyond what static relatedness alone would predict, the same question Hutchison [-@hutchison2003semantic] and Lucas [-@lucas2000semantic] asked of human priming.
+
+Our alignment dataset is the Semantic Priming Project [SPP; @buchanan2025semantic], a megastudy providing item-level human priming scores and cue-target pairs across a large set of languages. We begin with the English data, which were collected at a single, long SOA. A long SOA leaves room for the strategic, expectancy-based component of priming as well as the automatic component that a single feedforward measure of surprisal is best positioned to capture [@neely1977semantic], so we do not assume the model measure reflects automatic priming alone. To probe this, we use the original Semantic Priming Project [@hutchison2013semantic], which measured priming at both a short and a long SOA, as a second validation set, and we treat the non-English subsets as extensions once the core measure is validated. The space of reasonable analytic choices, which model, which parameter count, which minimal-context prompt format, is large enough that selecting the single best-fitting combination on the full dataset would risk reporting an inflated effect. We therefore use a discovery and confirmation split throughout, following the logic used in fields that routinely search over many candidate predictors, where selecting and evaluating a winner on the same data is known to produce optimistic estimates that shrink once checked against new data [@button2013power].
+
+This paper has three aims. The first is to establish a minimal-context, architecture-appropriate surprisal difference as the primary measure of priming in open-source language models, and to test how well it recovers item-level human priming scores from the English portion of the SPP. The second is to search a small, principled grid of model family, parameter count, and prompt format for the configuration that best predicts human priming on a discovery half of the data, and to confirm whether that configuration holds on a held-out confirmation half. The third is to build a pipeline general enough to extend to additional SPP languages using open multilingual models, since the dataset's coverage of roughly thirty languages makes it well suited to that extension once we have a validated single-language measure.
+
+# Method
+
+## Human Priming Data
+
+Item-level human priming scores come from the Semantic Priming Project [@buchanan2025semantic], which reports, for each target word, the average z-scored response time following a related cue and following an unrelated cue in a lexical decision task, aggregated across participants. Following the SPP's own convention, the related pair's response time is subtracted from the unrelated pair's response time, so that DOG-CAT is subtracted from BUS-CAT to give the priming effect for CAT. The primary human outcome measure is this difference, `avgZ_prime` in the project's released data, with a positive value indicating faster responding after the related cue. We begin with the English subset, which was administered at a single, long SOA. A long SOA allows the strategic, expectancy-driven component of priming to contribute alongside the automatic component, and a single feedforward pass through a language model has no obvious mechanism to reproduce the strategic part [@neely1977semantic]. The model-human alignment we report should therefore be read as alignment with a mixture of the two. The original Semantic Priming Project [@hutchison2013semantic] provides item-level priming at both a short and a long SOA and serves as our external validation set. The full SPP item set spans roughly thirty languages, and the `data/item_data` and `data/priming_data` directories in this repository already contain the released materials for English along with several additional languages, which will support later extensions of this pipeline.
+
+## Language Models
+
+We draw models entirely from openly released weights on Hugging Face, so the full pipeline can be run and audited without proprietary API access, and so the same pipeline can later be pointed at multilingual models. The starting model set carried over from the pilot analysis, GPT-2 [@radford2019language], RoBERTa-base [@liu2019roberta], and Bloom-560m [@lescao2022bloom], is retained as one arm of the design, alongside the Pythia suite [@biderman2023pythia], which trains a fixed architecture on fixed data across a range of parameter counts and therefore isolates the effect of scale from the effect of training data or architecture. We include OLMo [@groeneveld2024olmo] where full documentation of training data is useful, since it allows a direct check of whether SPP items or related association norms were present during pretraining, a check that is not possible for GPT-2, RoBERTa, or Bloom. Models fall into two architectural families that must be scored differently, described below. Multilingual candidates for later extension, not run in the present analysis, include mGPT, XGLM, Qwen2.5, and Aya-23, chosen for their documented coverage of the languages already present in the SPP release. We will check tokenizer coverage per language before adding any of these models, given a language split into disproportionately many subword tokens would bias surprisal estimates for reasons unrelated to priming.
+
+## Priming Measure
+
+For a target word $w$ and a preceding context $c$, surprisal is defined as $S(w \mid c) = -\log P(w \mid c)$, the negative log probability the model assigns to the target conditioned on that context. The model-derived priming score for an item is the surprisal difference
+
+$$\Delta S = S(\text{target} \mid \text{unrelated cue}) - S(\text{target} \mid \text{related cue})$$
+
+so that in the DOG-CAT-BUS example, $\Delta S$ for CAT is the surprisal of CAT after BUS minus the surprisal of CAT after DOG, and a positive value indicates the model finds the target more predictable, less surprising, after the related cue than after the unrelated cue. This is a direct analogue of the human contrast, response time following an unrelated cue minus response time following a related cue, computed on the SPP's own items. Our pre-specified expectation was that minimal context would work best, with the cue word alone preceding the target, given the finding that additional context can dilute a masked model's sensitivity to the prime [@misra2020exploring]. This bare format is the reference condition, and the other prompt formats described below are compared against it.
+
+Because $\Delta S$ requires reading a conditional probability rather than sampling a continuation, decoding parameters that control generation, temperature and top-$k$ among them, play no role in computing it under teacher-forced scoring, those parameters only matter if a later extension of this project instead lets a model generate freely and checks whether it produces the target. Scoring is architecture appropriate. For autoregressive models such as GPT-2, Bloom-560m, Pythia, and OLMo, $P(\text{target} \mid \text{cue})$ is read directly from the model's next-token distribution. For bidirectional masked models such as RoBERTa, the target is scored at a masked position conditioned on the cue, using masked or pseudo-log-likelihood scoring rather than the autoregressive next-word method [@salazar2020masked; @kauf2023better], correcting the scoring error present in the pilot analysis, where RoBERTa's surprisal had been computed with a method built for causal models.
+
+## Prompt Formats
+
+We treat prompt format as a factor in the search described below rather than fixing one in advance. The bare two-word cue-target sequence with no additional material is the pre-specified reference format, reflecting our expectation that minimal context would work best. Alongside it we include other minimal frames (comma-separated, newline-separated, a word list, and a lexical-decision-style "Word 1 / Word 2" layout), two frames that imply a relation between the words ("and" and "makes me think of"), the four carrier-sentence templates from the pilot analysis, and few-shot versions of the bare frame that show the model 2, 5, or 10 related example pairs first, drawn only from the discovery half and never including the item being scored. The carrier sentences are kept as a direct test of whether the pilot study's near-null result was an artifact of that particular framing rather than a property of the models themselves. Because each additional format widens the search grid described in the Design and Analytic Plan section below, we report the bare format's discovery and confirmation results whether or not it is the configuration selected, so readers can see how the expectation fared.
+
+## Lexical and Relatedness Covariates
+
+Word frequency, length, orthographic and phonographic neighborhood density, bigram frequency, and semantic diversity are available for the SPP item set from the pilot analysis's existing preprocessing pipeline (`functions.r`) and enter the statistical model below as fixed effects, to account for lexical properties known to influence human priming independent of any experimental manipulation. We also include cosine similarity between the model's prime and target representations, computed with the same minimal context used for the surprisal measure, as an additional covariate rather than as an alternative priming measure, for the reasons developed in the introduction. Entering both $\Delta S$ and similarity in the same model lets us test whether the surprisal-based facilitation effect holds once static relatedness is accounted for, the model-level analogue of the question Hutchison [-@hutchison2003semantic] and Lucas [-@lucas2000semantic] asked of human participants.
+
+## Design and Analytic Plan
+
+We split the English item set into a discovery half and a confirmation half prior to any model fitting, stratified on word frequency band so the two halves are comparable in composition (the released data do not code cue relatedness type). The grid of model family, parameter count, and prompt format is evaluated only on the discovery half. To keep the grid computationally tractable and to limit the total number of comparisons, the search proceeds in stages rather than as a full factorial, we select prompt format first using one representative mid-size model, then sweep model family and parameter count using the winning prompt format. We will fix the rule used to select the winning configuration, for example the highest item-level Spearman correlation between $\Delta S$ and `avgZ_prime`, or the lowest AIC from the mixed-effects model described below, before we examine the confirmation half. We then evaluate the winning configuration once on the confirmation half, and we report both the discovery and confirmation correlations together, so any shrinkage between the two is visible rather than hidden behind a single reported figure. The configurations selected on the discovery half are then run, with no further selection, on the original Semantic Priming Project items [@hutchison2013semantic] for both prime types (first associate and other associate) at short and long SOA, as an external check on whether the alignment generalizes to new items and varies with SOA. This discovery and confirmation structure follows the logic used in fields that routinely search over many candidate predictors, where reporting only the best result found in an unconstrained search is known to produce optimistic estimates [@button2013power].
+
+## Statistical Analysis
+
+We model item-level human priming (`avgZ_prime`) as a function of the model-derived surprisal difference $\Delta S$, with prime-target cosine similarity and the lexical covariates listed above entered as additional fixed effects, fitted separately for each model and prompt-format configuration. Each configuration yields one observation per target, so target is not entered as a random effect (a mixed-effects model with target as a random effect would only be appropriate if configurations were stacked into one dataset, which we do not do). We summarize the association with the Spearman correlation between $\Delta S$ and `avgZ_prime`, and with the increase in explained variance when $\Delta S$ is added to the covariates. Prime-target similarity is computed at every model layer, and the layer used as the covariate is chosen on the discovery half only. As an upper bound, we also fit a cross-validated ridge regression on the discovery half and score it on the confirmation half; because it is fit to the human data, we report it separately and do not treat it as the model's own priming. All models and code are maintained in this repository alongside the data files already present in `data/item_data`, `data/priming_data`, and `data/matched_stimuli`, consistent with an open and reproducible analysis pipeline.
+
+\newpage
+
+# References
+
+::: {#refs custom-style="Bibliography"}
+:::

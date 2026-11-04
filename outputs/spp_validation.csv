@@ -1,0 +1,65 @@
+prime,config,subset,soa,n,r
+first,EleutherAI/pythia-1b | ldt,all targets,short,1661,0.13165453909369093
+first,EleutherAI/pythia-1b | ldt,all targets,long,1661,0.17542258059688787
+first,EleutherAI/pythia-1b | ldt,targets not in ML set,short,1227,0.12716367243761179
+first,EleutherAI/pythia-1b | ldt,targets not in ML set,long,1227,0.1856299585557351
+first,HuggingFaceTB/SmolLM2-360M | ldt,all targets,short,1661,0.13425986049929597
+first,HuggingFaceTB/SmolLM2-360M | ldt,all targets,long,1661,0.16633762220543802
+first,HuggingFaceTB/SmolLM2-360M | ldt,targets not in ML set,short,1227,0.122755364325213
+first,HuggingFaceTB/SmolLM2-360M | ldt,targets not in ML set,long,1227,0.17233155765291203
+first,HuggingFaceTB/SmolLM2-360M | newline,all targets,short,1661,0.08712297216624511
+first,HuggingFaceTB/SmolLM2-360M | newline,all targets,long,1661,0.11131008114463617
+first,HuggingFaceTB/SmolLM2-360M | newline,targets not in ML set,short,1227,0.09188626822832377
+first,HuggingFaceTB/SmolLM2-360M | newline,targets not in ML set,long,1227,0.1394872275044813
+first,Qwen/Qwen2.5-0.5B-Instruct | after_word,all targets,short,1661,0.11790564155650786
+first,Qwen/Qwen2.5-0.5B-Instruct | after_word,all targets,long,1661,0.18090399414525238
+first,Qwen/Qwen2.5-0.5B-Instruct | after_word,targets not in ML set,short,1227,0.10572972480398528
+first,Qwen/Qwen2.5-0.5B-Instruct | after_word,targets not in ML set,long,1227,0.18207811267642707
+first,Qwen/Qwen2.5-0.5B | ldt,all targets,short,1661,0.1361082332639261
+first,Qwen/Qwen2.5-0.5B | ldt,all targets,long,1661,0.17726340248240438
+first,Qwen/Qwen2.5-0.5B | ldt,targets not in ML set,short,1227,0.12528398845271368
+first,Qwen/Qwen2.5-0.5B | ldt,targets not in ML set,long,1227,0.18522331373815334
+first,Qwen/Qwen2.5-0.5B | pair_begins,all targets,short,1661,0.12711324422337844
+first,Qwen/Qwen2.5-0.5B | pair_begins,all targets,long,1661,0.18598019717344322
+first,Qwen/Qwen2.5-0.5B | pair_begins,targets not in ML set,short,1227,0.12770058858815067
+first,Qwen/Qwen2.5-0.5B | pair_begins,targets not in ML set,long,1227,0.2038810996251675
+first,allenai/OLMo-1B-hf | after_word,all targets,short,1661,0.14365835673549976
+first,allenai/OLMo-1B-hf | after_word,all targets,long,1661,0.16249112200207017
+first,allenai/OLMo-1B-hf | after_word,targets not in ML set,short,1227,0.12886393614644145
+first,allenai/OLMo-1B-hf | after_word,targets not in ML set,long,1227,0.18239566447857508
+first,allenai/OLMo-1B-hf | and,all targets,short,1661,0.15744007464533863
+first,allenai/OLMo-1B-hf | and,all targets,long,1661,0.18643526740864566
+first,allenai/OLMo-1B-hf | and,targets not in ML set,short,1227,0.16139782764269858
+first,allenai/OLMo-1B-hf | and,targets not in ML set,long,1227,0.19287626409931885
+other,EleutherAI/pythia-1b | ldt,all targets,short,1661,0.13528583203636516
+other,EleutherAI/pythia-1b | ldt,all targets,long,1661,0.15532212952902605
+other,EleutherAI/pythia-1b | ldt,targets not in ML set,short,1227,0.14917977455640935
+other,EleutherAI/pythia-1b | ldt,targets not in ML set,long,1227,0.1747018606012549
+other,HuggingFaceTB/SmolLM2-360M | ldt,all targets,short,1661,0.14130001171132037
+other,HuggingFaceTB/SmolLM2-360M | ldt,all targets,long,1661,0.17065410602563488
+other,HuggingFaceTB/SmolLM2-360M | ldt,targets not in ML set,short,1227,0.15113791755992997
+other,HuggingFaceTB/SmolLM2-360M | ldt,targets not in ML set,long,1227,0.17678223935187107
+other,HuggingFaceTB/SmolLM2-360M | newline,all targets,short,1661,0.09035207374160047
+other,HuggingFaceTB/SmolLM2-360M | newline,all targets,long,1661,0.10943361052911549
+other,HuggingFaceTB/SmolLM2-360M | newline,targets not in ML set,short,1227,0.10539449081532536
+other,HuggingFaceTB/SmolLM2-360M | newline,targets not in ML set,long,1227,0.10763175512304975
+other,Qwen/Qwen2.5-0.5B-Instruct | after_word,all targets,short,1661,0.13465881653312106
+other,Qwen/Qwen2.5-0.5B-Instruct | after_word,all targets,long,1661,0.17115136104429063
+other,Qwen/Qwen2.5-0.5B-Instruct | after_word,targets not in ML set,short,1227,0.15806729491999355
+other,Qwen/Qwen2.5-0.5B-Instruct | after_word,targets not in ML set,long,1227,0.18386319501467835
+other,Qwen/Qwen2.5-0.5B | ldt,all targets,short,1661,0.1479213001390941
+other,Qwen/Qwen2.5-0.5B | ldt,all targets,long,1661,0.15496506495903983
+other,Qwen/Qwen2.5-0.5B | ldt,targets not in ML set,short,1227,0.1653061755042889
+other,Qwen/Qwen2.5-0.5B | ldt,targets not in ML set,long,1227,0.1691838621166741
+other,Qwen/Qwen2.5-0.5B | pair_begins,all targets,short,1661,0.14969512060199144
+other,Qwen/Qwen2.5-0.5B | pair_begins,all targets,long,1661,0.1518939157172488
+other,Qwen/Qwen2.5-0.5B | pair_begins,targets not in ML set,short,1227,0.17401122245893888
+other,Qwen/Qwen2.5-0.5B | pair_begins,targets not in ML set,long,1227,0.16499369709951986
+other,allenai/OLMo-1B-hf | after_word,all targets,short,1661,0.14022285662077907
+other,allenai/OLMo-1B-hf | after_word,all targets,long,1661,0.15254270504666495
+other,allenai/OLMo-1B-hf | after_word,targets not in ML set,short,1227,0.1638791736829717
+other,allenai/OLMo-1B-hf | after_word,targets not in ML set,long,1227,0.17385082255102138
+other,allenai/OLMo-1B-hf | and,all targets,short,1661,0.16502739964722696
+other,allenai/OLMo-1B-hf | and,all targets,long,1661,0.16165489576939585
+other,allenai/OLMo-1B-hf | and,targets not in ML set,short,1227,0.19016147032330818
+other,allenai/OLMo-1B-hf | and,targets not in ML set,long,1227,0.17316115231678414
