@@ -1,3 +1,22 @@
 model=EleutherAI/pythia-410m format=first_word (base discovery r=0.2880528002112008) shuffle=True -> EleutherAI_pythia-410m__first_word__r8__s42__SHUFFLED
 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
 Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 16972.99it/s]
+baseline Spearman  val=0.314  confirmation=0.180
+trainable params: 3,145,728 || all params: 408,479,744 || trainable%: 0.7701
+epoch 1: train loss 1.005  val Spearman 0.335
+epoch 2: train loss 0.880  val Spearman 0.277
+epoch 3: train loss 0.392  val Spearman 0.172
+epoch 4: train loss 0.138  val Spearman 0.228
+epoch 5: train loss 0.081  val Spearman 0.257
+epoch 6: train loss 0.045  val Spearman 0.221
+best epoch 1 (val Spearman 0.335)
+
+         set   outcome    n  r_untrained  r_lora   gain
+       train     human  400        0.275   0.221 -0.054
+         val     human  100        0.314   0.335  0.021
+confirmation     human  500        0.180   0.176 -0.003
+   spp_first short_SOA 1661        0.130   0.143  0.012
+   spp_first  long_SOA 1661        0.159   0.165  0.006
+   spp_other short_SOA 1661        0.152   0.163  0.011
+   spp_other  long_SOA 1661        0.152   0.148 -0.003
+saved EleutherAI_pythia-410m__first_word__r8__s42__SHUFFLED

@@ -112,6 +112,7 @@ def main():
     ap.add_argument("--epochs", type=int, default=6)
     ap.add_argument("--lr", type=float, default=2e-4)
     ap.add_argument("--batch", type=int, default=16)
+    ap.add_argument("--val-frac", type=float, default=0.2, help="share of the discovery half held out to pick the epoch")
     ap.add_argument("--seed", type=int, default=SEED)
     ap.add_argument("--shuffle-labels", action="store_true")
     ap.add_argument("--limit", type=int, default=None, help="use only the first N items per set (smoke test)")
@@ -119,7 +120,7 @@ def main():
 
     fmt, disc_r = (args.format, None) if args.format else best_format_for(args.model)
     parse_format(fmt)
-    tag = f"{re.sub(r'[^A-Za-z0-9.-]+', '_', args.model)}__{fmt}__r{args.rank}__s{args.seed}" + ("__SHUFFLED" if args.shuffle_labels else "")
+    tag = f"{re.sub(r'[^A-Za-z0-9.-]+', '_', args.model)}__{fmt}__r{args.rank}__e{args.epochs}__lr{args.lr:g}__v{args.val_frac:g}__s{args.seed}" + ("__SHUFFLED" if args.shuffle_labels else "")
     print(f"model={args.model} format={fmt} (base discovery r={disc_r}) shuffle={args.shuffle_labels} -> {tag}", flush=True)
     torch.manual_seed(args.seed)
     rng = np.random.default_rng(args.seed)
@@ -131,7 +132,7 @@ def main():
                        "cue_unrelated": raw["en_cue_word_unrelated"].astype(str).str.strip()})
     ml = ml.merge(load_human()[["target", "avgZ_prime"]], on="target").merge(get_split()[["target", "half"]], on="target")
     disc = ml[ml.half == "discovery"].sample(frac=1, random_state=args.seed).reset_index(drop=True)
-    n_val = len(disc) // 5
+    n_val = int(len(disc) * args.val_frac)
     val, train = disc.iloc[:n_val].reset_index(drop=True), disc.iloc[n_val:].reset_index(drop=True)
     test = ml[ml.half == "confirmation"].reset_index(drop=True)
     pool = disc[["target", "cue_related"]]  # unused (zero-shot) but required by build_prefixes
@@ -205,7 +206,7 @@ def main():
     print("\n" + res.round(3).to_string(index=False))
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
-    res.assign(model=args.model, format=fmt, rank=args.rank, seed=args.seed, shuffled=args.shuffle_labels,
+    res.assign(model=args.model, format=fmt, rank=args.rank, epochs=args.epochs, lr=args.lr, val_frac=args.val_frac, seed=args.seed, shuffled=args.shuffle_labels,
                best_epoch=best_ep).to_csv(OUT_DIR / f"{tag}__summary.csv", index=False)
     pd.concat([df[["target"]].assign(set=k, dS_untrained=base_dS[k], dS_lora=tuned[k]) for k, df in sets.items()]
               ).to_csv(OUT_DIR / f"{tag}__items.csv", index=False)

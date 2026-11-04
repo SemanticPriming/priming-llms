@@ -1,0 +1,8 @@
+set,outcome,n,r_untrained,r_lora,gain,model,format,rank,epochs,lr,val_frac,seed,shuffled,best_epoch
+train,human,350,0.2487029048633633,0.3380382113906469,0.08933530652728358,EleutherAI/pythia-410m,first_word,4,3,5e-05,0.3,5,False,1
+val,human,150,0.3793501933419263,0.3723916618516379,-0.006958531490288411,EleutherAI/pythia-410m,first_word,4,3,5e-05,0.3,5,False,1
+confirmation,human,500,0.17973527894111577,0.19006492025968102,0.010329641318565258,EleutherAI/pythia-410m,first_word,4,3,5e-05,0.3,5,False,1
+spp_first,short_SOA,1661,0.13047723365777245,0.12215655763772584,-0.008320676020046602,EleutherAI/pythia-410m,first_word,4,3,5e-05,0.3,5,False,1
+spp_first,long_SOA,1661,0.1586196099393889,0.15521623122060893,-0.0034033787187799647,EleutherAI/pythia-410m,first_word,4,3,5e-05,0.3,5,False,1
+spp_other,short_SOA,1661,0.15238854305001617,0.14808125855132098,-0.004307284498695191,EleutherAI/pythia-410m,first_word,4,3,5e-05,0.3,5,False,1
+spp_other,long_SOA,1661,0.15158042246747577,0.14566069642154603,-0.005919726045929746,EleutherAI/pythia-410m,first_word,4,3,5e-05,0.3,5,False,1

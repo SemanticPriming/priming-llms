@@ -1,0 +1,155 @@
+model=EleutherAI/pythia-410m format=bare (base discovery r=None) shuffle=False -> EleutherAI_pythia-410m__bare__r4__e3__lr5e-05__v0.3__s1
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 18286.75it/s]
+baseline Spearman  val=0.121  confirmation=0.084
+trainable params: 1,572,864 || all params: 406,906,880 || trainable%: 0.3865
+epoch 1: train loss 0.997  val Spearman 0.138
+epoch 2: train loss 0.957  val Spearman 0.142
+epoch 3: train loss 0.884  val Spearman 0.131
+best epoch 2 (val Spearman 0.142)
+
+         set   outcome    n  r_untrained  r_lora  gain
+       train     human  350        0.099   0.297 0.198
+         val     human  150        0.121   0.142 0.021
+confirmation     human  500        0.084   0.094 0.010
+   spp_first short_SOA 1661        0.096   0.098 0.003
+   spp_first  long_SOA 1661        0.116   0.118 0.002
+   spp_other short_SOA 1661        0.070   0.076 0.006
+   spp_other  long_SOA 1661        0.006   0.010 0.004
+saved EleutherAI_pythia-410m__bare__r4__e3__lr5e-05__v0.3__s1
+model=EleutherAI/pythia-410m format=bare (base discovery r=None) shuffle=True -> EleutherAI_pythia-410m__bare__r4__e3__lr5e-05__v0.3__s1__SHUFFLED
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 17971.19it/s]
+baseline Spearman  val=0.121  confirmation=0.084
+trainable params: 1,572,864 || all params: 406,906,880 || trainable%: 0.3865
+epoch 1: train loss 1.003  val Spearman 0.116
+epoch 2: train loss 0.979  val Spearman 0.116
+epoch 3: train loss 0.882  val Spearman 0.104
+best epoch 2 (val Spearman 0.116)
+
+         set   outcome    n  r_untrained  r_lora   gain
+       train     human  350        0.099   0.099  0.000
+         val     human  150        0.121   0.116 -0.006
+confirmation     human  500        0.084   0.077 -0.007
+   spp_first short_SOA 1661        0.096   0.094 -0.002
+   spp_first  long_SOA 1661        0.116   0.110 -0.005
+   spp_other short_SOA 1661        0.070   0.064 -0.007
+   spp_other  long_SOA 1661        0.006   0.005 -0.001
+saved EleutherAI_pythia-410m__bare__r4__e3__lr5e-05__v0.3__s1__SHUFFLED
+model=EleutherAI/pythia-410m format=bare (base discovery r=None) shuffle=False -> EleutherAI_pythia-410m__bare__r4__e3__lr5e-05__v0.3__s2
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 18839.79it/s]
+baseline Spearman  val=0.176  confirmation=0.084
+trainable params: 1,572,864 || all params: 406,906,880 || trainable%: 0.3865
+epoch 1: train loss 1.003  val Spearman 0.186
+epoch 2: train loss 0.983  val Spearman 0.201
+epoch 3: train loss 0.946  val Spearman 0.211
+best epoch 3 (val Spearman 0.211)
+
+         set   outcome    n  r_untrained  r_lora  gain
+       train     human  350        0.081   0.456 0.375
+         val     human  150        0.176   0.211 0.035
+confirmation     human  500        0.084   0.113 0.029
+   spp_first short_SOA 1661        0.096   0.102 0.006
+   spp_first  long_SOA 1661        0.116   0.116 0.001
+   spp_other short_SOA 1661        0.070   0.076 0.006
+   spp_other  long_SOA 1661        0.006   0.012 0.007
+saved EleutherAI_pythia-410m__bare__r4__e3__lr5e-05__v0.3__s2
+model=EleutherAI/pythia-410m format=bare (base discovery r=None) shuffle=True -> EleutherAI_pythia-410m__bare__r4__e3__lr5e-05__v0.3__s2__SHUFFLED
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 23712.23it/s]
+baseline Spearman  val=0.176  confirmation=0.084
+trainable params: 1,572,864 || all params: 406,906,880 || trainable%: 0.3865
+epoch 1: train loss 1.013  val Spearman 0.179
+epoch 2: train loss 1.005  val Spearman 0.169
+epoch 3: train loss 0.993  val Spearman 0.154
+best epoch 1 (val Spearman 0.179)
+
+         set   outcome    n  r_untrained  r_lora   gain
+       train     human  350        0.081   0.083  0.002
+         val     human  150        0.176   0.179  0.003
+confirmation     human  500        0.084   0.085  0.002
+   spp_first short_SOA 1661        0.096   0.096 -0.000
+   spp_first  long_SOA 1661        0.116   0.114 -0.002
+   spp_other short_SOA 1661        0.070   0.071  0.000
+   spp_other  long_SOA 1661        0.006   0.005 -0.000
+saved EleutherAI_pythia-410m__bare__r4__e3__lr5e-05__v0.3__s2__SHUFFLED
+model=EleutherAI/pythia-410m format=bare (base discovery r=None) shuffle=False -> EleutherAI_pythia-410m__bare__r4__e3__lr5e-05__v0.3__s3
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 21147.51it/s]
+baseline Spearman  val=0.216  confirmation=0.084
+trainable params: 1,572,864 || all params: 406,906,880 || trainable%: 0.3865
+epoch 1: train loss 1.004  val Spearman 0.224
+epoch 2: train loss 0.981  val Spearman 0.230
+epoch 3: train loss 0.899  val Spearman 0.238
+best epoch 3 (val Spearman 0.238)
+
+         set   outcome    n  r_untrained  r_lora   gain
+       train     human  350        0.058   0.504  0.446
+         val     human  150        0.216   0.238  0.022
+confirmation     human  500        0.084   0.113  0.029
+   spp_first short_SOA 1661        0.096   0.101  0.005
+   spp_first  long_SOA 1661        0.116   0.123  0.007
+   spp_other short_SOA 1661        0.070   0.069 -0.001
+   spp_other  long_SOA 1661        0.006   0.013  0.007
+saved EleutherAI_pythia-410m__bare__r4__e3__lr5e-05__v0.3__s3
+model=EleutherAI/pythia-410m format=bare (base discovery r=None) shuffle=True -> EleutherAI_pythia-410m__bare__r4__e3__lr5e-05__v0.3__s3__SHUFFLED
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 14114.42it/s]
+baseline Spearman  val=0.216  confirmation=0.084
+trainable params: 1,572,864 || all params: 406,906,880 || trainable%: 0.3865
+epoch 1: train loss 1.008  val Spearman 0.219
+epoch 2: train loss 1.010  val Spearman 0.221
+epoch 3: train loss 1.001  val Spearman 0.218
+best epoch 2 (val Spearman 0.221)
+
+         set   outcome    n  r_untrained  r_lora   gain
+       train     human  350        0.058   0.061  0.003
+         val     human  150        0.216   0.221  0.005
+confirmation     human  500        0.084   0.086  0.002
+   spp_first short_SOA 1661        0.096   0.096 -0.000
+   spp_first  long_SOA 1661        0.116   0.113 -0.003
+   spp_other short_SOA 1661        0.070   0.070 -0.001
+   spp_other  long_SOA 1661        0.006   0.005 -0.001
+saved EleutherAI_pythia-410m__bare__r4__e3__lr5e-05__v0.3__s3__SHUFFLED
+model=EleutherAI/pythia-410m format=bare (base discovery r=None) shuffle=False -> EleutherAI_pythia-410m__bare__r4__e3__lr5e-05__v0.3__s4
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 17105.98it/s]
+baseline Spearman  val=0.044  confirmation=0.084
+trainable params: 1,572,864 || all params: 406,906,880 || trainable%: 0.3865
+epoch 1: train loss 0.980  val Spearman 0.043
+epoch 2: train loss 0.930  val Spearman 0.038
+epoch 3: train loss 0.841  val Spearman 0.030
+best epoch 1 (val Spearman 0.043)
+
+         set   outcome    n  r_untrained  r_lora   gain
+       train     human  350        0.123   0.211  0.088
+         val     human  150        0.044   0.043 -0.000
+confirmation     human  500        0.084   0.089  0.005
+   spp_first short_SOA 1661        0.096   0.098  0.002
+   spp_first  long_SOA 1661        0.116   0.117  0.001
+   spp_other short_SOA 1661        0.070   0.073  0.003
+   spp_other  long_SOA 1661        0.006   0.006  0.001
+saved EleutherAI_pythia-410m__bare__r4__e3__lr5e-05__v0.3__s4
+model=EleutherAI/pythia-410m format=bare (base discovery r=None) shuffle=False -> EleutherAI_pythia-410m__bare__r4__e3__lr5e-05__v0.3__s5
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 19070.06it/s]
+baseline Spearman  val=0.121  confirmation=0.084
+trainable params: 1,572,864 || all params: 406,906,880 || trainable%: 0.3865
+epoch 1: train loss 1.005  val Spearman 0.122
+epoch 2: train loss 0.967  val Spearman 0.136
+epoch 3: train loss 0.908  val Spearman 0.145
+best epoch 3 (val Spearman 0.145)
+
+         set   outcome    n  r_untrained  r_lora  gain
+       train     human  350        0.100   0.498 0.398
+         val     human  150        0.121   0.145 0.024
+confirmation     human  500        0.084   0.134 0.050
+   spp_first short_SOA 1661        0.096   0.099 0.003
+   spp_first  long_SOA 1661        0.116   0.121 0.005
+   spp_other short_SOA 1661        0.070   0.077 0.006
+   spp_other  long_SOA 1661        0.006   0.014 0.008
+saved EleutherAI_pythia-410m__bare__r4__e3__lr5e-05__v0.3__s5
+model=allenai/OLMo-1B-hf format=after_word (base discovery r=None) shuffle=False -> allenai_OLMo-1B-hf__after_word__r4__e3__lr5e-05__v0.3__s1
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/113 [00:00<?, ?it/s]Loading weights: 100%|██████████| 113/113 [00:00<00:00, 18356.17it/s]
