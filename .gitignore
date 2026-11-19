@@ -58,3 +58,7 @@ archive/selmi_review/research/upstream/
 archive/selmi_review/**/*.npy
 
 archive/selmi_review
+
+# Python bytecode
+__pycache__/
+*.pyc

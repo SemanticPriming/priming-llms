@@ -20,7 +20,7 @@ Semantic priming, faster target recognition following a related versus unrelated
 | `outputs/` | Model outputs and result tables and figures (`surprisal/`, `discovery_grid.csv`, `layer_profile.png`, `distributions.png`, ...). |
 | `manuscript/` | Draft paper (`manuscript.Rmd`, papaja) and references. |
 | `presentation/` | Psychonomic Society slides (`slides.qmd`, Quarto reveal.js). |
-| `archive/` | The original 540 class project and its outputs. |
+| `archive/` | The original 540 class project and its outputs (`540_pilot/`), and Nidhal Selmi's November 2026 extension and review (`selmi_review/`, see its README). |
 
 ## Running the analysis
 

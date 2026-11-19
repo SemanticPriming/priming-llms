@@ -1,0 +1,68 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+device: mps | items: 1000 | few-shot pool: 500
+Loading weights:   0%|          | 0/196 [00:00<?, ?it/s]Loading weights: 100%|██████████| 196/196 [00:00<00:00, 8116.94it/s]
+Loading weights:   0%|          | 0/195 [00:00<?, ?it/s]Loading weights: 100%|██████████| 195/195 [00:00<00:00, 20596.04it/s]
+[transformers] [1mGPTNeoXModel LOAD REPORT[0m from: EleutherAI/pythia-1b
+Key              | Status     |  | 
+-----------------+------------+--+-
+embed_out.weight | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+running EleutherAI/pythia-1b ldt
+  wrote EleutherAI_pythia-1b__ldt.csv
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+device: mps | items: 1000 | few-shot pool: 500
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 5754.18it/s]
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 18881.53it/s]
+running HuggingFaceTB/SmolLM2-360M ldt
+  wrote HuggingFaceTB_SmolLM2-360M__ldt.csv
+running HuggingFaceTB/SmolLM2-360M newline
+  wrote HuggingFaceTB_SmolLM2-360M__newline.csv
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+device: mps | items: 1000 | few-shot pool: 500
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 7366.40it/s]
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 20359.68it/s]
+running Qwen/Qwen2.5-0.5B-Instruct after_word
+  wrote Qwen_Qwen2.5-0.5B-Instruct__after_word.csv
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+device: mps | items: 1000 | few-shot pool: 500
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 7032.82it/s]
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 15180.63it/s]
+running Qwen/Qwen2.5-0.5B ldt
+  wrote Qwen_Qwen2.5-0.5B__ldt.csv
+running Qwen/Qwen2.5-0.5B pair_begins
+  wrote Qwen_Qwen2.5-0.5B__pair_begins.csv
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+device: mps | items: 1000 | few-shot pool: 500
+Loading weights:   0%|          | 0/113 [00:00<?, ?it/s]Loading weights: 100%|██████████| 113/113 [00:00<00:00, 5382.99it/s]
+Loading weights:   0%|          | 0/113 [00:00<?, ?it/s]Loading weights: 100%|██████████| 113/113 [00:00<00:00, 22147.49it/s]
+running allenai/OLMo-1B-hf after_word
+  wrote allenai_OLMo-1B-hf__after_word.csv
+running allenai/OLMo-1B-hf and
+  wrote allenai_OLMo-1B-hf__and.csv
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+device: mps | items: 1000 | few-shot pool: 500
+Loading weights:   0%|          | 0/293 [00:00<?, ?it/s]Loading weights:   0%|          | 1/293 [00:00<01:34,  3.08it/s]Loading weights:  57%|█████▋    | 167/293 [00:00<00:00, 484.71it/s]Loading weights:  86%|████████▌ | 251/293 [00:00<00:00, 405.24it/s]Loading weights: 100%|██████████| 293/293 [00:00<00:00, 303.38it/s]
+[transformers] [1mGPT2LMHeadModel LOAD REPORT[0m from: ai-forever/mGPT
+Key                                     | Status     |  | 
+----------------------------------------+------------+--+-
+transformer.h.{0...23}.attn.masked_bias | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  77%|███████▋  | 226/292 [00:00<00:00, 2246.05it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1953.91it/s]
+[transformers] [1mGPT2Model LOAD REPORT[0m from: ai-forever/mGPT
+Key                                     | Status     |  | 
+----------------------------------------+------------+--+-
+transformer.h.{0...23}.attn.masked_bias | UNEXPECTED |  | 
+lm_head.weight                          | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+running ai-forever/mGPT after_word
+  wrote ai-forever_mGPT__after_word.csv
+running ai-forever/mGPT ldt
+  wrote ai-forever_mGPT__ldt.csv
+running ai-forever/mGPT and
+  wrote ai-forever_mGPT__and.csv

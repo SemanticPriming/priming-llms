@@ -61,6 +61,10 @@ FRAMES = {
     "after_word": "After the word {cue}, comes the word {target}",
     "pair_begins": "The pair begins with {cue}, and continues with {target}",
     "first_word": "If the first word is {cue}, the next word you'll see is {target}",
+    # German translations of three frames, for the data-language x model-language comparison
+    "de_after_word": "Nach dem Wort {cue} kommt das Wort {target}",
+    "de_and": "{cue} und {target}",
+    "de_ldt": "Wort 1: {cue}\nWort 2: {target}",
 }
 
 

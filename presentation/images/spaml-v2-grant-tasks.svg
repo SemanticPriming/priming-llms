@@ -1,0 +1,358 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 530" role="img" aria-labelledby="title desc">
+<title id="title">SPAML v2 planned collection by language and task</title>
+<desc id="desc">Afrikaans: Age of acquisition, Imageability, Concreteness, Valence, Arousal, Familiarity, Priming; Arabic: Concreteness, Valence, Arousal, Priming; Armenian: Age of acquisition, Imageability, Concreteness, Valence, Arousal, Familiarity, Priming; Basque: Age of acquisition, Imageability, Concreteness, Valence, Arousal, Familiarity, Priming; Bulgarian: Age of acquisition, Imageability, Concreteness, Valence, Arousal, Familiarity, Priming; Catalan: Age of acquisition, Imageability, Concreteness, Valence, Arousal, Familiarity, Priming; Croatian: Age of acquisition, Imageability, Concreteness, Valence, Arousal, Familiarity, Priming; Czech: Age of acquisition, Imageability, Concreteness, Valence, Arousal, Familiarity; Danish: Age of acquisition, Imageability, Concreteness, Valence, Arousal, Familiarity; Dutch: Priming; Estonian: Age of acquisition, Imageability, Concreteness, Valence, Arousal, Familiarity, Priming; Farsi: Concreteness, Priming; Finnish: Age of acquisition, Imageability, Priming; Galician: Age of acquisition, Imageability, Concreteness, Valence, Arousal, Familiarity, Priming; Greek: Valence, Arousal, Familiarity; Hebrew: Age of acquisition, Imageability, Concreteness, Valence, Arousal, Familiarity, Priming; Hindi: Age of acquisition, Imageability, Concreteness, Valence, Arousal, Familiarity, Priming; Hungarian: Age of acquisition, Imageability, Concreteness, Valence, Arousal, Familiarity; Indonesian: Age of acquisition, Imageability, Concreteness, Valence, Arousal, Familiarity, Priming; Korean: Age of acquisition, Imageability, Concreteness, Valence, Arousal, Familiarity; Latvian: Age of acquisition, Imageability, Concreteness, Valence, Arousal, Familiarity, Priming; Lithuanian: Age of acquisition, Imageability, Concreteness, Valence, Arousal, Familiarity, Priming; Norwegian: Age of acquisition, Imageability, Concreteness, Valence, Arousal, Familiarity, Priming; Polish: Age of acquisition, Familiarity; Romanian: Age of acquisition, Valence, Arousal, Familiarity; Russian: Concreteness, Valence, Arousal; Serbian: Age of acquisition, Imageability, Concreteness, Valence, Arousal, Familiarity; Simplified Chinese: Age of acquisition, Imageability, Concreteness, Arousal, Familiarity; Slovak: Age of acquisition, Imageability, Concreteness, Valence, Arousal, Familiarity, Priming; Slovenian: Age of acquisition, Valence, Arousal, Familiarity, Priming; Swedish: Age of acquisition, Imageability, Concreteness, Valence, Arousal, Familiarity, Priming; Tamil: Age of acquisition, Imageability, Concreteness, Valence, Arousal, Familiarity, Priming; Thai: Imageability, Concreteness, Valence, Arousal, Priming; Traditional Chinese: Priming; Turkish: Valence, Arousal; Ukrainian: Age of acquisition, Imageability, Concreteness, Valence, Arousal, Familiarity, Priming; Urdu: Age of acquisition, Valence, Arousal, Familiarity, Priming; Vietnamese: Age of acquisition, Imageability, Concreteness, Valence, Arousal, Familiarity, Priming</desc>
+<rect width="1200" height="530" rx="14" fill="#161a20"/>
+<g font-family="Arial, sans-serif" fill="#f2f4f6">
+<text x="195" y="17" text-anchor="middle" font-size="14" font-weight="bold">Age of</text>
+<text x="195" y="33" text-anchor="middle" font-size="14" font-weight="bold">acquisition</text>
+<text x="255" y="17" text-anchor="middle" font-size="14" font-weight="bold">Image-</text>
+<text x="255" y="33" text-anchor="middle" font-size="14" font-weight="bold">ability</text>
+<text x="315" y="17" text-anchor="middle" font-size="14" font-weight="bold">Concrete-</text>
+<text x="315" y="33" text-anchor="middle" font-size="14" font-weight="bold">ness</text>
+<text x="375" y="17" text-anchor="middle" font-size="14" font-weight="bold">Valence</text>
+<text x="375" y="33" text-anchor="middle" font-size="14" font-weight="bold"></text>
+<text x="435" y="17" text-anchor="middle" font-size="14" font-weight="bold">Arousal</text>
+<text x="435" y="33" text-anchor="middle" font-size="14" font-weight="bold"></text>
+<text x="495" y="17" text-anchor="middle" font-size="14" font-weight="bold">Familiar-</text>
+<text x="495" y="33" text-anchor="middle" font-size="14" font-weight="bold">ity</text>
+<text x="555" y="17" text-anchor="middle" font-size="14" font-weight="bold">Priming</text>
+<text x="555" y="33" text-anchor="middle" font-size="14" font-weight="bold"></text>
+<rect x="7" y="39" width="577" height="23" rx="4" fill="#21272e"/>
+<text x="12" y="55" font-size="17">Afrikaans</text>
+<circle cx="195" cy="49" r="6" fill="#70d7c9"/>
+<circle cx="255" cy="49" r="6" fill="#70d7c9"/>
+<circle cx="315" cy="49" r="6" fill="#70d7c9"/>
+<circle cx="375" cy="49" r="6" fill="#70d7c9"/>
+<circle cx="435" cy="49" r="6" fill="#70d7c9"/>
+<circle cx="495" cy="49" r="6" fill="#70d7c9"/>
+<circle cx="555" cy="49" r="6" fill="#70d7c9"/>
+<text x="12" y="79" font-size="17">Arabic</text>
+<path d="M191 73h8" stroke="#747e88" stroke-width="1.5"/>
+<path d="M251 73h8" stroke="#747e88" stroke-width="1.5"/>
+<circle cx="315" cy="73" r="6" fill="#70d7c9"/>
+<circle cx="375" cy="73" r="6" fill="#70d7c9"/>
+<circle cx="435" cy="73" r="6" fill="#70d7c9"/>
+<path d="M491 73h8" stroke="#747e88" stroke-width="1.5"/>
+<circle cx="555" cy="73" r="6" fill="#70d7c9"/>
+<rect x="7" y="87" width="577" height="23" rx="4" fill="#21272e"/>
+<text x="12" y="103" font-size="17">Armenian</text>
+<circle cx="195" cy="97" r="6" fill="#70d7c9"/>
+<circle cx="255" cy="97" r="6" fill="#70d7c9"/>
+<circle cx="315" cy="97" r="6" fill="#70d7c9"/>
+<circle cx="375" cy="97" r="6" fill="#70d7c9"/>
+<circle cx="435" cy="97" r="6" fill="#70d7c9"/>
+<circle cx="495" cy="97" r="6" fill="#70d7c9"/>
+<circle cx="555" cy="97" r="6" fill="#70d7c9"/>
+<text x="12" y="127" font-size="17">Basque</text>
+<circle cx="195" cy="121" r="6" fill="#70d7c9"/>
+<circle cx="255" cy="121" r="6" fill="#70d7c9"/>
+<circle cx="315" cy="121" r="6" fill="#70d7c9"/>
+<circle cx="375" cy="121" r="6" fill="#70d7c9"/>
+<circle cx="435" cy="121" r="6" fill="#70d7c9"/>
+<circle cx="495" cy="121" r="6" fill="#70d7c9"/>
+<circle cx="555" cy="121" r="6" fill="#70d7c9"/>
+<rect x="7" y="135" width="577" height="23" rx="4" fill="#21272e"/>
+<text x="12" y="151" font-size="17">Bulgarian</text>
+<circle cx="195" cy="145" r="6" fill="#70d7c9"/>
+<circle cx="255" cy="145" r="6" fill="#70d7c9"/>
+<circle cx="315" cy="145" r="6" fill="#70d7c9"/>
+<circle cx="375" cy="145" r="6" fill="#70d7c9"/>
+<circle cx="435" cy="145" r="6" fill="#70d7c9"/>
+<circle cx="495" cy="145" r="6" fill="#70d7c9"/>
+<circle cx="555" cy="145" r="6" fill="#70d7c9"/>
+<text x="12" y="175" font-size="17">Catalan</text>
+<circle cx="195" cy="169" r="6" fill="#70d7c9"/>
+<circle cx="255" cy="169" r="6" fill="#70d7c9"/>
+<circle cx="315" cy="169" r="6" fill="#70d7c9"/>
+<circle cx="375" cy="169" r="6" fill="#70d7c9"/>
+<circle cx="435" cy="169" r="6" fill="#70d7c9"/>
+<circle cx="495" cy="169" r="6" fill="#70d7c9"/>
+<circle cx="555" cy="169" r="6" fill="#70d7c9"/>
+<rect x="7" y="183" width="577" height="23" rx="4" fill="#21272e"/>
+<text x="12" y="199" font-size="17">Croatian</text>
+<circle cx="195" cy="193" r="6" fill="#70d7c9"/>
+<circle cx="255" cy="193" r="6" fill="#70d7c9"/>
+<circle cx="315" cy="193" r="6" fill="#70d7c9"/>
+<circle cx="375" cy="193" r="6" fill="#70d7c9"/>
+<circle cx="435" cy="193" r="6" fill="#70d7c9"/>
+<circle cx="495" cy="193" r="6" fill="#70d7c9"/>
+<circle cx="555" cy="193" r="6" fill="#70d7c9"/>
+<text x="12" y="223" font-size="17">Czech</text>
+<circle cx="195" cy="217" r="6" fill="#70d7c9"/>
+<circle cx="255" cy="217" r="6" fill="#70d7c9"/>
+<circle cx="315" cy="217" r="6" fill="#70d7c9"/>
+<circle cx="375" cy="217" r="6" fill="#70d7c9"/>
+<circle cx="435" cy="217" r="6" fill="#70d7c9"/>
+<circle cx="495" cy="217" r="6" fill="#70d7c9"/>
+<path d="M551 217h8" stroke="#747e88" stroke-width="1.5"/>
+<rect x="7" y="231" width="577" height="23" rx="4" fill="#21272e"/>
+<text x="12" y="247" font-size="17">Danish</text>
+<circle cx="195" cy="241" r="6" fill="#70d7c9"/>
+<circle cx="255" cy="241" r="6" fill="#70d7c9"/>
+<circle cx="315" cy="241" r="6" fill="#70d7c9"/>
+<circle cx="375" cy="241" r="6" fill="#70d7c9"/>
+<circle cx="435" cy="241" r="6" fill="#70d7c9"/>
+<circle cx="495" cy="241" r="6" fill="#70d7c9"/>
+<path d="M551 241h8" stroke="#747e88" stroke-width="1.5"/>
+<text x="12" y="271" font-size="17">Dutch</text>
+<path d="M191 265h8" stroke="#747e88" stroke-width="1.5"/>
+<path d="M251 265h8" stroke="#747e88" stroke-width="1.5"/>
+<path d="M311 265h8" stroke="#747e88" stroke-width="1.5"/>
+<path d="M371 265h8" stroke="#747e88" stroke-width="1.5"/>
+<path d="M431 265h8" stroke="#747e88" stroke-width="1.5"/>
+<path d="M491 265h8" stroke="#747e88" stroke-width="1.5"/>
+<circle cx="555" cy="265" r="6" fill="#70d7c9"/>
+<rect x="7" y="279" width="577" height="23" rx="4" fill="#21272e"/>
+<text x="12" y="295" font-size="17">Estonian</text>
+<circle cx="195" cy="289" r="6" fill="#70d7c9"/>
+<circle cx="255" cy="289" r="6" fill="#70d7c9"/>
+<circle cx="315" cy="289" r="6" fill="#70d7c9"/>
+<circle cx="375" cy="289" r="6" fill="#70d7c9"/>
+<circle cx="435" cy="289" r="6" fill="#70d7c9"/>
+<circle cx="495" cy="289" r="6" fill="#70d7c9"/>
+<circle cx="555" cy="289" r="6" fill="#70d7c9"/>
+<text x="12" y="319" font-size="17">Farsi</text>
+<path d="M191 313h8" stroke="#747e88" stroke-width="1.5"/>
+<path d="M251 313h8" stroke="#747e88" stroke-width="1.5"/>
+<circle cx="315" cy="313" r="6" fill="#70d7c9"/>
+<path d="M371 313h8" stroke="#747e88" stroke-width="1.5"/>
+<path d="M431 313h8" stroke="#747e88" stroke-width="1.5"/>
+<path d="M491 313h8" stroke="#747e88" stroke-width="1.5"/>
+<circle cx="555" cy="313" r="6" fill="#70d7c9"/>
+<rect x="7" y="327" width="577" height="23" rx="4" fill="#21272e"/>
+<text x="12" y="343" font-size="17">Finnish</text>
+<circle cx="195" cy="337" r="6" fill="#70d7c9"/>
+<circle cx="255" cy="337" r="6" fill="#70d7c9"/>
+<path d="M311 337h8" stroke="#747e88" stroke-width="1.5"/>
+<path d="M371 337h8" stroke="#747e88" stroke-width="1.5"/>
+<path d="M431 337h8" stroke="#747e88" stroke-width="1.5"/>
+<path d="M491 337h8" stroke="#747e88" stroke-width="1.5"/>
+<circle cx="555" cy="337" r="6" fill="#70d7c9"/>
+<text x="12" y="367" font-size="17">Galician</text>
+<circle cx="195" cy="361" r="6" fill="#70d7c9"/>
+<circle cx="255" cy="361" r="6" fill="#70d7c9"/>
+<circle cx="315" cy="361" r="6" fill="#70d7c9"/>
+<circle cx="375" cy="361" r="6" fill="#70d7c9"/>
+<circle cx="435" cy="361" r="6" fill="#70d7c9"/>
+<circle cx="495" cy="361" r="6" fill="#70d7c9"/>
+<circle cx="555" cy="361" r="6" fill="#70d7c9"/>
+<rect x="7" y="375" width="577" height="23" rx="4" fill="#21272e"/>
+<text x="12" y="391" font-size="17">Greek</text>
+<path d="M191 385h8" stroke="#747e88" stroke-width="1.5"/>
+<path d="M251 385h8" stroke="#747e88" stroke-width="1.5"/>
+<path d="M311 385h8" stroke="#747e88" stroke-width="1.5"/>
+<circle cx="375" cy="385" r="6" fill="#70d7c9"/>
+<circle cx="435" cy="385" r="6" fill="#70d7c9"/>
+<circle cx="495" cy="385" r="6" fill="#70d7c9"/>
+<path d="M551 385h8" stroke="#747e88" stroke-width="1.5"/>
+<text x="12" y="415" font-size="17">Hebrew</text>
+<circle cx="195" cy="409" r="6" fill="#70d7c9"/>
+<circle cx="255" cy="409" r="6" fill="#70d7c9"/>
+<circle cx="315" cy="409" r="6" fill="#70d7c9"/>
+<circle cx="375" cy="409" r="6" fill="#70d7c9"/>
+<circle cx="435" cy="409" r="6" fill="#70d7c9"/>
+<circle cx="495" cy="409" r="6" fill="#70d7c9"/>
+<circle cx="555" cy="409" r="6" fill="#70d7c9"/>
+<rect x="7" y="423" width="577" height="23" rx="4" fill="#21272e"/>
+<text x="12" y="439" font-size="17">Hindi</text>
+<circle cx="195" cy="433" r="6" fill="#70d7c9"/>
+<circle cx="255" cy="433" r="6" fill="#70d7c9"/>
+<circle cx="315" cy="433" r="6" fill="#70d7c9"/>
+<circle cx="375" cy="433" r="6" fill="#70d7c9"/>
+<circle cx="435" cy="433" r="6" fill="#70d7c9"/>
+<circle cx="495" cy="433" r="6" fill="#70d7c9"/>
+<circle cx="555" cy="433" r="6" fill="#70d7c9"/>
+<text x="12" y="463" font-size="17">Hungarian</text>
+<circle cx="195" cy="457" r="6" fill="#70d7c9"/>
+<circle cx="255" cy="457" r="6" fill="#70d7c9"/>
+<circle cx="315" cy="457" r="6" fill="#70d7c9"/>
+<circle cx="375" cy="457" r="6" fill="#70d7c9"/>
+<circle cx="435" cy="457" r="6" fill="#70d7c9"/>
+<circle cx="495" cy="457" r="6" fill="#70d7c9"/>
+<path d="M551 457h8" stroke="#747e88" stroke-width="1.5"/>
+<rect x="7" y="471" width="577" height="23" rx="4" fill="#21272e"/>
+<text x="12" y="487" font-size="17">Indonesian</text>
+<circle cx="195" cy="481" r="6" fill="#70d7c9"/>
+<circle cx="255" cy="481" r="6" fill="#70d7c9"/>
+<circle cx="315" cy="481" r="6" fill="#70d7c9"/>
+<circle cx="375" cy="481" r="6" fill="#70d7c9"/>
+<circle cx="435" cy="481" r="6" fill="#70d7c9"/>
+<circle cx="495" cy="481" r="6" fill="#70d7c9"/>
+<circle cx="555" cy="481" r="6" fill="#70d7c9"/>
+<text x="797" y="17" text-anchor="middle" font-size="14" font-weight="bold">Age of</text>
+<text x="797" y="33" text-anchor="middle" font-size="14" font-weight="bold">acquisition</text>
+<text x="857" y="17" text-anchor="middle" font-size="14" font-weight="bold">Image-</text>
+<text x="857" y="33" text-anchor="middle" font-size="14" font-weight="bold">ability</text>
+<text x="917" y="17" text-anchor="middle" font-size="14" font-weight="bold">Concrete-</text>
+<text x="917" y="33" text-anchor="middle" font-size="14" font-weight="bold">ness</text>
+<text x="977" y="17" text-anchor="middle" font-size="14" font-weight="bold">Valence</text>
+<text x="977" y="33" text-anchor="middle" font-size="14" font-weight="bold"></text>
+<text x="1037" y="17" text-anchor="middle" font-size="14" font-weight="bold">Arousal</text>
+<text x="1037" y="33" text-anchor="middle" font-size="14" font-weight="bold"></text>
+<text x="1097" y="17" text-anchor="middle" font-size="14" font-weight="bold">Familiar-</text>
+<text x="1097" y="33" text-anchor="middle" font-size="14" font-weight="bold">ity</text>
+<text x="1157" y="17" text-anchor="middle" font-size="14" font-weight="bold">Priming</text>
+<text x="1157" y="33" text-anchor="middle" font-size="14" font-weight="bold"></text>
+<rect x="609" y="39" width="577" height="23" rx="4" fill="#21272e"/>
+<text x="614" y="55" font-size="17">Korean</text>
+<circle cx="797" cy="49" r="6" fill="#70d7c9"/>
+<circle cx="857" cy="49" r="6" fill="#70d7c9"/>
+<circle cx="917" cy="49" r="6" fill="#70d7c9"/>
+<circle cx="977" cy="49" r="6" fill="#70d7c9"/>
+<circle cx="1037" cy="49" r="6" fill="#70d7c9"/>
+<circle cx="1097" cy="49" r="6" fill="#70d7c9"/>
+<path d="M1153 49h8" stroke="#747e88" stroke-width="1.5"/>
+<text x="614" y="79" font-size="17">Latvian</text>
+<circle cx="797" cy="73" r="6" fill="#70d7c9"/>
+<circle cx="857" cy="73" r="6" fill="#70d7c9"/>
+<circle cx="917" cy="73" r="6" fill="#70d7c9"/>
+<circle cx="977" cy="73" r="6" fill="#70d7c9"/>
+<circle cx="1037" cy="73" r="6" fill="#70d7c9"/>
+<circle cx="1097" cy="73" r="6" fill="#70d7c9"/>
+<circle cx="1157" cy="73" r="6" fill="#70d7c9"/>
+<rect x="609" y="87" width="577" height="23" rx="4" fill="#21272e"/>
+<text x="614" y="103" font-size="17">Lithuanian</text>
+<circle cx="797" cy="97" r="6" fill="#70d7c9"/>
+<circle cx="857" cy="97" r="6" fill="#70d7c9"/>
+<circle cx="917" cy="97" r="6" fill="#70d7c9"/>
+<circle cx="977" cy="97" r="6" fill="#70d7c9"/>
+<circle cx="1037" cy="97" r="6" fill="#70d7c9"/>
+<circle cx="1097" cy="97" r="6" fill="#70d7c9"/>
+<circle cx="1157" cy="97" r="6" fill="#70d7c9"/>
+<text x="614" y="127" font-size="17">Norwegian</text>
+<circle cx="797" cy="121" r="6" fill="#70d7c9"/>
+<circle cx="857" cy="121" r="6" fill="#70d7c9"/>
+<circle cx="917" cy="121" r="6" fill="#70d7c9"/>
+<circle cx="977" cy="121" r="6" fill="#70d7c9"/>
+<circle cx="1037" cy="121" r="6" fill="#70d7c9"/>
+<circle cx="1097" cy="121" r="6" fill="#70d7c9"/>
+<circle cx="1157" cy="121" r="6" fill="#70d7c9"/>
+<rect x="609" y="135" width="577" height="23" rx="4" fill="#21272e"/>
+<text x="614" y="151" font-size="17">Polish</text>
+<circle cx="797" cy="145" r="6" fill="#70d7c9"/>
+<path d="M853 145h8" stroke="#747e88" stroke-width="1.5"/>
+<path d="M913 145h8" stroke="#747e88" stroke-width="1.5"/>
+<path d="M973 145h8" stroke="#747e88" stroke-width="1.5"/>
+<path d="M1033 145h8" stroke="#747e88" stroke-width="1.5"/>
+<circle cx="1097" cy="145" r="6" fill="#70d7c9"/>
+<path d="M1153 145h8" stroke="#747e88" stroke-width="1.5"/>
+<text x="614" y="175" font-size="17">Romanian</text>
+<circle cx="797" cy="169" r="6" fill="#70d7c9"/>
+<path d="M853 169h8" stroke="#747e88" stroke-width="1.5"/>
+<path d="M913 169h8" stroke="#747e88" stroke-width="1.5"/>
+<circle cx="977" cy="169" r="6" fill="#70d7c9"/>
+<circle cx="1037" cy="169" r="6" fill="#70d7c9"/>
+<circle cx="1097" cy="169" r="6" fill="#70d7c9"/>
+<path d="M1153 169h8" stroke="#747e88" stroke-width="1.5"/>
+<rect x="609" y="183" width="577" height="23" rx="4" fill="#21272e"/>
+<text x="614" y="199" font-size="17">Russian</text>
+<path d="M793 193h8" stroke="#747e88" stroke-width="1.5"/>
+<path d="M853 193h8" stroke="#747e88" stroke-width="1.5"/>
+<circle cx="917" cy="193" r="6" fill="#70d7c9"/>
+<circle cx="977" cy="193" r="6" fill="#70d7c9"/>
+<circle cx="1037" cy="193" r="6" fill="#70d7c9"/>
+<path d="M1093 193h8" stroke="#747e88" stroke-width="1.5"/>
+<path d="M1153 193h8" stroke="#747e88" stroke-width="1.5"/>
+<text x="614" y="223" font-size="17">Serbian</text>
+<circle cx="797" cy="217" r="6" fill="#70d7c9"/>
+<circle cx="857" cy="217" r="6" fill="#70d7c9"/>
+<circle cx="917" cy="217" r="6" fill="#70d7c9"/>
+<circle cx="977" cy="217" r="6" fill="#70d7c9"/>
+<circle cx="1037" cy="217" r="6" fill="#70d7c9"/>
+<circle cx="1097" cy="217" r="6" fill="#70d7c9"/>
+<path d="M1153 217h8" stroke="#747e88" stroke-width="1.5"/>
+<rect x="609" y="231" width="577" height="23" rx="4" fill="#21272e"/>
+<text x="614" y="247" font-size="17">Simplified Chinese</text>
+<circle cx="797" cy="241" r="6" fill="#70d7c9"/>
+<circle cx="857" cy="241" r="6" fill="#70d7c9"/>
+<circle cx="917" cy="241" r="6" fill="#70d7c9"/>
+<path d="M973 241h8" stroke="#747e88" stroke-width="1.5"/>
+<circle cx="1037" cy="241" r="6" fill="#70d7c9"/>
+<circle cx="1097" cy="241" r="6" fill="#70d7c9"/>
+<path d="M1153 241h8" stroke="#747e88" stroke-width="1.5"/>
+<text x="614" y="271" font-size="17">Slovak</text>
+<circle cx="797" cy="265" r="6" fill="#70d7c9"/>
+<circle cx="857" cy="265" r="6" fill="#70d7c9"/>
+<circle cx="917" cy="265" r="6" fill="#70d7c9"/>
+<circle cx="977" cy="265" r="6" fill="#70d7c9"/>
+<circle cx="1037" cy="265" r="6" fill="#70d7c9"/>
+<circle cx="1097" cy="265" r="6" fill="#70d7c9"/>
+<circle cx="1157" cy="265" r="6" fill="#70d7c9"/>
+<rect x="609" y="279" width="577" height="23" rx="4" fill="#21272e"/>
+<text x="614" y="295" font-size="17">Slovenian</text>
+<circle cx="797" cy="289" r="6" fill="#70d7c9"/>
+<path d="M853 289h8" stroke="#747e88" stroke-width="1.5"/>
+<path d="M913 289h8" stroke="#747e88" stroke-width="1.5"/>
+<circle cx="977" cy="289" r="6" fill="#70d7c9"/>
+<circle cx="1037" cy="289" r="6" fill="#70d7c9"/>
+<circle cx="1097" cy="289" r="6" fill="#70d7c9"/>
+<circle cx="1157" cy="289" r="6" fill="#70d7c9"/>
+<text x="614" y="319" font-size="17">Swedish</text>
+<circle cx="797" cy="313" r="6" fill="#70d7c9"/>
+<circle cx="857" cy="313" r="6" fill="#70d7c9"/>
+<circle cx="917" cy="313" r="6" fill="#70d7c9"/>
+<circle cx="977" cy="313" r="6" fill="#70d7c9"/>
+<circle cx="1037" cy="313" r="6" fill="#70d7c9"/>
+<circle cx="1097" cy="313" r="6" fill="#70d7c9"/>
+<circle cx="1157" cy="313" r="6" fill="#70d7c9"/>
+<rect x="609" y="327" width="577" height="23" rx="4" fill="#21272e"/>
+<text x="614" y="343" font-size="17">Tamil</text>
+<circle cx="797" cy="337" r="6" fill="#70d7c9"/>
+<circle cx="857" cy="337" r="6" fill="#70d7c9"/>
+<circle cx="917" cy="337" r="6" fill="#70d7c9"/>
+<circle cx="977" cy="337" r="6" fill="#70d7c9"/>
+<circle cx="1037" cy="337" r="6" fill="#70d7c9"/>
+<circle cx="1097" cy="337" r="6" fill="#70d7c9"/>
+<circle cx="1157" cy="337" r="6" fill="#70d7c9"/>
+<text x="614" y="367" font-size="17">Thai</text>
+<path d="M793 361h8" stroke="#747e88" stroke-width="1.5"/>
+<circle cx="857" cy="361" r="6" fill="#70d7c9"/>
+<circle cx="917" cy="361" r="6" fill="#70d7c9"/>
+<circle cx="977" cy="361" r="6" fill="#70d7c9"/>
+<circle cx="1037" cy="361" r="6" fill="#70d7c9"/>
+<path d="M1093 361h8" stroke="#747e88" stroke-width="1.5"/>
+<circle cx="1157" cy="361" r="6" fill="#70d7c9"/>
+<rect x="609" y="375" width="577" height="23" rx="4" fill="#21272e"/>
+<text x="614" y="391" font-size="17">Traditional Chinese</text>
+<path d="M793 385h8" stroke="#747e88" stroke-width="1.5"/>
+<path d="M853 385h8" stroke="#747e88" stroke-width="1.5"/>
+<path d="M913 385h8" stroke="#747e88" stroke-width="1.5"/>
+<path d="M973 385h8" stroke="#747e88" stroke-width="1.5"/>
+<path d="M1033 385h8" stroke="#747e88" stroke-width="1.5"/>
+<path d="M1093 385h8" stroke="#747e88" stroke-width="1.5"/>
+<circle cx="1157" cy="385" r="6" fill="#70d7c9"/>
+<text x="614" y="415" font-size="17">Turkish</text>
+<path d="M793 409h8" stroke="#747e88" stroke-width="1.5"/>
+<path d="M853 409h8" stroke="#747e88" stroke-width="1.5"/>
+<path d="M913 409h8" stroke="#747e88" stroke-width="1.5"/>
+<circle cx="977" cy="409" r="6" fill="#70d7c9"/>
+<circle cx="1037" cy="409" r="6" fill="#70d7c9"/>
+<path d="M1093 409h8" stroke="#747e88" stroke-width="1.5"/>
+<path d="M1153 409h8" stroke="#747e88" stroke-width="1.5"/>
+<rect x="609" y="423" width="577" height="23" rx="4" fill="#21272e"/>
+<text x="614" y="439" font-size="17">Ukrainian</text>
+<circle cx="797" cy="433" r="6" fill="#70d7c9"/>
+<circle cx="857" cy="433" r="6" fill="#70d7c9"/>
+<circle cx="917" cy="433" r="6" fill="#70d7c9"/>
+<circle cx="977" cy="433" r="6" fill="#70d7c9"/>
+<circle cx="1037" cy="433" r="6" fill="#70d7c9"/>
+<circle cx="1097" cy="433" r="6" fill="#70d7c9"/>
+<circle cx="1157" cy="433" r="6" fill="#70d7c9"/>
+<text x="614" y="463" font-size="17">Urdu</text>
+<circle cx="797" cy="457" r="6" fill="#70d7c9"/>
+<path d="M853 457h8" stroke="#747e88" stroke-width="1.5"/>
+<path d="M913 457h8" stroke="#747e88" stroke-width="1.5"/>
+<circle cx="977" cy="457" r="6" fill="#70d7c9"/>
+<circle cx="1037" cy="457" r="6" fill="#70d7c9"/>
+<circle cx="1097" cy="457" r="6" fill="#70d7c9"/>
+<circle cx="1157" cy="457" r="6" fill="#70d7c9"/>
+<rect x="609" y="471" width="577" height="23" rx="4" fill="#21272e"/>
+<text x="614" y="487" font-size="17">Vietnamese</text>
+<circle cx="797" cy="481" r="6" fill="#70d7c9"/>
+<circle cx="857" cy="481" r="6" fill="#70d7c9"/>
+<circle cx="917" cy="481" r="6" fill="#70d7c9"/>
+<circle cx="977" cy="481" r="6" fill="#70d7c9"/>
+<circle cx="1037" cy="481" r="6" fill="#70d7c9"/>
+<circle cx="1097" cy="481" r="6" fill="#70d7c9"/>
+<circle cx="1157" cy="481" r="6" fill="#70d7c9"/>
+</g></svg>
