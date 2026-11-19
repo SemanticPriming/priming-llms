@@ -52,3 +52,9 @@ rsconnect/
 
 # Local notes (not synced)
 notes/
+
+# Selmi review package: upstream/ is a CRLF copy of this repo; .npy are large hidden-state dumps
+archive/selmi_review/research/upstream/
+archive/selmi_review/**/*.npy
+
+archive/selmi_review
