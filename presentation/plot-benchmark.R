@@ -138,3 +138,87 @@ vals <- sm[cbind(cells$row, cells$col)]
 text(cells$col, cells$row, sub("^-?0\\.", ".", sprintf("%.2f", vals)), cex = .95,
      col = ifelse(vals > .20, "white", ink), font = ifelse(cells$row == 1, 2, 1))
 dev.off()
+
+# English vs German: best English model, best German model and mGPT, each on English and German words
+# (confirmation half). Real values come from outputs/crosslang_final.csv (rows: model, columns: EN, DE).
+# Until that file exists, the figure is drawn with PLACEHOLDER numbers and stamped as such.
+final <- "outputs/crosslang_final.csv"
+placeholder <- !file.exists(final)
+if (placeholder) {
+  cm <- rbind("Best English model · OLMo-1B" = c(.24, .06),
+              "Best German model · LLäMmlein 1B" = c(.09, .12),
+              "Multilingual · mGPT" = c(.17, .09))
+} else {
+  cm <- as.matrix(read.csv(final, row.names = 1, check.names = FALSE))
+}
+colnames(cm) <- c("EN", "DE")
+cm <- cm[nrow(cm):1, , drop = FALSE]   # first row at the top
+svg("presentation/language-heatmap.svg", width = 9.6, height = 3.9, pointsize = 17)
+par(mar = c(3.6, 16.4, 0.4, 0.4), fg = ink, col.axis = ink, family = "sans")
+image(1:2, seq_len(nrow(cm)), t(pmin(pmax(cm, 0), lim)), col = pal, zlim = c(0, lim),
+      axes = FALSE, xlab = "", ylab = "")
+abline(h = seq(.5, nrow(cm) + .5), v = seq(.5, 2.5), col = "white", lwd = 1.5)
+axis(2, at = seq_len(nrow(cm)), labels = rownames(cm), las = 1, tick = FALSE, line = -.6)
+mtext(c("English words", "German words"), side = 1, at = 1:2, line = 0.4, font = 2)
+cells <- expand.grid(col = 1:2, row = seq_len(nrow(cm)))
+vals <- cm[cbind(cells$row, cells$col)]
+text(cells$col, cells$row, sub("^-?0\\.", ".", sprintf("%.2f", vals)), cex = 1.1,
+     col = ifelse(vals > .20, "white", ink))
+# box the language-matched cells (English model on English words, German model on German words)
+rect(.5, nrow(cm) - .5, 1.5, nrow(cm) + .5, border = "#F2A900", lwd = 4)
+rect(1.5, nrow(cm) - 1.5, 2.5, nrow(cm) - .5, border = "#F2A900", lwd = 4)
+if (placeholder) text(1.5, (nrow(cm) + 1) / 2, "FAKE NUMBERS", cex = 1.9,
+                      col = adjustcolor("#C0392B", .75), srt = 10, font = 2)
+dev.off()
+
+# Ukrainian pilot: item priming scores and example norming ratings in one figure (aggregate values
+# only; needs the private ../spaml2-private repository next to this one). Priming = unrelated-cue
+# z RT minus related-cue z RT, from the current pipeline output as it is (17 targets currently appear
+# twice; to be fixed in the processing).
+uk_dir <- "../spaml2-private/formatted"
+if (file.exists(file.path(uk_dir, "priming", "uk_summary.csv"))) {
+  usum <- read.csv(file.path(uk_dir, "priming", "uk_summary.csv"))
+  rel <- usum[usum$type == "related", c("target", "M_Z")]; names(rel)[2] <- "rel_z"
+  unr <- usum[usum$type == "unrelated", c("target", "M_Z")]; names(unr)[2] <- "unrel_z"
+  ukp <- merge(rel, unr, by = "target")
+  ukp$priming <- ukp$unrel_z - ukp$rel_z
+  print(c(n = nrow(ukp), mean = mean(ukp$priming), sd = sd(ukp$priming), pos = mean(ukp$priming > 0)))
+
+  # example ratings: eight words, six norms, colored within each norm across all rated words
+  rt <- read.csv(file.path(uk_dir, "clean_ratings.csv"))
+  dm <- read.csv(file.path(uk_dir, "clean_demos.csv"))[, c("file", "participant_uuid", "task")]
+  rt <- merge(rt[!(rt$unknown %in% c(TRUE, "TRUE", 1)), c("file", "participant_uuid", "word", "score")], dm,
+              by = c("file", "participant_uuid"))
+  wm <- tapply(rt$score, list(rt$word, rt$task), mean)
+  wm <- wm[complete.cases(wm), ]
+  pick <- c("акула" = "shark", "бекон" = "bacon", "бетмен" = "Batman", "вампір" = "vampire",
+            "дракон" = "dragon", "шоколад" = "chocolate", "смерть" = "death", "любов" = "love")
+  stopifnot(all(names(pick) %in% rownames(wm)))
+  cols <- c(aoa = "AoA", familiar = "Fam", image = "Img", concrete = "Conc", valence = "Val", arousal = "Aro")
+  ex <- wm[names(pick), names(cols)]
+  scaled <- sapply(names(cols), function(k) {
+    lo <- quantile(wm[, k], .02); hi <- quantile(wm[, k], .98)
+    pmin(pmax((ex[, k] - lo) / (hi - lo), 0), 1)
+  })
+  ex <- ex[nrow(ex):1, ]; scaled <- scaled[nrow(scaled):1, ]
+
+  svg("presentation/ukrainian-pilot.svg", width = 12.4, height = 4.6, pointsize = 16)
+  layout(matrix(1:2, 1), widths = c(1, 1.5))
+  par(mar = c(4.6, 4.8, 2.4, 0.8), fg = ink, col.axis = ink, col.lab = ink, col.main = ink,
+      las = 1, bty = "l", mgp = c(3, .6, 0), family = "sans")
+  hist(ukp$priming, breaks = 30, col = adjustcolor(teal, .75), border = "white",
+       main = "Priming scores", font.main = 1,
+       xlab = "Priming (standardized RT difference)", ylab = "Pairs")
+  abline(v = 0, lty = 2, col = ink)
+  par(mar = c(4.6, 9.8, 2.4, 0.4), bty = "n")
+  image(seq_len(ncol(ex)), seq_len(nrow(ex)), t(scaled), col = pal, zlim = c(0, 1),
+        axes = FALSE, xlab = "", ylab = "", main = "Example rating norms", font.main = 1)
+  abline(h = seq(.5, nrow(ex) + .5), v = seq(.5, ncol(ex) + .5), col = "white", lwd = 1.5)
+  axis(2, at = seq_len(nrow(ex)), labels = paste0(rownames(ex), " · ", pick[rownames(ex)]),
+       las = 1, tick = FALSE, line = -.6)
+  axis(1, at = seq_len(ncol(ex)), labels = cols, las = 1, tick = FALSE, line = -.4)
+  cells <- expand.grid(col = seq_len(ncol(ex)), row = seq_len(nrow(ex)))
+  text(cells$col, cells$row, sprintf("%.1f", ex[cbind(cells$row, cells$col)]), cex = .9,
+       col = ifelse(scaled[cbind(cells$row, cells$col)] > .55, "white", ink))
+  dev.off()
+}

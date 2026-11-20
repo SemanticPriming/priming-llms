@@ -65,6 +65,7 @@ FRAMES = {
     "de_after_word": "Nach dem Wort {cue} kommt das Wort {target}",
     "de_and": "{cue} und {target}",
     "de_ldt": "Wort 1: {cue}\nWort 2: {target}",
+    "de_pair_begins": "Das Paar beginnt mit {cue} und geht weiter mit {target}",
 }
 
 

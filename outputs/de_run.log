@@ -66,3 +66,6 @@ running ai-forever/mGPT ldt
   wrote ai-forever_mGPT__ldt.csv
 running ai-forever/mGPT and
   wrote ai-forever_mGPT__and.csv
+scripts/run_german.sh: line 5: 26603 Terminated: 15          $PY scripts/compute_priming.py --models "$m" --formats "$@" --items-file data/de/de_items.csv --out-dir outputs/de
+/opt/miniconda3/lib/python3.13/multiprocessing/resource_tracker.py:301: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-26603-wpmoigv8'}
+  warnings.warn(

@@ -1,0 +1,33 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+device: mps | items: 1000 | few-shot pool: 500
+Loading weights:   0%|          | 0/293 [00:00<?, ?it/s]Loading weights:   0%|          | 1/293 [00:00<01:34,  3.10it/s]Loading weights:  57%|█████▋    | 167/293 [00:00<00:00, 476.39it/s]Loading weights:  84%|████████▍ | 246/293 [00:00<00:00, 479.71it/s]Loading weights: 100%|██████████| 293/293 [00:00<00:00, 324.54it/s]
+[transformers] [1mGPT2LMHeadModel LOAD REPORT[0m from: ai-forever/mGPT
+Key                                     | Status     |  | 
+----------------------------------------+------------+--+-
+transformer.h.{0...23}.attn.masked_bias | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  70%|██████▉   | 204/292 [00:00<00:00, 2003.44it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1523.49it/s]
+[transformers] [1mGPT2Model LOAD REPORT[0m from: ai-forever/mGPT
+Key                                     | Status     |  | 
+----------------------------------------+------------+--+-
+transformer.h.{0...23}.attn.masked_bias | UNEXPECTED |  | 
+lm_head.weight                          | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+running ai-forever/mGPT after_word
+  wrote ai-forever_mGPT__after_word.csv
+running ai-forever/mGPT and
+  wrote ai-forever_mGPT__and.csv
+running ai-forever/mGPT ldt
+  wrote ai-forever_mGPT__ldt.csv
+running ai-forever/mGPT de_after_word
+  wrote ai-forever_mGPT__de_after_word.csv
+running ai-forever/mGPT de_and
+  wrote ai-forever_mGPT__de_and.csv
+running ai-forever/mGPT de_ldt
+  wrote ai-forever_mGPT__de_ldt.csv
+/opt/miniconda3/lib/python3.13/multiprocessing/resource_tracker.py:301: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-52191-tj0xrgce'}
+  warnings.warn(

@@ -1,0 +1,82 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+device: mps | items: 1000 | few-shot pool: 500
+Loading weights:   0%|          | 0/113 [00:00<?, ?it/s]Loading weights: 100%|██████████| 113/113 [00:00<00:00, 4933.45it/s]
+Loading weights:   0%|          | 0/113 [00:00<?, ?it/s]Loading weights: 100%|██████████| 113/113 [00:00<00:00, 15123.05it/s]
+running allenai/OLMo-1B-hf de_after_word
+  wrote allenai_OLMo-1B-hf__de_after_word.csv
+running allenai/OLMo-1B-hf de_and
+  wrote allenai_OLMo-1B-hf__de_and.csv
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+device: mps | items: 1000 | few-shot pool: 500
+Loading weights:   0%|          | 0/113 [00:00<?, ?it/s]Loading weights: 100%|██████████| 113/113 [00:00<00:00, 18285.35it/s]
+Loading weights:   0%|          | 0/113 [00:00<?, ?it/s]Loading weights: 100%|██████████| 113/113 [00:00<00:00, 13145.74it/s]
+running allenai/OLMo-1B-hf de_after_word
+  wrote allenai_OLMo-1B-hf__de_after_word.csv
+running allenai/OLMo-1B-hf de_and
+  wrote allenai_OLMo-1B-hf__de_and.csv
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+device: mps | items: 1000 | few-shot pool: 500
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 6937.32it/s]
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 17399.77it/s]
+running Qwen/Qwen2.5-0.5B de_ldt
+  wrote Qwen_Qwen2.5-0.5B__de_ldt.csv
+running Qwen/Qwen2.5-0.5B de_pair_begins
+  wrote Qwen_Qwen2.5-0.5B__de_pair_begins.csv
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+device: mps | items: 1000 | few-shot pool: 500
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 14871.24it/s]
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 16354.70it/s]
+running Qwen/Qwen2.5-0.5B de_ldt
+  wrote Qwen_Qwen2.5-0.5B__de_ldt.csv
+running Qwen/Qwen2.5-0.5B de_pair_begins
+  wrote Qwen_Qwen2.5-0.5B__de_pair_begins.csv
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+device: mps | items: 1000 | few-shot pool: 500
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 5847.52it/s]
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 16064.61it/s]
+running HuggingFaceTB/SmolLM2-360M de_ldt
+  wrote HuggingFaceTB_SmolLM2-360M__de_ldt.csv
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+device: mps | items: 1000 | few-shot pool: 500
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 15611.62it/s]
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 14359.82it/s]
+running HuggingFaceTB/SmolLM2-360M de_ldt
+  wrote HuggingFaceTB_SmolLM2-360M__de_ldt.csv
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+device: mps | items: 1000 | few-shot pool: 500
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 6730.38it/s]
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 19154.79it/s]
+running Qwen/Qwen2.5-0.5B-Instruct de_after_word
+  wrote Qwen_Qwen2.5-0.5B-Instruct__de_after_word.csv
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+device: mps | items: 1000 | few-shot pool: 500
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 17984.54it/s]
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 14767.42it/s]
+running Qwen/Qwen2.5-0.5B-Instruct de_after_word
+  wrote Qwen_Qwen2.5-0.5B-Instruct__de_after_word.csv
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+device: mps | items: 1000 | few-shot pool: 500
+Loading weights:   0%|          | 0/196 [00:00<?, ?it/s]Loading weights: 100%|██████████| 196/196 [00:00<00:00, 6710.50it/s]
+Loading weights:   0%|          | 0/195 [00:00<?, ?it/s]Loading weights: 100%|██████████| 195/195 [00:00<00:00, 15548.93it/s]
+[transformers] [1mGPTNeoXModel LOAD REPORT[0m from: EleutherAI/pythia-1b
+Key              | Status     |  | 
+-----------------+------------+--+-
+embed_out.weight | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+running EleutherAI/pythia-1b de_ldt
+  wrote EleutherAI_pythia-1b__de_ldt.csv
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+device: mps | items: 1000 | few-shot pool: 500
+Loading weights:   0%|          | 0/196 [00:00<?, ?it/s]Loading weights: 100%|██████████| 196/196 [00:00<00:00, 15959.69it/s]
+Loading weights:   0%|          | 0/195 [00:00<?, ?it/s]Loading weights: 100%|██████████| 195/195 [00:00<00:00, 16542.06it/s]
+[transformers] [1mGPTNeoXModel LOAD REPORT[0m from: EleutherAI/pythia-1b
+Key              | Status     |  | 
+-----------------+------------+--+-
+embed_out.weight | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+running EleutherAI/pythia-1b de_ldt
+  wrote EleutherAI_pythia-1b__de_ldt.csv

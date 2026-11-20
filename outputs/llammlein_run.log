@@ -1,0 +1,32 @@
+device: mps | items: 1000 | few-shot pool: 500
+Loading weights:   0%|          | 0/111 [00:00<?, ?it/s]Loading weights: 100%|██████████| 111/111 [00:00<00:00, 12336.19it/s]
+Loading weights:   0%|          | 0/110 [00:00<?, ?it/s]Loading weights: 100%|██████████| 110/110 [00:00<00:00, 18151.45it/s]
+[transformers] [1mLlamaModel LOAD REPORT[0m from: LSX-UniWue/LLaMmlein_120M
+Key            | Status     |  | 
+---------------+------------+--+-
+lm_head.weight | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+running LSX-UniWue/LLaMmlein_120M de_after_word
+  wrote LSX-UniWue_LLaMmlein_120M__de_after_word.csv
+running LSX-UniWue/LLaMmlein_120M de_and
+  wrote LSX-UniWue_LLaMmlein_120M__de_and.csv
+running LSX-UniWue/LLaMmlein_120M de_ldt
+  wrote LSX-UniWue_LLaMmlein_120M__de_ldt.csv
+device: mps | items: 1000 | few-shot pool: 500
+Loading weights:   0%|          | 0/111 [00:00<?, ?it/s]Loading weights: 100%|██████████| 111/111 [00:00<00:00, 15083.51it/s]
+Loading weights:   0%|          | 0/110 [00:00<?, ?it/s]Loading weights: 100%|██████████| 110/110 [00:00<00:00, 15951.23it/s]
+[transformers] [1mLlamaModel LOAD REPORT[0m from: LSX-UniWue/LLaMmlein_120M
+Key            | Status     |  | 
+---------------+------------+--+-
+lm_head.weight | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+running LSX-UniWue/LLaMmlein_120M de_after_word
+  wrote LSX-UniWue_LLaMmlein_120M__de_after_word.csv
+running LSX-UniWue/LLaMmlein_120M de_and
+  wrote LSX-UniWue_LLaMmlein_120M__de_and.csv
+running LSX-UniWue/LLaMmlein_120M de_ldt
+  wrote LSX-UniWue_LLaMmlein_120M__de_ldt.csv

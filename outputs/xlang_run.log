@@ -1,0 +1,125 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+device: mps | items: 1000 | few-shot pool: 500
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 20682.25it/s]
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 16571.64it/s]
+running gpt2 after_word
+  wrote gpt2__after_word.csv
+running gpt2 and
+  wrote gpt2__and.csv
+running gpt2 ldt
+  wrote gpt2__ldt.csv
+running gpt2 de_after_word
+  wrote gpt2__de_after_word.csv
+running gpt2 de_and
+  wrote gpt2__de_and.csv
+running gpt2 de_ldt
+  wrote gpt2__de_ldt.csv
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+device: mps | items: 1000 | few-shot pool: 500
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 27157.10it/s]
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 16704.53it/s]
+running gpt2 after_word
+  wrote gpt2__after_word.csv
+running gpt2 and
+  wrote gpt2__and.csv
+running gpt2 ldt
+  wrote gpt2__ldt.csv
+running gpt2 de_after_word
+  wrote gpt2__de_after_word.csv
+running gpt2 de_and
+  wrote gpt2__de_and.csv
+running gpt2 de_ldt
+  wrote gpt2__de_ldt.csv
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+device: mps | items: 1000 | few-shot pool: 500
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 21938.75it/s]
+[transformers] [1mGPT2LMHeadModel LOAD REPORT[0m from: dbmdz/german-gpt2
+Key                                     | Status     |  | 
+----------------------------------------+------------+--+-
+transformer.h.{0...11}.attn.masked_bias | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 18124.29it/s]
+[transformers] [1mGPT2Model LOAD REPORT[0m from: dbmdz/german-gpt2
+Key                                     | Status     |  | 
+----------------------------------------+------------+--+-
+transformer.h.{0...11}.attn.masked_bias | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+running dbmdz/german-gpt2 after_word
+  wrote dbmdz_german-gpt2__after_word.csv
+running dbmdz/german-gpt2 and
+  wrote dbmdz_german-gpt2__and.csv
+running dbmdz/german-gpt2 ldt
+  wrote dbmdz_german-gpt2__ldt.csv
+running dbmdz/german-gpt2 de_after_word
+  wrote dbmdz_german-gpt2__de_after_word.csv
+running dbmdz/german-gpt2 de_and
+  wrote dbmdz_german-gpt2__de_and.csv
+running dbmdz/german-gpt2 de_ldt
+  wrote dbmdz_german-gpt2__de_ldt.csv
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+device: mps | items: 1000 | few-shot pool: 500
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 24531.97it/s]
+[transformers] [1mGPT2LMHeadModel LOAD REPORT[0m from: dbmdz/german-gpt2
+Key                                     | Status     |  | 
+----------------------------------------+------------+--+-
+transformer.h.{0...11}.attn.masked_bias | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 15885.08it/s]
+[transformers] [1mGPT2Model LOAD REPORT[0m from: dbmdz/german-gpt2
+Key                                     | Status     |  | 
+----------------------------------------+------------+--+-
+transformer.h.{0...11}.attn.masked_bias | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+running dbmdz/german-gpt2 after_word
+  wrote dbmdz_german-gpt2__after_word.csv
+running dbmdz/german-gpt2 and
+  wrote dbmdz_german-gpt2__and.csv
+running dbmdz/german-gpt2 ldt
+  wrote dbmdz_german-gpt2__ldt.csv
+running dbmdz/german-gpt2 de_after_word
+  wrote dbmdz_german-gpt2__de_after_word.csv
+running dbmdz/german-gpt2 de_and
+  wrote dbmdz_german-gpt2__de_and.csv
+running dbmdz/german-gpt2 de_ldt
+  wrote dbmdz_german-gpt2__de_ldt.csv
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+device: mps | items: 1000 | few-shot pool: 500
+Loading weights:   0%|          | 0/293 [00:00<?, ?it/s]Loading weights:  61%|██████    | 179/293 [00:00<00:00, 1763.69it/s]Loading weights: 100%|██████████| 293/293 [00:00<00:00, 1592.19it/s]
+[transformers] [1mGPT2LMHeadModel LOAD REPORT[0m from: ai-forever/mGPT
+Key                                     | Status     |  | 
+----------------------------------------+------------+--+-
+transformer.h.{0...23}.attn.masked_bias | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  69%|██████▉   | 202/292 [00:00<00:00, 2006.75it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1766.72it/s]
+[transformers] [1mGPT2Model LOAD REPORT[0m from: ai-forever/mGPT
+Key                                     | Status     |  | 
+----------------------------------------+------------+--+-
+transformer.h.{0...23}.attn.masked_bias | UNEXPECTED |  | 
+lm_head.weight                          | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+running ai-forever/mGPT after_word
+  wrote ai-forever_mGPT__after_word.csv
+running ai-forever/mGPT and
+  wrote ai-forever_mGPT__and.csv
+running ai-forever/mGPT ldt
+  wrote ai-forever_mGPT__ldt.csv
+running ai-forever/mGPT de_after_word
+  wrote ai-forever_mGPT__de_after_word.csv
+running ai-forever/mGPT de_and
+  wrote ai-forever_mGPT__de_and.csv
+running ai-forever/mGPT de_ldt
+  wrote ai-forever_mGPT__de_ldt.csv
+/opt/miniconda3/lib/python3.13/multiprocessing/resource_tracker.py:301: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-30330-yv5ad9sk'}
+  warnings.warn(
