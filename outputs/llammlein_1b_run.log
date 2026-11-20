@@ -1,0 +1,36 @@
+Error while downloading from https://huggingface.co/LSX-UniWue/LLaMmlein_1B/resolve/main/model.safetensors: peer closed connection without sending complete message body (received 2255098130 bytes, expected 4401265112)
+Trying to resume download...
+Error while downloading from https://huggingface.co/LSX-UniWue/LLaMmlein_1B/resolve/main/model.safetensors: peer closed connection without sending complete message body (received 1075122382 bytes, expected 2146826712)
+Trying to resume download...
+device: mps | items: 1000 | few-shot pool: 500
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 24523.81it/s]
+Loading weights:   0%|          | 0/200 [00:00<?, ?it/s]Loading weights: 100%|██████████| 200/200 [00:00<00:00, 18724.99it/s]
+[transformers] [1mLlamaModel LOAD REPORT[0m from: LSX-UniWue/LLaMmlein_1B
+Key            | Status     |  | 
+---------------+------------+--+-
+lm_head.weight | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+running LSX-UniWue/LLaMmlein_1B de_after_word
+  wrote LSX-UniWue_LLaMmlein_1B__de_after_word.csv
+running LSX-UniWue/LLaMmlein_1B de_and
+  wrote LSX-UniWue_LLaMmlein_1B__de_and.csv
+running LSX-UniWue/LLaMmlein_1B de_ldt
+  wrote LSX-UniWue_LLaMmlein_1B__de_ldt.csv
+device: mps | items: 1000 | few-shot pool: 500
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 20626.21it/s]
+Loading weights:   0%|          | 0/200 [00:00<?, ?it/s]Loading weights: 100%|██████████| 200/200 [00:00<00:00, 16847.64it/s]
+[transformers] [1mLlamaModel LOAD REPORT[0m from: LSX-UniWue/LLaMmlein_1B
+Key            | Status     |  | 
+---------------+------------+--+-
+lm_head.weight | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+running LSX-UniWue/LLaMmlein_1B de_after_word
+  wrote LSX-UniWue_LLaMmlein_1B__de_after_word.csv
+running LSX-UniWue/LLaMmlein_1B de_and
+  wrote LSX-UniWue_LLaMmlein_1B__de_and.csv
+running LSX-UniWue/LLaMmlein_1B de_ldt
+  wrote LSX-UniWue_LLaMmlein_1B__de_ldt.csv

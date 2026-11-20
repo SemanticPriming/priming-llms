@@ -3,10 +3,9 @@
 # A watchdog stops each run once its outputs exist, in case the process hangs on exit.
 # Usage: M=LSX-UniWue/LLaMmlein_120M bash scripts/run_llammlein.sh   (default is the 120M model)
 #
-# NOTE FOR THE PAPER: the talk used the 120M model because the 1B download (4.4 GB) was too slow
-# on the conference-prep connection. The English comparison model is OLMo-1B, so the sizes do not
-# match. For the paper, run LSX-UniWue/LLaMmlein_1B (same size as OLMo-1B and Pythia-1B), and
-# consider other German or multilingual models (bloom-1b5-clp-german, gbert-base, EuroLLM-1.7B).
+# Results: the 120M model scored only .09 on German words, the 1B model .20 (outputs/crosslang_final.csv,
+# with the 120M version kept in outputs/crosslang_final_120M.csv). The talk uses the 1B model. For the
+# paper, consider other German or multilingual models too (bloom-1b5-clp-german, gbert-base, EuroLLM-1.7B).
 PY=${PY:-/opt/miniconda3/bin/python}
 M=${M:-LSX-UniWue/LLaMmlein_120M}
 TAG=$(basename "$M")

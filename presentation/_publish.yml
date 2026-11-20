@@ -1,0 +1,4 @@
+- source: psychonomics.qmd
+  posit-connect-cloud:
+    - id: 01a1fa95-a1ed-6101-d5de-9c9d496912b3
+      url: https://connect.posit.cloud/doomlab/content/01a1fa95-a1ed-6101-d5de-9c9d496912b3
